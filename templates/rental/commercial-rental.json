@@ -1,0 +1,408 @@
+{
+  "slug": "commercial-rental",
+  "category": "rental",
+  "version": 1,
+  "name": {
+    "he": "חוזה שכירות מסחרית",
+    "ar": "عقد إيجار تجاري",
+    "en": "Commercial Rental Agreement",
+    "ru": "Договор коммерческой аренды"
+  },
+  "description": {
+    "he": "חוזה שכירות לנכס מסחרי בישראל",
+    "ar": "عقد إيجار لعقار تجاري في إسرائيل",
+    "en": "Commercial property rental agreement in Israel",
+    "ru": "Договор аренды коммерческой недвижимости в Израиле"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי המשכיר והשוכר", "ar": "بيانات المؤجر والمستأجر", "en": "Landlord and tenant details", "ru": "Данные арендодателя и арендатора" },
+        "fields": [
+          {
+            "key": "landlord_name",
+            "type": "text",
+            "label": { "he": "שם המשכיר / החברה", "ar": "اسم المؤجر / الشركة", "en": "Landlord / Company Name", "ru": "Имя арендодателя / компании" },
+            "placeholder": { "he": "שם מלא או שם חברה", "ar": "الاسم الكامل أو اسم الشركة", "en": "Full name or company name", "ru": "Полное имя или название компании" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "landlord_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. / ח.פ. המשכיר", "ar": "هوية / سجل تجاري للمؤجر", "en": "Landlord ID / Company Number", "ru": "ID / номер компании арендодателя" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "landlord_address",
+            "type": "text",
+            "label": { "he": "כתובת המשכיר", "ar": "عنوان المؤجر", "en": "Landlord Address", "ru": "Адрес арендодателя" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "landlord_phone",
+            "type": "phone",
+            "label": { "he": "טלפון המשכיר", "ar": "هاتف المؤجر", "en": "Landlord Phone", "ru": "Телефон арендодателя" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "landlord_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל המשכיר", "ar": "بريد المؤجر", "en": "Landlord Email", "ru": "Email арендодателя" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "tenant_business_name",
+            "type": "text",
+            "label": { "he": "שם העסק / החברה השוכרת", "ar": "اسم الشركة المستأجرة", "en": "Tenant Business Name", "ru": "Название компании арендатора" },
+            "placeholder": { "he": "שם החברה או העסק", "ar": "اسم الشركة أو النشاط التجاري", "en": "Company or business name", "ru": "Название компании или бизнеса" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 150 },
+            "width": "half"
+          },
+          {
+            "key": "tenant_company_number",
+            "type": "text",
+            "label": { "he": "ח.פ. השוכר", "ar": "سجل تجاري للمستأجر", "en": "Tenant Company Number", "ru": "Регистрационный номер компании арендатора" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "tenant_authorized_signatory",
+            "type": "text",
+            "label": { "he": "מורשה חתימה", "ar": "المفوض بالتوقيع", "en": "Authorized Signatory", "ru": "Уполномоченный подписант" },
+            "placeholder": { "he": "שם מורשה החתימה מטעם השוכר", "ar": "اسم المفوض بالتوقيع نيابة عن المستأجر", "en": "Name of person authorized to sign on behalf of tenant", "ru": "Имя лица, уполномоченного подписывать от имени арендатора" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "tenant_signatory_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. מורשה החתימה", "ar": "هوية المفوض بالتوقيع", "en": "Signatory ID Number", "ru": "ID подписанта" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "tenant_address",
+            "type": "text",
+            "label": { "he": "כתובת העסק", "ar": "عنوان الشركة", "en": "Business Address", "ru": "Адрес компании" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "tenant_phone",
+            "type": "phone",
+            "label": { "he": "טלפון השוכר", "ar": "هاتف المستأجر", "en": "Tenant Phone", "ru": "Телефон арендатора" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "tenant_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל השוכר", "ar": "بريد المستأجر", "en": "Tenant Email", "ru": "Email арендатора" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "property",
+        "title": { "he": "פרטי הנכס", "ar": "تفاصيل العقار", "en": "Property Details", "ru": "Детали объекта" },
+        "description": { "he": "מאפייני הנכס המסחרי", "ar": "خصائص العقار التجاري", "en": "Commercial property characteristics", "ru": "Характеристики коммерческого объекта" },
+        "fields": [
+          {
+            "key": "property_address",
+            "type": "text",
+            "label": { "he": "כתובת הנכס", "ar": "عنوان العقار", "en": "Property Address", "ru": "Адрес объекта" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "property_city",
+            "type": "text",
+            "label": { "he": "עיר", "ar": "المدينة", "en": "City", "ru": "Город" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "commercial_type",
+            "type": "select",
+            "label": { "he": "סוג הנכס המסחרי", "ar": "نوع العقار التجاري", "en": "Commercial Property Type", "ru": "Тип коммерческого объекта" },
+            "required": true,
+            "options": [
+              { "value": "office", "label": { "he": "משרד", "ar": "مكتب", "en": "Office", "ru": "Офис" } },
+              { "value": "store", "label": { "he": "חנות", "ar": "متجر", "en": "Store / Retail", "ru": "Магазин" } },
+              { "value": "warehouse", "label": { "he": "מחסן", "ar": "مستودع", "en": "Warehouse", "ru": "Склад" } },
+              { "value": "restaurant", "label": { "he": "מסעדה / בית קפה", "ar": "مطعم / مقهى", "en": "Restaurant / Cafe", "ru": "Ресторан / кафе" } },
+              { "value": "industrial", "label": { "he": "מבנה תעשייתי", "ar": "مبنى صناعي", "en": "Industrial Building", "ru": "Промышленное здание" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "area_sqm",
+            "type": "number",
+            "label": { "he": "שטח במ\"ר", "ar": "المساحة بالمتر المربع", "en": "Area (sqm)", "ru": "Площадь (кв.м)" },
+            "required": true,
+            "validation": { "min": 5, "max": 50000 },
+            "width": "half"
+          },
+          {
+            "key": "floor_number",
+            "type": "number",
+            "label": { "he": "קומה", "ar": "الطابق", "en": "Floor", "ru": "Этаж" },
+            "required": true,
+            "validation": { "min": -5, "max": 100 },
+            "width": "half"
+          },
+          {
+            "key": "has_parking",
+            "type": "checkbox",
+            "label": { "he": "כולל חניה", "ar": "يشمل موقف سيارات", "en": "Includes Parking", "ru": "Включая парковку" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "parking_spots",
+            "type": "number",
+            "label": { "he": "מספר מקומות חניה", "ar": "عدد أماكن وقوف السيارات", "en": "Number of Parking Spots", "ru": "Количество парковочных мест" },
+            "required": false,
+            "condition": { "field": "has_parking", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 100 },
+            "width": "half"
+          },
+          {
+            "key": "property_condition",
+            "type": "select",
+            "label": { "he": "מצב הנכס", "ar": "حالة العقار", "en": "Property Condition", "ru": "Состояние объекта" },
+            "required": true,
+            "options": [
+              { "value": "shell", "label": { "he": "מעטפת בלבד", "ar": "هيكل فقط", "en": "Shell Only", "ru": "Только оболочка" } },
+              { "value": "basic", "label": { "he": "גמר בסיסי", "ar": "تشطيب أساسي", "en": "Basic Finish", "ru": "Базовая отделка" } },
+              { "value": "full", "label": { "he": "גמר מלא", "ar": "تشطيب كامل", "en": "Fully Finished", "ru": "Полная отделка" } },
+              { "value": "furnished", "label": { "he": "מרוהט", "ar": "مفروش", "en": "Furnished", "ru": "Меблирован" } }
+            ],
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "terms",
+        "title": { "he": "תנאי השכירות", "ar": "شروط الإيجار", "en": "Rental Terms", "ru": "Условия аренды" },
+        "description": { "he": "תנאים כספיים ותקופת השכירות", "ar": "الشروط المالية ومدة الإيجار", "en": "Financial terms and rental period", "ru": "Финансовые условия и срок аренды" },
+        "fields": [
+          {
+            "key": "start_date",
+            "type": "date",
+            "label": { "he": "תאריך תחילת השכירות", "ar": "تاريخ بدء الإيجار", "en": "Lease Start Date", "ru": "Дата начала аренды" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "end_date",
+            "type": "date",
+            "label": { "he": "תאריך סיום השכירות", "ar": "تاريخ انتهاء الإيجار", "en": "Lease End Date", "ru": "Дата окончания аренды" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "monthly_rent",
+            "type": "currency",
+            "label": { "he": "דמי שכירות חודשיים (ש\"ח)", "ar": "الإيجار الشهري (شيكل)", "en": "Monthly Rent (ILS)", "ru": "Ежемесячная арендная плата (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "management_fees",
+            "type": "currency",
+            "label": { "he": "דמי ניהול חודשיים (ש\"ח)", "ar": "رسوم الإدارة الشهرية (شيكل)", "en": "Monthly Management Fees (ILS)", "ru": "Ежемесячная плата за управление (шекель)" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "deposit_amount",
+            "type": "currency",
+            "label": { "he": "סכום פיקדון (ש\"ח)", "ar": "مبلغ التأمين (شيكل)", "en": "Security Deposit (ILS)", "ru": "Сумма залога (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "payment_day",
+            "type": "number",
+            "label": { "he": "יום תשלום בחודש", "ar": "يوم الدفع في الشهر", "en": "Payment Day of Month", "ru": "День оплаты в месяце" },
+            "required": true,
+            "validation": { "min": 1, "max": 28 },
+            "width": "half"
+          },
+          {
+            "key": "payment_method",
+            "type": "select",
+            "label": { "he": "אמצעי תשלום", "ar": "طريقة الدفع", "en": "Payment Method", "ru": "Способ оплаты" },
+            "required": true,
+            "options": [
+              { "value": "bank_transfer", "label": { "he": "העברה בנקאית", "ar": "تحويل بنكي", "en": "Bank Transfer", "ru": "Банковский перевод" } },
+              { "value": "checks", "label": { "he": "שיקים", "ar": "شيكات", "en": "Checks", "ru": "Чеки" } },
+              { "value": "standing_order", "label": { "he": "הוראת קבע", "ar": "أمر دائم", "en": "Standing Order", "ru": "Постоянное поручение" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "includes_vat",
+            "type": "checkbox",
+            "label": { "he": "המחיר כולל מע\"מ", "ar": "السعر يشمل ضريبة القيمة المضافة", "en": "Price Includes VAT", "ru": "Цена включает НДС" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "insurance_required",
+            "type": "checkbox",
+            "label": { "he": "נדרש ביטוח צד ג'", "ar": "مطلوب تأمين ضد الغير", "en": "Third-Party Insurance Required", "ru": "Требуется страхование третьих лиц" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "insurance_amount",
+            "type": "currency",
+            "label": { "he": "סכום ביטוח מינימלי (ש\"ח)", "ar": "الحد الأدنى لمبلغ التأمين (شيكل)", "en": "Minimum Insurance Amount (ILS)", "ru": "Минимальная сумма страховки (шекель)" },
+            "required": false,
+            "condition": { "field": "insurance_required", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "additional",
+        "title": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+        "description": { "he": "שימוש מותר, שילוט ושיפוצים", "ar": "الاستخدام المسموح واللافتات والتجديدات", "en": "Permitted use, signage, and renovations", "ru": "Разрешенное использование, вывески и ремонт" },
+        "fields": [
+          {
+            "key": "permitted_use",
+            "type": "textarea",
+            "label": { "he": "ייעוד / שימוש מותר", "ar": "الاستخدام المسموح", "en": "Permitted Use", "ru": "Разрешенное использование" },
+            "placeholder": { "he": "תאר את השימוש המותר בנכס...", "ar": "صف الاستخدام المسموح به للعقار...", "en": "Describe the permitted use of the property...", "ru": "Опишите разрешенное использование объекта..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "signage_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותר שילוט חיצוני", "ar": "يسمح بلافتات خارجية", "en": "External Signage Allowed", "ru": "Разрешена наружная вывеска" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "signage_details",
+            "type": "textarea",
+            "label": { "he": "פרטי שילוט", "ar": "تفاصيل اللافتات", "en": "Signage Details", "ru": "Детали вывески" },
+            "placeholder": { "he": "פרט מגבלות והנחיות לשילוט...", "ar": "حدد القيود والإرشادات المتعلقة باللافتات...", "en": "Specify signage restrictions and guidelines...", "ru": "Укажите ограничения и правила для вывесок..." },
+            "required": false,
+            "condition": { "field": "signage_allowed", "operator": "equals", "value": true },
+            "width": "full"
+          },
+          {
+            "key": "renovation_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותרים שיפוצים / התאמות", "ar": "يسمح بالتجديدات / التعديلات", "en": "Renovations / Modifications Allowed", "ru": "Разрешены ремонтные работы / модификации" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "renovation_details",
+            "type": "textarea",
+            "label": { "he": "פרטי שיפוצים מותרים", "ar": "تفاصيل التجديدات المسموحة", "en": "Permitted Renovation Details", "ru": "Детали разрешенного ремонта" },
+            "placeholder": { "he": "פרט שיפוצים והתאמות מותרים...", "ar": "حدد التجديدات والتعديلات المسموحة...", "en": "Specify permitted renovations and modifications...", "ru": "Укажите разрешенные ремонтные работы и модификации..." },
+            "required": false,
+            "condition": { "field": "renovation_allowed", "operator": "equals", "value": true },
+            "width": "full"
+          },
+          {
+            "key": "subletting_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותרת השכרת משנה", "ar": "يسمح بالإيجار من الباطن", "en": "Subletting Allowed", "ru": "Разрешена субаренда" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "notice_days",
+            "type": "number",
+            "label": { "he": "ימי הודעה מוקדמת", "ar": "أيام الإشعار المسبق", "en": "Notice Period (days)", "ru": "Срок уведомления (дней)" },
+            "required": true,
+            "validation": { "min": 30, "max": 365 },
+            "defaultValue": 90,
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "חוזה שכירות מסחרית", "body": "<p style=\"text-align:center\"><strong>חוזה שכירות בלתי מוגנת לנכס מסחרי</strong></p><p>שנערך ונחתם ביום {{start_date}}</p>" },
+        { "title": "1. הצדדים", "body": "<p><strong>בין:</strong> {{landlord_name}}, ת.ז./ח.פ. {{landlord_id}}, מרחוב {{landlord_address}}, טלפון: {{landlord_phone}} (להלן: <strong>\"המשכיר\"</strong>)</p><p><strong>לבין:</strong> {{tenant_business_name}}, ח.פ. {{tenant_company_number}}, מרחוב {{tenant_address}}, טלפון: {{tenant_phone}}, באמצעות מורשה חתימה: {{tenant_authorized_signatory}}, ת.ז. {{tenant_signatory_id}} (להלן: <strong>\"השוכר\"</strong>)</p>" },
+        { "title": "2. המושכר", "body": "<p>המשכיר משכיר בזאת לשוכר והשוכר שוכר מהמשכיר את הנכס המסחרי מסוג {{commercial_type}} הנמצא ברחוב {{property_address}}, {{property_city}}, קומה {{floor_number}}, בשטח של {{area_sqm}} מ\"ר, במצב {{property_condition}} (להלן: <strong>\"המושכר\"</strong>).</p>{{#if has_parking}}<p>המושכר כולל {{parking_spots}} מקומות חניה.</p>{{/if}}" },
+        { "title": "3. תקופת השכירות", "body": "<p>תקופת השכירות הינה מיום {{start_date}} ועד ליום {{end_date}} (להלן: <strong>\"תקופת השכירות\"</strong>).</p>" },
+        { "title": "4. דמי השכירות ותשלומים", "body": "<p>דמי השכירות החודשיים הינם <strong>{{monthly_rent}} ש\"ח</strong>{{#if includes_vat}} (כולל מע\"מ){{/if}}{{#unless includes_vat}} (בתוספת מע\"מ כדין){{/unless}}, אשר ישולמו עד ליום ה-{{payment_day}} בכל חודש באמצעות {{payment_method}}.</p>{{#if management_fees}}<p>בנוסף, ישלם השוכר דמי ניהול חודשיים בסך <strong>{{management_fees}} ש\"ח</strong>.</p>{{/if}}<p>השוכר ישלם למשכיר פיקדון בסך <strong>{{deposit_amount}} ש\"ח</strong> עם חתימת חוזה זה.</p>" },
+        { "title": "5. ביטוח", "body": "{{#if insurance_required}}<p>השוכר מתחייב לערוך ולקיים ביטוח צד שלישי בסכום שלא יפחת מ-<strong>{{insurance_amount}} ש\"ח</strong> לכל אורך תקופת השכירות, ולהמציא למשכיר אישור על כך.</p>{{/if}}{{#unless insurance_required}}<p>השוכר מומלץ לערוך ביטוח מתאים לנכס ולתכולתו.</p>{{/unless}}" },
+        { "title": "6. ייעוד השימוש", "body": "<p>השוכר מתחייב להשתמש במושכר אך ורק למטרת: {{permitted_use}}.</p><p>השוכר לא ישנה את ייעוד המושכר ללא הסכמת המשכיר בכתב מראש.</p>" },
+        { "title": "7. שילוט ושיפוצים", "body": "{{#if signage_allowed}}<p>המשכיר מתיר לשוכר להציב שילוט חיצוני בכפוף לתנאים הבאים: {{signage_details}}</p>{{/if}}{{#unless signage_allowed}}<p>אין להציב שילוט חיצוני ללא אישור המשכיר בכתב מראש.</p>{{/unless}}{{#if renovation_allowed}}<p>המשכיר מתיר לשוכר לבצע התאמות ושיפוצים בכפוף לתנאים הבאים: {{renovation_details}}</p>{{/if}}{{#unless renovation_allowed}}<p>אין לבצע שיפוצים או שינויים במושכר ללא אישור המשכיר בכתב מראש.</p>{{/unless}}" },
+        { "title": "8. תנאים נוספים", "body": "{{#unless subletting_allowed}}<p>אסור להשכיר את המושכר בשכירות משנה ללא הסכמת המשכיר בכתב מראש.</p>{{/unless}}<p>על כל צד המבקש לסיים את החוזה לתת הודעה מוקדמת של {{notice_days}} ימים.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "9. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המשכיר: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>השוכר: {{tenant_business_name}}<br/>ע\"י: {{tenant_authorized_signatory}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Commercial Rental Agreement", "body": "<p style=\"text-align:center\"><strong>Unprotected Commercial Rental Agreement</strong></p><p>Made and signed on {{start_date}}</p>" },
+        { "title": "1. The Parties", "body": "<p><strong>Between:</strong> {{landlord_name}}, ID/Company No. {{landlord_id}}, of {{landlord_address}}, Phone: {{landlord_phone}} (hereinafter: <strong>\"the Landlord\"</strong>)</p><p><strong>And:</strong> {{tenant_business_name}}, Company No. {{tenant_company_number}}, of {{tenant_address}}, Phone: {{tenant_phone}}, represented by authorized signatory: {{tenant_authorized_signatory}}, ID {{tenant_signatory_id}} (hereinafter: <strong>\"the Tenant\"</strong>)</p>" },
+        { "title": "2. The Property", "body": "<p>The Landlord hereby rents to the Tenant, and the Tenant rents from the Landlord, the commercial property of type {{commercial_type}} located at {{property_address}}, {{property_city}}, floor {{floor_number}}, with an area of {{area_sqm}} sqm, in {{property_condition}} condition (hereinafter: <strong>\"the Property\"</strong>).</p>{{#if has_parking}}<p>The Property includes {{parking_spots}} parking spots.</p>{{/if}}" },
+        { "title": "3. Rental Period", "body": "<p>The rental period is from {{start_date}} to {{end_date}} (hereinafter: <strong>\"the Rental Period\"</strong>).</p>" },
+        { "title": "4. Rent and Payments", "body": "<p>The monthly rent shall be <strong>{{monthly_rent}} ILS</strong>{{#if includes_vat}} (including VAT){{/if}}{{#unless includes_vat}} (plus VAT as required by law){{/unless}}, payable by the {{payment_day}}th of each month via {{payment_method}}.</p>{{#if management_fees}}<p>In addition, the Tenant shall pay monthly management fees of <strong>{{management_fees}} ILS</strong>.</p>{{/if}}<p>The Tenant shall pay the Landlord a security deposit of <strong>{{deposit_amount}} ILS</strong> upon signing this agreement.</p>" },
+        { "title": "5. Insurance", "body": "{{#if insurance_required}}<p>The Tenant undertakes to maintain third-party liability insurance of no less than <strong>{{insurance_amount}} ILS</strong> throughout the rental period and to provide the Landlord with proof thereof.</p>{{/if}}{{#unless insurance_required}}<p>The Tenant is advised to obtain appropriate insurance for the property and its contents.</p>{{/unless}}" },
+        { "title": "6. Permitted Use", "body": "<p>The Tenant undertakes to use the Property exclusively for the purpose of: {{permitted_use}}.</p><p>The Tenant shall not change the designated use of the Property without prior written consent from the Landlord.</p>" },
+        { "title": "7. Signage and Renovations", "body": "{{#if signage_allowed}}<p>The Landlord permits the Tenant to install external signage subject to the following conditions: {{signage_details}}</p>{{/if}}{{#unless signage_allowed}}<p>No external signage may be installed without prior written consent from the Landlord.</p>{{/unless}}{{#if renovation_allowed}}<p>The Landlord permits the Tenant to make modifications and renovations subject to the following conditions: {{renovation_details}}</p>{{/if}}{{#unless renovation_allowed}}<p>No renovations or modifications may be made to the Property without prior written consent from the Landlord.</p>{{/unless}}" },
+        { "title": "8. Additional Terms", "body": "{{#unless subletting_allowed}}<p>Subletting is not permitted without prior written consent from the Landlord.</p>{{/unless}}<p>Either party wishing to terminate the agreement must provide {{notice_days}} days' prior written notice.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "9. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Landlord: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Tenant: {{tenant_business_name}}<br/>By: {{tenant_authorized_signatory}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "عقد إيجار تجاري", "body": "<p style=\"text-align:center\"><strong>عقد إيجار تجاري غير محمي</strong></p><p>تم تحريره والتوقيع عليه بتاريخ {{start_date}}</p>" },
+        { "title": "1. الأطراف", "body": "<p><strong>بين:</strong> {{landlord_name}}، هوية / سجل تجاري رقم {{landlord_id}}، من {{landlord_address}}، هاتف: {{landlord_phone}} (المشار إليه فيما يلي بـ <strong>\"المؤجر\"</strong>)</p><p><strong>وبين:</strong> {{tenant_business_name}}، سجل تجاري رقم {{tenant_company_number}}، من {{tenant_address}}، هاتف: {{tenant_phone}}، بواسطة المفوض بالتوقيع: {{tenant_authorized_signatory}}، هوية رقم {{tenant_signatory_id}} (المشار إليه فيما يلي بـ <strong>\"المستأجر\"</strong>)</p>" },
+        { "title": "2. العقار", "body": "<p>يؤجر المؤجر للمستأجر العقار التجاري من نوع {{commercial_type}} الكائن في {{property_address}}، {{property_city}}، الطابق {{floor_number}}، بمساحة {{area_sqm}} متر مربع، بحالة {{property_condition}} (المشار إليه فيما يلي بـ <strong>\"العقار\"</strong>).</p>{{#if has_parking}}<p>يشمل العقار {{parking_spots}} أماكن وقوف سيارات.</p>{{/if}}" },
+        { "title": "3. مدة الإيجار", "body": "<p>مدة الإيجار من {{start_date}} حتى {{end_date}} (المشار إليها فيما يلي بـ <strong>\"مدة الإيجار\"</strong>).</p>" },
+        { "title": "4. الإيجار والمدفوعات", "body": "<p>الإيجار الشهري هو <strong>{{monthly_rent}} شيكل</strong>{{#if includes_vat}} (شامل ضريبة القيمة المضافة){{/if}}{{#unless includes_vat}} (بالإضافة إلى ضريبة القيمة المضافة وفقاً للقانون){{/unless}}، يُدفع بحلول اليوم {{payment_day}} من كل شهر عن طريق {{payment_method}}.</p>{{#if management_fees}}<p>بالإضافة إلى ذلك، يدفع المستأجر رسوم إدارة شهرية بمبلغ <strong>{{management_fees}} شيكل</strong>.</p>{{/if}}<p>يدفع المستأجر للمؤجر تأميناً بمبلغ <strong>{{deposit_amount}} شيكل</strong> عند توقيع هذا العقد.</p>" },
+        { "title": "5. التأمين", "body": "{{#if insurance_required}}<p>يتعهد المستأجر بالحصول على تأمين مسؤولية تجاه الغير والحفاظ عليه بمبلغ لا يقل عن <strong>{{insurance_amount}} شيكل</strong> طوال مدة الإيجار، وتقديم إثبات بذلك للمؤجر.</p>{{/if}}{{#unless insurance_required}}<p>يُنصح المستأجر بالحصول على تأمين مناسب للعقار ومحتوياته.</p>{{/unless}}" },
+        { "title": "6. الاستخدام المسموح", "body": "<p>يتعهد المستأجر باستخدام العقار حصرياً لغرض: {{permitted_use}}.</p><p>لا يجوز للمستأجر تغيير الاستخدام المخصص للعقار دون موافقة خطية مسبقة من المؤجر.</p>" },
+        { "title": "7. اللافتات والتجديدات", "body": "{{#if signage_allowed}}<p>يسمح المؤجر للمستأجر بتركيب لافتات خارجية وفقاً للشروط التالية: {{signage_details}}</p>{{/if}}{{#unless signage_allowed}}<p>لا يجوز تركيب لافتات خارجية دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}{{#if renovation_allowed}}<p>يسمح المؤجر للمستأجر بإجراء تعديلات وتجديدات وفقاً للشروط التالية: {{renovation_details}}</p>{{/if}}{{#unless renovation_allowed}}<p>لا يجوز إجراء تجديدات أو تعديلات على العقار دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}" },
+        { "title": "8. شروط إضافية", "body": "{{#unless subletting_allowed}}<p>لا يُسمح بالإيجار من الباطن دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}<p>على أي طرف يرغب في إنهاء العقد تقديم إشعار خطي مسبق قبل {{notice_days}} يوماً.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "9. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>المؤجر: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>المستأجر: {{tenant_business_name}}<br/>بواسطة: {{tenant_authorized_signatory}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Договор коммерческой аренды", "body": "<p style=\"text-align:center\"><strong>Договор незащищённой коммерческой аренды</strong></p><p>Составлен и подписан {{start_date}}</p>" },
+        { "title": "1. Стороны", "body": "<p><strong>Между:</strong> {{landlord_name}}, ID/рег. номер {{landlord_id}}, по адресу {{landlord_address}}, тел: {{landlord_phone}} (далее — <strong>«Арендодатель»</strong>)</p><p><strong>И:</strong> {{tenant_business_name}}, рег. номер {{tenant_company_number}}, по адресу {{tenant_address}}, тел: {{tenant_phone}}, в лице уполномоченного подписанта: {{tenant_authorized_signatory}}, ID {{tenant_signatory_id}} (далее — <strong>«Арендатор»</strong>)</p>" },
+        { "title": "2. Объект аренды", "body": "<p>Арендодатель сдаёт в аренду, а Арендатор принимает в аренду коммерческий объект типа {{commercial_type}}, расположенный по адресу {{property_address}}, {{property_city}}, этаж {{floor_number}}, площадью {{area_sqm}} кв.м, в состоянии {{property_condition}} (далее — <strong>«Объект»</strong>).</p>{{#if has_parking}}<p>Объект включает {{parking_spots}} парковочных мест.</p>{{/if}}" },
+        { "title": "3. Срок аренды", "body": "<p>Срок аренды: с {{start_date}} по {{end_date}} (далее — <strong>«Срок аренды»</strong>).</p>" },
+        { "title": "4. Арендная плата и платежи", "body": "<p>Ежемесячная арендная плата составляет <strong>{{monthly_rent}} шекелей</strong>{{#if includes_vat}} (включая НДС){{/if}}{{#unless includes_vat}} (плюс НДС в соответствии с законом){{/unless}}, подлежащая оплате до {{payment_day}}-го числа каждого месяца посредством {{payment_method}}.</p>{{#if management_fees}}<p>Дополнительно Арендатор оплачивает ежемесячную плату за управление в размере <strong>{{management_fees}} шекелей</strong>.</p>{{/if}}<p>Арендатор вносит Арендодателю залог в размере <strong>{{deposit_amount}} шекелей</strong> при подписании настоящего договора.</p>" },
+        { "title": "5. Страхование", "body": "{{#if insurance_required}}<p>Арендатор обязуется оформить и поддерживать страхование ответственности перед третьими лицами на сумму не менее <strong>{{insurance_amount}} шекелей</strong> на протяжении всего срока аренды и предоставить Арендодателю подтверждение.</p>{{/if}}{{#unless insurance_required}}<p>Арендатору рекомендуется оформить соответствующую страховку объекта и его содержимого.</p>{{/unless}}" },
+        { "title": "6. Разрешённое использование", "body": "<p>Арендатор обязуется использовать Объект исключительно в целях: {{permitted_use}}.</p><p>Арендатор не вправе изменять целевое назначение Объекта без предварительного письменного согласия Арендодателя.</p>" },
+        { "title": "7. Вывески и ремонт", "body": "{{#if signage_allowed}}<p>Арендодатель разрешает Арендатору установить наружную вывеску при соблюдении следующих условий: {{signage_details}}</p>{{/if}}{{#unless signage_allowed}}<p>Установка наружных вывесок запрещена без предварительного письменного согласия Арендодателя.</p>{{/unless}}{{#if renovation_allowed}}<p>Арендодатель разрешает Арендатору выполнять модификации и ремонтные работы при соблюдении следующих условий: {{renovation_details}}</p>{{/if}}{{#unless renovation_allowed}}<p>Выполнение ремонтных работ или модификаций Объекта запрещено без предварительного письменного согласия Арендодателя.</p>{{/unless}}" },
+        { "title": "8. Дополнительные условия", "body": "{{#unless subletting_allowed}}<p>Субаренда запрещена без предварительного письменного согласия Арендодателя.</p>{{/unless}}<p>Любая сторона, желающая расторгнуть договор, обязана предоставить письменное уведомление за {{notice_days}} дней.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "9. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендодатель: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендатор: {{tenant_business_name}}<br/>В лице: {{tenant_authorized_signatory}}</td></tr></table>" }
+      ]
+    }
+  }
+}

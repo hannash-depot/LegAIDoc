@@ -1,0 +1,375 @@
+{
+  "slug": "freelancer-contract",
+  "category": "employment",
+  "version": 1,
+  "name": {
+    "he": "חוזה פרילנסר / קבלן עצמאי",
+    "ar": "عقد عمل حر / مقاول مستقل",
+    "en": "Freelancer / Independent Contractor Agreement",
+    "ru": "Договор с фрилансером / независимым подрядчиком"
+  },
+  "description": {
+    "he": "חוזה התקשרות עם קבלן עצמאי או פרילנסר",
+    "ar": "عقد تعاقد مع مقاول مستقل أو عامل حر",
+    "en": "Engagement agreement with an independent contractor or freelancer",
+    "ru": "Договор с независимым подрядчиком или фрилансером"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי המזמין והקבלן", "ar": "بيانات العميل والمقاول", "en": "Client and freelancer details", "ru": "Данные заказчика и подрядчика" },
+        "fields": [
+          {
+            "key": "client_name",
+            "type": "text",
+            "label": { "he": "שם המזמין / החברה", "ar": "اسم العميل / الشركة", "en": "Client / Company Name", "ru": "Имя заказчика / компании" },
+            "placeholder": { "he": "שם מלא או שם חברה", "ar": "الاسم الكامل أو اسم الشركة", "en": "Full name or company name", "ru": "Полное имя или название компании" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 150 },
+            "width": "half"
+          },
+          {
+            "key": "client_id",
+            "type": "text",
+            "label": { "he": "ת.ז. / ח.פ. המזמין", "ar": "هوية / سجل تجاري للعميل", "en": "Client ID / Company Number", "ru": "ID / рег. номер заказчика" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "client_address",
+            "type": "text",
+            "label": { "he": "כתובת המזמין", "ar": "عنوان العميل", "en": "Client Address", "ru": "Адрес заказчика" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "client_phone",
+            "type": "phone",
+            "label": { "he": "טלפון המזמין", "ar": "هاتف العميل", "en": "Client Phone", "ru": "Телефон заказчика" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "client_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל המזמין", "ar": "بريد العميل", "en": "Client Email", "ru": "Email заказчика" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "freelancer_name",
+            "type": "text",
+            "label": { "he": "שם הקבלן / הפרילנסר", "ar": "اسم المقاول / العامل الحر", "en": "Freelancer / Contractor Name", "ru": "Имя фрилансера / подрядчика" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "freelancer_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. / ע.מ. הקבלן", "ar": "هوية / رقم ملف المقاول", "en": "Freelancer ID / Business Number", "ru": "ID / рег. номер подрядчика" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "freelancer_address",
+            "type": "text",
+            "label": { "he": "כתובת הקבלן", "ar": "عنوان المقاول", "en": "Freelancer Address", "ru": "Адрес подрядчика" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "freelancer_phone",
+            "type": "phone",
+            "label": { "he": "טלפון הקבלן", "ar": "هاتف المقاول", "en": "Freelancer Phone", "ru": "Телефон подрядчика" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "freelancer_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל הקבלן", "ar": "بريد المقاول", "en": "Freelancer Email", "ru": "Email подрядчика" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "project",
+        "title": { "he": "פרטי הפרויקט", "ar": "تفاصيل المشروع", "en": "Project Details", "ru": "Детали проекта" },
+        "description": { "he": "תיאור הפרויקט, תוצרים ואבני דרך", "ar": "وصف المشروع والتسليمات والمراحل", "en": "Project description, deliverables, and milestones", "ru": "Описание проекта, результаты и этапы" },
+        "fields": [
+          {
+            "key": "project_name",
+            "type": "text",
+            "label": { "he": "שם הפרויקט", "ar": "اسم المشروع", "en": "Project Name", "ru": "Название проекта" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "project_description",
+            "type": "textarea",
+            "label": { "he": "תיאור הפרויקט", "ar": "وصف المشروع", "en": "Project Description", "ru": "Описание проекта" },
+            "placeholder": { "he": "תאר את הפרויקט בפירוט...", "ar": "صف المشروع بالتفصيل...", "en": "Describe the project in detail...", "ru": "Опишите проект подробно..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "deliverables",
+            "type": "textarea",
+            "label": { "he": "תוצרים / תוצרי עבודה", "ar": "التسليمات / مخرجات العمل", "en": "Deliverables", "ru": "Результаты работы" },
+            "placeholder": { "he": "פרט את התוצרים המצופים...", "ar": "حدد التسليمات المتوقعة...", "en": "Specify the expected deliverables...", "ru": "Укажите ожидаемые результаты..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "start_date",
+            "type": "date",
+            "label": { "he": "תאריך התחלה", "ar": "تاريخ البدء", "en": "Start Date", "ru": "Дата начала" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "end_date",
+            "type": "date",
+            "label": { "he": "תאריך סיום", "ar": "تاريخ الانتهاء", "en": "End Date", "ru": "Дата окончания" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "has_milestones",
+            "type": "checkbox",
+            "label": { "he": "כולל אבני דרך", "ar": "يشمل مراحل", "en": "Includes Milestones", "ru": "Включает этапы" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "milestones_description",
+            "type": "textarea",
+            "label": { "he": "פירוט אבני דרך", "ar": "تفصيل المراحل", "en": "Milestones Description", "ru": "Описание этапов" },
+            "placeholder": { "he": "פרט את אבני הדרך ומועדיהן...", "ar": "حدد المراحل ومواعيدها...", "en": "Specify milestones and their dates...", "ru": "Укажите этапы и их сроки..." },
+            "required": false,
+            "condition": { "field": "has_milestones", "operator": "equals", "value": true },
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "payment",
+        "title": { "he": "תנאי תשלום", "ar": "شروط الدفع", "en": "Payment Terms", "ru": "Условия оплаты" },
+        "description": { "he": "תעריפים, לוח תשלומים והוצאות", "ar": "الأسعار وجدول الدفع والنفقات", "en": "Rates, payment schedule, and expenses", "ru": "Ставки, график оплаты и расходы" },
+        "fields": [
+          {
+            "key": "payment_type",
+            "type": "select",
+            "label": { "he": "סוג תמחור", "ar": "نوع التسعير", "en": "Pricing Type", "ru": "Тип ценообразования" },
+            "required": true,
+            "options": [
+              { "value": "fixed", "label": { "he": "מחיר קבוע לפרויקט", "ar": "سعر ثابت للمشروع", "en": "Fixed Project Price", "ru": "Фиксированная цена проекта" } },
+              { "value": "hourly", "label": { "he": "תעריף שעתי", "ar": "سعر بالساعة", "en": "Hourly Rate", "ru": "Почасовая ставка" } },
+              { "value": "daily", "label": { "he": "תעריף יומי", "ar": "سعر يومي", "en": "Daily Rate", "ru": "Дневная ставка" } },
+              { "value": "milestone", "label": { "he": "תשלום לפי אבני דרך", "ar": "الدفع حسب المراحل", "en": "Milestone-Based Payment", "ru": "Оплата по этапам" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "rate_amount",
+            "type": "currency",
+            "label": { "he": "סכום / תעריף (ש\"ח)", "ar": "المبلغ / السعر (شيكل)", "en": "Amount / Rate (ILS)", "ru": "Сумма / ставка (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "includes_vat",
+            "type": "checkbox",
+            "label": { "he": "הסכום כולל מע\"מ", "ar": "المبلغ يشمل ضريبة القيمة المضافة", "en": "Amount Includes VAT", "ru": "Сумма включает НДС" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "payment_schedule",
+            "type": "select",
+            "label": { "he": "לוח תשלומים", "ar": "جدول الدفع", "en": "Payment Schedule", "ru": "График оплаты" },
+            "required": true,
+            "options": [
+              { "value": "upon_completion", "label": { "he": "בסיום הפרויקט", "ar": "عند إتمام المشروع", "en": "Upon Completion", "ru": "По завершении проекта" } },
+              { "value": "monthly", "label": { "he": "חודשי", "ar": "شهري", "en": "Monthly", "ru": "Ежемесячно" } },
+              { "value": "biweekly", "label": { "he": "דו-שבועי", "ar": "كل أسبوعين", "en": "Bi-weekly", "ru": "Раз в две недели" } },
+              { "value": "per_milestone", "label": { "he": "לפי אבן דרך", "ar": "حسب المرحلة", "en": "Per Milestone", "ru": "По этапам" } },
+              { "value": "advance_balance", "label": { "he": "מקדמה + יתרה", "ar": "دفعة مقدمة + رصيد", "en": "Advance + Balance", "ru": "Аванс + остаток" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "advance_payment",
+            "type": "currency",
+            "label": { "he": "מקדמה (ש\"ח)", "ar": "دفعة مقدمة (شيكل)", "en": "Advance Payment (ILS)", "ru": "Авансовый платёж (шекель)" },
+            "required": false,
+            "condition": { "field": "payment_schedule", "operator": "equals", "value": "advance_balance" },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "payment_terms_days",
+            "type": "number",
+            "label": { "he": "תנאי תשלום (שוטף +)", "ar": "شروط الدفع (أيام صافية)", "en": "Payment Terms (Net Days)", "ru": "Условия оплаты (нетто дней)" },
+            "required": true,
+            "validation": { "min": 0, "max": 90 },
+            "defaultValue": 30,
+            "width": "half"
+          },
+          {
+            "key": "expenses_reimbursed",
+            "type": "checkbox",
+            "label": { "he": "החזר הוצאות", "ar": "تعويض المصاريف", "en": "Expense Reimbursement", "ru": "Возмещение расходов" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "expense_cap",
+            "type": "currency",
+            "label": { "he": "תקרת הוצאות (ש\"ח)", "ar": "سقف المصاريف (شيكل)", "en": "Expense Cap (ILS)", "ru": "Лимит расходов (шекель)" },
+            "required": false,
+            "condition": { "field": "expenses_reimbursed", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "terms",
+        "title": { "he": "תנאים כלליים", "ar": "الشروط العامة", "en": "General Terms", "ru": "Общие условия" },
+        "description": { "he": "קניין רוחני, סיום ואחריות", "ar": "الملكية الفكرية والإنهاء والمسؤولية", "en": "IP ownership, termination, and liability", "ru": "Интеллектуальная собственность, расторжение и ответственность" },
+        "fields": [
+          {
+            "key": "ip_ownership",
+            "type": "select",
+            "label": { "he": "בעלות על קניין רוחני", "ar": "ملكية حقوق الملكية الفكرية", "en": "IP Ownership", "ru": "Право собственности на ИС" },
+            "required": true,
+            "options": [
+              { "value": "client", "label": { "he": "המזמין הוא הבעלים", "ar": "العميل هو المالك", "en": "Client Owns IP", "ru": "ИС принадлежит заказчику" } },
+              { "value": "freelancer", "label": { "he": "הקבלן הוא הבעלים", "ar": "المقاول هو المالك", "en": "Freelancer Owns IP", "ru": "ИС принадлежит подрядчику" } },
+              { "value": "shared", "label": { "he": "בעלות משותפת", "ar": "ملكية مشتركة", "en": "Shared Ownership", "ru": "Совместная собственность" } },
+              { "value": "license", "label": { "he": "רישיון למזמין", "ar": "ترخيص للعميل", "en": "License to Client", "ru": "Лицензия заказчику" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "confidentiality_required",
+            "type": "checkbox",
+            "label": { "he": "סעיף סודיות", "ar": "شرط السرية", "en": "Confidentiality Clause", "ru": "Пункт о конфиденциальности" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "termination_notice_days",
+            "type": "number",
+            "label": { "he": "ימי הודעה מוקדמת לביטול", "ar": "أيام الإشعار المسبق للإلغاء", "en": "Termination Notice (days)", "ru": "Срок уведомления о расторжении (дней)" },
+            "required": true,
+            "validation": { "min": 0, "max": 90 },
+            "defaultValue": 14,
+            "width": "half"
+          },
+          {
+            "key": "early_termination_fee",
+            "type": "checkbox",
+            "label": { "he": "דמי ביטול מוקדם", "ar": "رسوم الإلغاء المبكر", "en": "Early Termination Fee", "ru": "Плата за досрочное расторжение" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "termination_fee_amount",
+            "type": "currency",
+            "label": { "he": "סכום דמי ביטול (ש\"ח)", "ar": "مبلغ رسوم الإلغاء (شيكل)", "en": "Termination Fee Amount (ILS)", "ru": "Сумма платы за расторжение (шекель)" },
+            "required": false,
+            "condition": { "field": "early_termination_fee", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "liability_cap",
+            "type": "checkbox",
+            "label": { "he": "הגבלת אחריות", "ar": "تحديد المسؤولية", "en": "Liability Cap", "ru": "Ограничение ответственности" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "liability_amount",
+            "type": "currency",
+            "label": { "he": "תקרת אחריות (ש\"ח)", "ar": "سقف المسؤولية (شيكل)", "en": "Liability Cap Amount (ILS)", "ru": "Лимит ответственности (шекель)" },
+            "required": false,
+            "condition": { "field": "liability_cap", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "governing_law",
+            "type": "select",
+            "label": { "he": "הדין החל", "ar": "القانون المعمول به", "en": "Governing Law", "ru": "Применимое право" },
+            "required": true,
+            "options": [
+              { "value": "israel", "label": { "he": "דין מדינת ישראל", "ar": "قانون دولة إسرائيل", "en": "Laws of the State of Israel", "ru": "Законодательство Государства Израиль" } },
+              { "value": "other", "label": { "he": "אחר", "ar": "أخرى", "en": "Other", "ru": "Другое" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "חוזה התקשרות עם קבלן עצמאי", "body": "<p style=\"text-align:center\"><strong>חוזה התקשרות עם קבלן עצמאי</strong></p><p>שנערך ונחתם ביום {{start_date}}</p>" },
+        { "title": "1. הצדדים", "body": "<p><strong>בין:</strong> {{client_name}}, ת.ז./ח.פ. {{client_id}}, מרחוב {{client_address}}, טלפון: {{client_phone}} (להלן: <strong>\"המזמין\"</strong>)</p><p><strong>לבין:</strong> {{freelancer_name}}, ת.ז./ע.מ. {{freelancer_id}}, מרחוב {{freelancer_address}}, טלפון: {{freelancer_phone}} (להלן: <strong>\"הקבלן\"</strong>)</p><p>מוסכם ומוצהר כי הקבלן הינו קבלן עצמאי ולא מתקיימים יחסי עובד-מעביד בין הצדדים.</p>" },
+        { "title": "2. הפרויקט", "body": "<p><strong>שם הפרויקט:</strong> {{project_name}}</p><p><strong>תיאור:</strong> {{project_description}}</p><p><strong>תוצרים:</strong> {{deliverables}}</p><p><strong>תקופת הביצוע:</strong> מיום {{start_date}} ועד ליום {{end_date}}.</p>{{#if has_milestones}}<p><strong>אבני דרך:</strong> {{milestones_description}}</p>{{/if}}" },
+        { "title": "3. תמורה ותשלום", "body": "<p>סוג התמחור: {{payment_type}}. התמורה: <strong>{{rate_amount}} ש\"ח</strong>{{#if includes_vat}} (כולל מע\"מ){{/if}}{{#unless includes_vat}} (בתוספת מע\"מ כדין){{/unless}}.</p><p>לוח תשלומים: {{payment_schedule}}. תנאי תשלום: שוטף + {{payment_terms_days}} ימים.</p>{{#if advance_payment}}<p>מקדמה בסך {{advance_payment}} ש\"ח תשולם עם חתימת החוזה.</p>{{/if}}{{#if expenses_reimbursed}}<p>המזמין יחזיר לקבלן הוצאות מאושרות מראש עד לתקרה של {{expense_cap}} ש\"ח.</p>{{/if}}" },
+        { "title": "4. קניין רוחני", "body": "<p>בעלות על קניין רוחני: {{ip_ownership}}.</p>{{#if confidentiality_required}}<p>הקבלן מתחייב לשמור על סודיות כל המידע שיועבר אליו במסגרת הפרויקט.</p>{{/if}}" },
+        { "title": "5. סיום ההתקשרות", "body": "<p>כל צד רשאי לסיים את ההתקשרות במתן הודעה מוקדמת של <strong>{{termination_notice_days}} ימים</strong>.</p>{{#if early_termination_fee}}<p>במקרה של ביטול מוקדם שלא עקב הפרה, ישולמו דמי ביטול בסך <strong>{{termination_fee_amount}} ש\"ח</strong>.</p>{{/if}}{{#if liability_cap}}<p>אחריות הקבלן מוגבלת לסך של <strong>{{liability_amount}} ש\"ח</strong>.</p>{{/if}}" },
+        { "title": "6. שונות", "body": "<p>הסכם זה כפוף לדיני {{governing_law}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>כל שינוי בחוזה זה יעשה בכתב בלבד ובחתימת שני הצדדים.</p>" },
+        { "title": "7. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המזמין: {{client_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>הקבלן: {{freelancer_name}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Independent Contractor Agreement", "body": "<p style=\"text-align:center\"><strong>Independent Contractor Agreement</strong></p><p>Made and signed on {{start_date}}</p>" },
+        { "title": "1. The Parties", "body": "<p><strong>Between:</strong> {{client_name}}, ID/Company No. {{client_id}}, of {{client_address}}, Phone: {{client_phone}} (hereinafter: <strong>\"the Client\"</strong>)</p><p><strong>And:</strong> {{freelancer_name}}, ID/Business No. {{freelancer_id}}, of {{freelancer_address}}, Phone: {{freelancer_phone}} (hereinafter: <strong>\"the Contractor\"</strong>)</p><p>It is agreed and declared that the Contractor is an independent contractor and no employer-employee relationship exists between the parties.</p>" },
+        { "title": "2. The Project", "body": "<p><strong>Project Name:</strong> {{project_name}}</p><p><strong>Description:</strong> {{project_description}}</p><p><strong>Deliverables:</strong> {{deliverables}}</p><p><strong>Project Period:</strong> From {{start_date}} to {{end_date}}.</p>{{#if has_milestones}}<p><strong>Milestones:</strong> {{milestones_description}}</p>{{/if}}" },
+        { "title": "3. Compensation and Payment", "body": "<p>Pricing type: {{payment_type}}. Compensation: <strong>{{rate_amount}} ILS</strong>{{#if includes_vat}} (including VAT){{/if}}{{#unless includes_vat}} (plus VAT as required by law){{/unless}}.</p><p>Payment schedule: {{payment_schedule}}. Payment terms: Net {{payment_terms_days}} days.</p>{{#if advance_payment}}<p>An advance payment of {{advance_payment}} ILS shall be paid upon signing this agreement.</p>{{/if}}{{#if expenses_reimbursed}}<p>The Client shall reimburse the Contractor for pre-approved expenses up to a cap of {{expense_cap}} ILS.</p>{{/if}}" },
+        { "title": "4. Intellectual Property", "body": "<p>IP ownership: {{ip_ownership}}.</p>{{#if confidentiality_required}}<p>The Contractor undertakes to maintain confidentiality of all information provided in connection with the project.</p>{{/if}}" },
+        { "title": "5. Termination", "body": "<p>Either party may terminate this agreement by providing <strong>{{termination_notice_days}} days'</strong> prior written notice.</p>{{#if early_termination_fee}}<p>In the event of early termination not due to breach, a termination fee of <strong>{{termination_fee_amount}} ILS</strong> shall be paid.</p>{{/if}}{{#if liability_cap}}<p>The Contractor's liability is limited to <strong>{{liability_amount}} ILS</strong>.</p>{{/if}}" },
+        { "title": "6. General", "body": "<p>This agreement is governed by the laws of {{governing_law}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>Any amendment to this agreement must be made in writing and signed by both parties.</p>" },
+        { "title": "7. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Client: {{client_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Contractor: {{freelancer_name}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "عقد مقاول مستقل", "body": "<p style=\"text-align:center\"><strong>عقد تعاقد مع مقاول مستقل</strong></p><p>تم تحريره والتوقيع عليه بتاريخ {{start_date}}</p>" },
+        { "title": "1. الأطراف", "body": "<p><strong>بين:</strong> {{client_name}}، هوية / سجل تجاري رقم {{client_id}}، من {{client_address}}، هاتف: {{client_phone}} (المشار إليه فيما يلي بـ <strong>\"العميل\"</strong>)</p><p><strong>وبين:</strong> {{freelancer_name}}، هوية / رقم ملف {{freelancer_id}}، من {{freelancer_address}}، هاتف: {{freelancer_phone}} (المشار إليه فيما يلي بـ <strong>\"المقاول\"</strong>)</p><p>من المتفق عليه والمعلن أن المقاول هو مقاول مستقل ولا توجد علاقة صاحب عمل-موظف بين الطرفين.</p>" },
+        { "title": "2. المشروع", "body": "<p><strong>اسم المشروع:</strong> {{project_name}}</p><p><strong>الوصف:</strong> {{project_description}}</p><p><strong>التسليمات:</strong> {{deliverables}}</p><p><strong>مدة المشروع:</strong> من {{start_date}} حتى {{end_date}}.</p>{{#if has_milestones}}<p><strong>المراحل:</strong> {{milestones_description}}</p>{{/if}}" },
+        { "title": "3. التعويض والدفع", "body": "<p>نوع التسعير: {{payment_type}}. التعويض: <strong>{{rate_amount}} شيكل</strong>{{#if includes_vat}} (شامل ضريبة القيمة المضافة){{/if}}{{#unless includes_vat}} (بالإضافة إلى ضريبة القيمة المضافة وفقاً للقانون){{/unless}}.</p><p>جدول الدفع: {{payment_schedule}}. شروط الدفع: صافي {{payment_terms_days}} يوماً.</p>{{#if advance_payment}}<p>تُدفع دفعة مقدمة بمبلغ {{advance_payment}} شيكل عند توقيع هذا العقد.</p>{{/if}}{{#if expenses_reimbursed}}<p>يعوض العميل المقاول عن المصاريف المعتمدة مسبقاً حتى سقف {{expense_cap}} شيكل.</p>{{/if}}" },
+        { "title": "4. الملكية الفكرية", "body": "<p>ملكية حقوق الملكية الفكرية: {{ip_ownership}}.</p>{{#if confidentiality_required}}<p>يتعهد المقاول بالحفاظ على سرية جميع المعلومات المقدمة فيما يتعلق بالمشروع.</p>{{/if}}" },
+        { "title": "5. الإنهاء", "body": "<p>يحق لأي طرف إنهاء هذا العقد بتقديم إشعار خطي مسبق قبل <strong>{{termination_notice_days}} يوماً</strong>.</p>{{#if early_termination_fee}}<p>في حالة الإلغاء المبكر لغير سبب الإخلال، تُدفع رسوم إلغاء بمبلغ <strong>{{termination_fee_amount}} شيكل</strong>.</p>{{/if}}{{#if liability_cap}}<p>مسؤولية المقاول محدودة بمبلغ <strong>{{liability_amount}} شيكل</strong>.</p>{{/if}}" },
+        { "title": "6. أحكام عامة", "body": "<p>يخضع هذا العقد لقوانين {{governing_law}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>أي تعديل على هذا العقد يجب أن يتم كتابياً وبتوقيع الطرفين.</p>" },
+        { "title": "7. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>العميل: {{client_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>المقاول: {{freelancer_name}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Договор с независимым подрядчиком", "body": "<p style=\"text-align:center\"><strong>Договор с независимым подрядчиком</strong></p><p>Составлен и подписан {{start_date}}</p>" },
+        { "title": "1. Стороны", "body": "<p><strong>Между:</strong> {{client_name}}, ID/рег. номер {{client_id}}, по адресу {{client_address}}, тел: {{client_phone}} (далее — <strong>«Заказчик»</strong>)</p><p><strong>И:</strong> {{freelancer_name}}, ID/рег. номер {{freelancer_id}}, по адресу {{freelancer_address}}, тел: {{freelancer_phone}} (далее — <strong>«Подрядчик»</strong>)</p><p>Настоящим согласовано и заявлено, что Подрядчик является независимым подрядчиком и трудовые отношения между сторонами отсутствуют.</p>" },
+        { "title": "2. Проект", "body": "<p><strong>Название проекта:</strong> {{project_name}}</p><p><strong>Описание:</strong> {{project_description}}</p><p><strong>Результаты:</strong> {{deliverables}}</p><p><strong>Срок выполнения:</strong> с {{start_date}} по {{end_date}}.</p>{{#if has_milestones}}<p><strong>Этапы:</strong> {{milestones_description}}</p>{{/if}}" },
+        { "title": "3. Оплата", "body": "<p>Тип ценообразования: {{payment_type}}. Вознаграждение: <strong>{{rate_amount}} шекелей</strong>{{#if includes_vat}} (включая НДС){{/if}}{{#unless includes_vat}} (плюс НДС в соответствии с законом){{/unless}}.</p><p>График оплаты: {{payment_schedule}}. Условия оплаты: нетто {{payment_terms_days}} дней.</p>{{#if advance_payment}}<p>Авансовый платёж в размере {{advance_payment}} шекелей выплачивается при подписании настоящего договора.</p>{{/if}}{{#if expenses_reimbursed}}<p>Заказчик возмещает Подрядчику предварительно утверждённые расходы в пределах лимита {{expense_cap}} шекелей.</p>{{/if}}" },
+        { "title": "4. Интеллектуальная собственность", "body": "<p>Право собственности на ИС: {{ip_ownership}}.</p>{{#if confidentiality_required}}<p>Подрядчик обязуется сохранять конфиденциальность всей информации, предоставленной в связи с проектом.</p>{{/if}}" },
+        { "title": "5. Расторжение", "body": "<p>Любая из сторон вправе расторгнуть настоящий договор, предоставив письменное уведомление за <strong>{{termination_notice_days}} дней</strong>.</p>{{#if early_termination_fee}}<p>В случае досрочного расторжения не вследствие нарушения выплачивается плата за расторжение в размере <strong>{{termination_fee_amount}} шекелей</strong>.</p>{{/if}}{{#if liability_cap}}<p>Ответственность Подрядчика ограничена суммой <strong>{{liability_amount}} шекелей</strong>.</p>{{/if}}" },
+        { "title": "6. Общие положения", "body": "<p>Настоящий договор регулируется законодательством {{governing_law}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>Любые изменения настоящего договора должны быть оформлены в письменном виде и подписаны обеими сторонами.</p>" },
+        { "title": "7. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Заказчик: {{client_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Подрядчик: {{freelancer_name}}</td></tr></table>" }
+      ]
+    }
+  }
+}

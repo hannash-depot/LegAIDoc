@@ -1,0 +1,355 @@
+{
+  "slug": "residential-rental",
+  "category": "rental",
+  "version": 1,
+  "name": {
+    "he": "חוזה שכירות למגורים",
+    "ar": "عقد إيجار سكني",
+    "en": "Residential Rental Agreement",
+    "ru": "Договор аренды жилья"
+  },
+  "description": {
+    "he": "חוזה שכירות סטנדרטי למגורים בישראל",
+    "ar": "عقد إيجار سكني قياسي في إسرائيل",
+    "en": "Standard residential rental agreement in Israel",
+    "ru": "Стандартный договор аренды жилья в Израиле"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי המשכיר והשוכר", "ar": "بيانات المؤجر والمستأجر", "en": "Landlord and tenant details", "ru": "Данные арендодателя и арендатора" },
+        "fields": [
+          {
+            "key": "landlord_name",
+            "type": "text",
+            "label": { "he": "שם המשכיר", "ar": "اسم المؤجر", "en": "Landlord Name", "ru": "Имя арендодателя" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "landlord_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. המשכיר", "ar": "هوية المؤجر", "en": "Landlord ID Number", "ru": "ID арендодателя" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "landlord_address",
+            "type": "text",
+            "label": { "he": "כתובת המשכיר", "ar": "عنوان المؤجر", "en": "Landlord Address", "ru": "Адрес арендодателя" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "landlord_phone",
+            "type": "phone",
+            "label": { "he": "טלפון המשכיר", "ar": "هاتف المؤجر", "en": "Landlord Phone", "ru": "Телефон арендодателя" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "landlord_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל המשכיר", "ar": "بريد المؤجر", "en": "Landlord Email", "ru": "Email арендодателя" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "tenant_name",
+            "type": "text",
+            "label": { "he": "שם השוכר", "ar": "اسم المستأجر", "en": "Tenant Name", "ru": "Имя арендатора" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "tenant_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. השוכר", "ar": "هوية المستأجر", "en": "Tenant ID Number", "ru": "ID арендатора" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "tenant_address",
+            "type": "text",
+            "label": { "he": "כתובת השוכר", "ar": "عنوان المستأجر", "en": "Tenant Address", "ru": "Адрес арендатора" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "tenant_phone",
+            "type": "phone",
+            "label": { "he": "טלפון השוכר", "ar": "هاتف المستأجر", "en": "Tenant Phone", "ru": "Телефон арендатора" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "tenant_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל השוכר", "ar": "بريد المستأجر", "en": "Tenant Email", "ru": "Email арендатора" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "property",
+        "title": { "he": "פרטי הנכס", "ar": "تفاصيل العقار", "en": "Property Details", "ru": "Детали объекта" },
+        "fields": [
+          {
+            "key": "property_address",
+            "type": "text",
+            "label": { "he": "כתובת הנכס", "ar": "عنوان العقار", "en": "Property Address", "ru": "Адрес объекта" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "property_city",
+            "type": "text",
+            "label": { "he": "עיר", "ar": "المدينة", "en": "City", "ru": "Город" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "property_type",
+            "type": "select",
+            "label": { "he": "סוג הנכס", "ar": "نوع العقار", "en": "Property Type", "ru": "Тип объекта" },
+            "required": true,
+            "options": [
+              { "value": "apartment", "label": { "he": "דירה", "ar": "شقة", "en": "Apartment", "ru": "Квартира" } },
+              { "value": "house", "label": { "he": "בית פרטי", "ar": "منزل", "en": "House", "ru": "Дом" } },
+              { "value": "studio", "label": { "he": "סטודיו", "ar": "ستوديو", "en": "Studio", "ru": "Студия" } },
+              { "value": "penthouse", "label": { "he": "פנטהאוז", "ar": "بنتهاوس", "en": "Penthouse", "ru": "Пентхаус" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "num_rooms",
+            "type": "number",
+            "label": { "he": "מספר חדרים", "ar": "عدد الغرف", "en": "Number of Rooms", "ru": "Количество комнат" },
+            "required": true,
+            "validation": { "min": 1, "max": 20 },
+            "width": "half"
+          },
+          {
+            "key": "floor_number",
+            "type": "number",
+            "label": { "he": "קומה", "ar": "الطابق", "en": "Floor", "ru": "Этаж" },
+            "required": true,
+            "validation": { "min": -2, "max": 100 },
+            "width": "half"
+          },
+          {
+            "key": "area_sqm",
+            "type": "number",
+            "label": { "he": "שטח במ\"ר", "ar": "المساحة بالمتر المربع", "en": "Area (sqm)", "ru": "Площадь (кв.м)" },
+            "required": false,
+            "validation": { "min": 10, "max": 1000 },
+            "width": "half"
+          },
+          {
+            "key": "has_parking",
+            "type": "checkbox",
+            "label": { "he": "כולל חניה", "ar": "يشمل موقف سيارات", "en": "Includes Parking", "ru": "Включая парковку" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "parking_number",
+            "type": "text",
+            "label": { "he": "מספר חניה", "ar": "رقم موقف السيارة", "en": "Parking Spot Number", "ru": "Номер парковочного места" },
+            "required": false,
+            "condition": { "field": "has_parking", "operator": "equals", "value": true },
+            "width": "half"
+          },
+          {
+            "key": "has_storage",
+            "type": "checkbox",
+            "label": { "he": "כולל מחסן", "ar": "يشمل مخزن", "en": "Includes Storage", "ru": "Включая кладовку" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "furnished",
+            "type": "select",
+            "label": { "he": "ריהוט", "ar": "مفروش", "en": "Furnished", "ru": "Мебель" },
+            "required": true,
+            "options": [
+              { "value": "unfurnished", "label": { "he": "לא מרוהטת", "ar": "غير مفروش", "en": "Unfurnished", "ru": "Без мебели" } },
+              { "value": "partially", "label": { "he": "מרוהטת חלקית", "ar": "مفروش جزئياً", "en": "Partially Furnished", "ru": "Частично меблирована" } },
+              { "value": "fully", "label": { "he": "מרוהטת במלואה", "ar": "مفروش بالكامل", "en": "Fully Furnished", "ru": "Полностью меблирована" } }
+            ],
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "terms",
+        "title": { "he": "תנאי השכירות", "ar": "شروط الإيجار", "en": "Rental Terms", "ru": "Условия аренды" },
+        "fields": [
+          {
+            "key": "start_date",
+            "type": "date",
+            "label": { "he": "תאריך תחילת השכירות", "ar": "تاريخ بدء الإيجار", "en": "Lease Start Date", "ru": "Дата начала аренды" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "end_date",
+            "type": "date",
+            "label": { "he": "תאריך סיום השכירות", "ar": "تاريخ انتهاء الإيجار", "en": "Lease End Date", "ru": "Дата окончания аренды" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "monthly_rent",
+            "type": "currency",
+            "label": { "he": "דמי שכירות חודשיים (ש\"ח)", "ar": "الإيجار الشهري (شيكل)", "en": "Monthly Rent (ILS)", "ru": "Ежемесячная арендная плата (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "payment_day",
+            "type": "number",
+            "label": { "he": "יום תשלום בחודש", "ar": "يوم الدفع في الشهر", "en": "Payment Day of Month", "ru": "День оплаты в месяце" },
+            "required": true,
+            "validation": { "min": 1, "max": 28 },
+            "width": "half"
+          },
+          {
+            "key": "payment_method",
+            "type": "select",
+            "label": { "he": "אמצעי תשלום", "ar": "طريقة الدفع", "en": "Payment Method", "ru": "Способ оплаты" },
+            "required": true,
+            "options": [
+              { "value": "bank_transfer", "label": { "he": "העברה בנקאית", "ar": "تحويل بنكي", "en": "Bank Transfer", "ru": "Банковский перевод" } },
+              { "value": "checks", "label": { "he": "שיקים", "ar": "شيكات", "en": "Checks", "ru": "Чеки" } },
+              { "value": "cash", "label": { "he": "מזומן", "ar": "نقداً", "en": "Cash", "ru": "Наличные" } },
+              { "value": "standing_order", "label": { "he": "הוראת קבע", "ar": "أمر دائم", "en": "Standing Order", "ru": "Постоянное поручение" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "deposit_amount",
+            "type": "currency",
+            "label": { "he": "סכום פיקדון (ש\"ח)", "ar": "مبلغ التأمين (شيكل)", "en": "Security Deposit (ILS)", "ru": "Сумма залога (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "has_option_period",
+            "type": "checkbox",
+            "label": { "he": "תקופת אופציה", "ar": "فترة خيار", "en": "Option Period", "ru": "Период опциона" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "option_months",
+            "type": "number",
+            "label": { "he": "משך האופציה (חודשים)", "ar": "مدة الخيار (أشهر)", "en": "Option Duration (months)", "ru": "Срок опциона (месяцев)" },
+            "required": false,
+            "condition": { "field": "has_option_period", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 60 },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "additional",
+        "title": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+        "fields": [
+          {
+            "key": "pets_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותר בעלי חיים", "ar": "يسمح بالحيوانات الأليفة", "en": "Pets Allowed", "ru": "Разрешены домашние животные" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "smoking_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותר עישון", "ar": "يسمح بالتدخين", "en": "Smoking Allowed", "ru": "Разрешено курение" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "subletting_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותרת השכרת משנה", "ar": "يسمح بالإيجار من الباطن", "en": "Subletting Allowed", "ru": "Разрешена субаренда" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "notice_days",
+            "type": "number",
+            "label": { "he": "ימי הודעה מוקדמת", "ar": "أيام الإشعار المسبق", "en": "Notice Period (days)", "ru": "Срок уведомления (дней)" },
+            "required": true,
+            "validation": { "min": 30, "max": 180 },
+            "defaultValue": 60,
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "חוזה שכירות למגורים", "body": "<p style=\"text-align:center\"><strong>חוזה שכירות בלתי מוגנת</strong></p><p>שנערך ונחתם ביום {{start_date}}</p>" },
+        { "title": "1. הצדדים", "body": "<p><strong>בין:</strong> {{landlord_name}}, ת.ז. {{landlord_id}}, מרחוב {{landlord_address}}, טלפון: {{landlord_phone}} (להלן: <strong>\"המשכיר\"</strong>)</p><p><strong>לבין:</strong> {{tenant_name}}, ת.ז. {{tenant_id}}, מרחוב {{tenant_address}}, טלפון: {{tenant_phone}} (להלן: <strong>\"השוכר\"</strong>)</p>" },
+        { "title": "2. המושכר", "body": "<p>המשכיר משכיר בזאת לשוכר והשוכר שוכר מהמשכיר את הנכס מסוג {{property_type}} הנמצא ברחוב {{property_address}}, {{property_city}}, קומה {{floor_number}}, בן {{num_rooms}} חדרים (להלן: <strong>\"המושכר\"</strong>).</p>{{#if has_parking}}<p>המושכר כולל חניה מספר {{parking_number}}.</p>{{/if}}{{#if has_storage}}<p>המושכר כולל מחסן.</p>{{/if}}" },
+        { "title": "3. תקופת השכירות", "body": "<p>תקופת השכירות הינה מיום {{start_date}} ועד ליום {{end_date}} (להלן: <strong>\"תקופת השכירות\"</strong>).</p>{{#if has_option_period}}<p>לשוכר תעמוד אופציה להארכת תקופת השכירות ב-{{option_months}} חודשים נוספים, בתנאי שיודיע על כך למשכיר {{notice_days}} ימים מראש.</p>{{/if}}" },
+        { "title": "4. דמי השכירות", "body": "<p>דמי השכירות החודשיים הינם <strong>{{monthly_rent}} ש\"ח</strong> (להלן: <strong>\"דמי השכירות\"</strong>), אשר ישולמו עד ליום ה-{{payment_day}} בכל חודש באמצעות {{payment_method}}.</p>" },
+        { "title": "5. פיקדון", "body": "<p>השוכר ישלם למשכיר פיקדון בסך <strong>{{deposit_amount}} ש\"ח</strong> עם חתימת חוזה זה. הפיקדון יוחזר לשוכר בתום תקופת השכירות, בכפוף לקיום כל תנאי חוזה זה.</p>" },
+        { "title": "6. תנאים נוספים", "body": "{{#if pets_allowed}}<p>מותר להחזיק בעלי חיים במושכר.</p>{{/if}}{{#unless pets_allowed}}<p>אסור להחזיק בעלי חיים במושכר.</p>{{/unless}}{{#if smoking_allowed}}<p>מותר לעשן במושכר.</p>{{/if}}{{#unless smoking_allowed}}<p>אסור לעשן במושכר.</p>{{/unless}}{{#unless subletting_allowed}}<p>אסור להשכיר את המושכר בשכירות משנה ללא הסכמת המשכיר בכתב מראש.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המשכיר: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>השוכר: {{tenant_name}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Residential Rental Agreement", "body": "<p style=\"text-align:center\"><strong>Unprotected Rental Agreement</strong></p><p>Made and signed on {{start_date}}</p>" },
+        { "title": "1. The Parties", "body": "<p><strong>Between:</strong> {{landlord_name}}, ID {{landlord_id}}, of {{landlord_address}}, Phone: {{landlord_phone}} (hereinafter: <strong>\"the Landlord\"</strong>)</p><p><strong>And:</strong> {{tenant_name}}, ID {{tenant_id}}, of {{tenant_address}}, Phone: {{tenant_phone}} (hereinafter: <strong>\"the Tenant\"</strong>)</p>" },
+        { "title": "2. The Property", "body": "<p>The Landlord hereby rents to the Tenant, and the Tenant rents from the Landlord, the property of type {{property_type}} located at {{property_address}}, {{property_city}}, floor {{floor_number}}, with {{num_rooms}} rooms (hereinafter: <strong>\"the Property\"</strong>).</p>{{#if has_parking}}<p>The Property includes parking spot number {{parking_number}}.</p>{{/if}}{{#if has_storage}}<p>The Property includes a storage unit.</p>{{/if}}" },
+        { "title": "3. Rental Period", "body": "<p>The rental period is from {{start_date}} to {{end_date}} (hereinafter: <strong>\"the Rental Period\"</strong>).</p>{{#if has_option_period}}<p>The Tenant shall have an option to extend the rental period by {{option_months}} additional months, provided that {{notice_days}} days' prior notice is given to the Landlord.</p>{{/if}}" },
+        { "title": "4. Rent", "body": "<p>The monthly rent shall be <strong>{{monthly_rent}} ILS</strong> (hereinafter: <strong>\"the Rent\"</strong>), payable by the {{payment_day}}th of each month via {{payment_method}}.</p>" },
+        { "title": "5. Security Deposit", "body": "<p>The Tenant shall pay the Landlord a security deposit of <strong>{{deposit_amount}} ILS</strong> upon signing this agreement. The deposit shall be returned to the Tenant at the end of the rental period, subject to compliance with all terms of this agreement.</p>" },
+        { "title": "6. Additional Terms", "body": "{{#if pets_allowed}}<p>Pets are allowed on the property.</p>{{/if}}{{#unless pets_allowed}}<p>Pets are not allowed on the property.</p>{{/unless}}{{#if smoking_allowed}}<p>Smoking is allowed on the property.</p>{{/if}}{{#unless smoking_allowed}}<p>Smoking is not allowed on the property.</p>{{/unless}}{{#unless subletting_allowed}}<p>Subletting is not permitted without prior written consent from the Landlord.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Landlord: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Tenant: {{tenant_name}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "عقد إيجار سكني", "body": "<p style=\"text-align:center\"><strong>عقد إيجار غير محمي</strong></p><p>تم تحريره والتوقيع عليه بتاريخ {{start_date}}</p>" },
+        { "title": "1. الأطراف", "body": "<p><strong>بين:</strong> {{landlord_name}}، هوية رقم {{landlord_id}}، من {{landlord_address}}، هاتف: {{landlord_phone}} (المشار إليه فيما يلي بـ <strong>\"المؤجر\"</strong>)</p><p><strong>وبين:</strong> {{tenant_name}}، هوية رقم {{tenant_id}}، من {{tenant_address}}، هاتف: {{tenant_phone}} (المشار إليه فيما يلي بـ <strong>\"المستأجر\"</strong>)</p>" },
+        { "title": "2. العقار", "body": "<p>يؤجر المؤجر للمستأجر العقار من نوع {{property_type}} الكائن في {{property_address}}، {{property_city}}، الطابق {{floor_number}}، المكون من {{num_rooms}} غرف (المشار إليه فيما يلي بـ <strong>\"العقار\"</strong>).</p>{{#if has_parking}}<p>يشمل العقار موقف سيارات رقم {{parking_number}}.</p>{{/if}}{{#if has_storage}}<p>يشمل العقار مخزن.</p>{{/if}}" },
+        { "title": "3. مدة الإيجار", "body": "<p>مدة الإيجار من {{start_date}} حتى {{end_date}} (المشار إليها فيما يلي بـ <strong>\"مدة الإيجار\"</strong>).</p>{{#if has_option_period}}<p>يحق للمستأجر تمديد مدة الإيجار لمدة {{option_months}} أشهر إضافية، بشرط إخطار المؤجر قبل {{notice_days}} يوماً.</p>{{/if}}" },
+        { "title": "4. الإيجار", "body": "<p>الإيجار الشهري هو <strong>{{monthly_rent}} شيكل</strong> (المشار إليه فيما يلي بـ <strong>\"الإيجار\"</strong>)، يُدفع بحلول اليوم {{payment_day}} من كل شهر عن طريق {{payment_method}}.</p>" },
+        { "title": "5. التأمين", "body": "<p>يدفع المستأجر للمؤجر تأميناً بمبلغ <strong>{{deposit_amount}} شيكل</strong> عند توقيع هذا العقد. يُعاد التأمين للمستأجر عند انتهاء مدة الإيجار، وفقاً لاستيفاء جميع شروط هذا العقد.</p>" },
+        { "title": "6. شروط إضافية", "body": "{{#if pets_allowed}}<p>يُسمح بالحيوانات الأليفة في العقار.</p>{{/if}}{{#unless pets_allowed}}<p>لا يُسمح بالحيوانات الأليفة في العقار.</p>{{/unless}}{{#if smoking_allowed}}<p>يُسمح بالتدخين في العقار.</p>{{/if}}{{#unless smoking_allowed}}<p>لا يُسمح بالتدخين في العقار.</p>{{/unless}}{{#unless subletting_allowed}}<p>لا يُسمح بالإيجار من الباطن دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>المؤجر: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>المستأجر: {{tenant_name}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Договор аренды жилья", "body": "<p style=\"text-align:center\"><strong>Договор незащищённой аренды</strong></p><p>Составлен и подписан {{start_date}}</p>" },
+        { "title": "1. Стороны", "body": "<p><strong>Между:</strong> {{landlord_name}}, ID {{landlord_id}}, проживающий по адресу {{landlord_address}}, тел: {{landlord_phone}} (далее — <strong>«Арендодатель»</strong>)</p><p><strong>И:</strong> {{tenant_name}}, ID {{tenant_id}}, проживающий по адресу {{tenant_address}}, тел: {{tenant_phone}} (далее — <strong>«Арендатор»</strong>)</p>" },
+        { "title": "2. Объект аренды", "body": "<p>Арендодатель сдаёт в аренду, а Арендатор принимает в аренду объект типа {{property_type}}, расположенный по адресу {{property_address}}, {{property_city}}, этаж {{floor_number}}, количество комнат: {{num_rooms}} (далее — <strong>«Объект»</strong>).</p>{{#if has_parking}}<p>Объект включает парковочное место номер {{parking_number}}.</p>{{/if}}{{#if has_storage}}<p>Объект включает кладовку.</p>{{/if}}" },
+        { "title": "3. Срок аренды", "body": "<p>Срок аренды: с {{start_date}} по {{end_date}} (далее — <strong>«Срок аренды»</strong>).</p>{{#if has_option_period}}<p>Арендатор имеет право продлить срок аренды на {{option_months}} дополнительных месяцев при условии уведомления Арендодателя за {{notice_days}} дней.</p>{{/if}}" },
+        { "title": "4. Арендная плата", "body": "<p>Ежемесячная арендная плата составляет <strong>{{monthly_rent}} шекелей</strong> (далее — <strong>«Арендная плата»</strong>), подлежащая оплате до {{payment_day}}-го числа каждого месяца посредством {{payment_method}}.</p>" },
+        { "title": "5. Залог", "body": "<p>Арендатор вносит Арендодателю залог в размере <strong>{{deposit_amount}} шекелей</strong> при подписании настоящего договора. Залог возвращается Арендатору по окончании срока аренды при соблюдении всех условий настоящего договора.</p>" },
+        { "title": "6. Дополнительные условия", "body": "{{#if pets_allowed}}<p>Содержание домашних животных разрешено.</p>{{/if}}{{#unless pets_allowed}}<p>Содержание домашних животных запрещено.</p>{{/unless}}{{#if smoking_allowed}}<p>Курение в помещении разрешено.</p>{{/if}}{{#unless smoking_allowed}}<p>Курение в помещении запрещено.</p>{{/unless}}{{#unless subletting_allowed}}<p>Субаренда запрещена без предварительного письменного согласия Арендодателя.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендодатель: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендатор: {{tenant_name}}</td></tr></table>" }
+      ]
+    }
+  }
+}

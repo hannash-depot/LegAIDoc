@@ -1,0 +1,157 @@
+{
+  "common": {
+    "appName": "LegAIDoc",
+    "tagline": "מסמכים משפטיים בקלות",
+    "loading": "טוען...",
+    "save": "שמור",
+    "cancel": "ביטול",
+    "delete": "מחק",
+    "edit": "עריכה",
+    "create": "צור",
+    "back": "חזור",
+    "next": "הבא",
+    "previous": "הקודם",
+    "submit": "שלח",
+    "download": "הורד",
+    "search": "חיפוש",
+    "close": "סגור",
+    "confirm": "אישור",
+    "yes": "כן",
+    "no": "לא",
+    "or": "או",
+    "error": "שגיאה",
+    "success": "הצלחה",
+    "required": "שדה חובה",
+    "retry": "נסה שנית"
+  },
+  "nav": {
+    "home": "דף הבית",
+    "templates": "תבניות",
+    "dashboard": "לוח בקרה",
+    "login": "כניסה",
+    "register": "הרשמה",
+    "logout": "יציאה",
+    "profile": "פרופיל",
+    "about": "אודות"
+  },
+  "home": {
+    "hero": {
+      "title": "צור מסמכים משפטיים בקלות",
+      "subtitle": "הכינו חוזים מקצועיים תוך דקות. בחרו תבנית, מלאו את הפרטים והורידו את המסמך המוכן.",
+      "cta": "התחל עכשיו",
+      "ctaSecondary": "עיין בתבניות"
+    },
+    "features": {
+      "templates": {
+        "title": "תבניות מקצועיות",
+        "description": "מגוון רחב של תבניות חוזים מותאמות לדין הישראלי"
+      },
+      "wizard": {
+        "title": "תהליך פשוט ומודרך",
+        "description": "מלאו את הפרטים צעד אחר צעד עם תצוגה מקדימה בזמן אמת"
+      },
+      "languages": {
+        "title": "תמיכה בשפות מרובות",
+        "description": "עברית, ערבית, אנגלית ורוסית - בחרו את השפה המתאימה לכם"
+      },
+      "download": {
+        "title": "הורדה מיידית",
+        "description": "הורידו את המסמך כקובץ PDF מקצועי מוכן לחתימה"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "כניסה לחשבון",
+      "email": "דואר אלקטרוני",
+      "password": "סיסמה",
+      "submit": "כניסה",
+      "forgotPassword": "שכחת סיסמה?",
+      "noAccount": "אין לך חשבון?",
+      "signUp": "הירשם כאן",
+      "socialGoogle": "כניסה עם Google",
+      "socialFacebook": "כניסה עם Facebook",
+      "invalidCredentials": "דואר אלקטרוני או סיסמה שגויים",
+      "error": "אירעה שגיאה בכניסה"
+    },
+    "register": {
+      "title": "יצירת חשבון חדש",
+      "name": "שם מלא",
+      "email": "דואר אלקטרוני",
+      "password": "סיסמה",
+      "confirmPassword": "אימות סיסמה",
+      "submit": "הרשמה",
+      "hasAccount": "כבר יש לך חשבון?",
+      "signIn": "היכנס כאן",
+      "passwordMismatch": "הסיסמאות אינן תואמות",
+      "emailExists": "כתובת דואר אלקטרוני זו כבר רשומה"
+    },
+    "forgotPassword": {
+      "title": "שחזור סיסמה",
+      "email": "דואר אלקטרוני",
+      "submit": "שלח קישור לאיפוס",
+      "sent": "קישור לאיפוס סיסמה נשלח לדואר האלקטרוני שלך",
+      "backToLogin": "חזור לכניסה"
+    }
+  },
+  "templates": {
+    "title": "תבניות חוזים",
+    "subtitle": "בחרו את סוג החוזה שברצונכם ליצור",
+    "startContract": "התחל חוזה",
+    "templatesCount": "תבניות",
+    "categories": {
+      "rental": "שכירות",
+      "employment": "עבודה",
+      "business": "עסקים"
+    }
+  },
+  "wizard": {
+    "step": "שלב",
+    "of": "מתוך",
+    "saveDraft": "שמור טיוטה",
+    "saving": "שומר...",
+    "saved": "נשמר",
+    "preview": "תצוגה מקדימה",
+    "hidePreview": "הסתר תצוגה מקדימה",
+    "finalize": "סיום וחתימה",
+    "fieldRequired": "שדה זה הוא חובה",
+    "invalidEmail": "כתובת דואר אלקטרוני לא תקינה",
+    "invalidPhone": "מספר טלפון לא תקין",
+    "invalidId": "מספר תעודת זהות לא תקין",
+    "minLength": "אורך מינימלי: {min} תווים",
+    "maxLength": "אורך מקסימלי: {max} תווים",
+    "minValue": "ערך מינימלי: {min}",
+    "maxValue": "ערך מקסימלי: {max}",
+    "unfilled": "______"
+  },
+  "dashboard": {
+    "title": "המסמכים שלי",
+    "newDocument": "מסמך חדש",
+    "empty": "עדיין לא יצרת מסמכים",
+    "emptyCta": "צור מסמך ראשון",
+    "filter": {
+      "all": "הכל",
+      "draft": "טיוטות",
+      "completed": "הושלמו",
+      "published": "פורסמו"
+    },
+    "status": {
+      "DRAFT": "טיוטה",
+      "COMPLETED": "הושלם",
+      "PUBLISHED": "פורסם"
+    },
+    "actions": {
+      "edit": "ערוך",
+      "download": "הורד PDF",
+      "delete": "מחק",
+      "view": "צפה"
+    },
+    "deleteConfirm": "האם אתה בטוח שברצונך למחוק מסמך זה?",
+    "lastUpdated": "עודכן לאחרונה"
+  },
+  "footer": {
+    "rights": "כל הזכויות שמורות",
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאי שימוש"
+  }
+}

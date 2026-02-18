@@ -1,0 +1,396 @@
+{
+  "slug": "employment-contract",
+  "category": "employment",
+  "version": 1,
+  "name": {
+    "he": "חוזה העסקה",
+    "ar": "عقد عمل",
+    "en": "Employment Contract",
+    "ru": "Трудовой договор"
+  },
+  "description": {
+    "he": "חוזה העסקה אישי בין מעסיק לעובד",
+    "ar": "عقد عمل شخصي بين صاحب العمل والموظف",
+    "en": "Personal employment agreement between employer and employee",
+    "ru": "Индивидуальный трудовой договор между работодателем и работником"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי המעסיק והעובד", "ar": "بيانات صاحب العمل والموظف", "en": "Employer and employee details", "ru": "Данные работодателя и работника" },
+        "fields": [
+          {
+            "key": "employer_name",
+            "type": "text",
+            "label": { "he": "שם המעסיק / החברה", "ar": "اسم صاحب العمل / الشركة", "en": "Employer / Company Name", "ru": "Название работодателя / компании" },
+            "placeholder": { "he": "שם החברה", "ar": "اسم الشركة", "en": "Company name", "ru": "Название компании" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 150 },
+            "width": "half"
+          },
+          {
+            "key": "employer_company_number",
+            "type": "text",
+            "label": { "he": "ח.פ. המעסיק", "ar": "سجل تجاري لصاحب العمل", "en": "Employer Company Number", "ru": "Регистрационный номер компании работодателя" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "employer_address",
+            "type": "text",
+            "label": { "he": "כתובת המעסיק", "ar": "عنوان صاحب العمل", "en": "Employer Address", "ru": "Адрес работодателя" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "employer_phone",
+            "type": "phone",
+            "label": { "he": "טלפון המעסיק", "ar": "هاتف صاحب العمل", "en": "Employer Phone", "ru": "Телефон работодателя" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "employer_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל המעסיק", "ar": "بريد صاحب العمل", "en": "Employer Email", "ru": "Email работодателя" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "employee_name",
+            "type": "text",
+            "label": { "he": "שם העובד", "ar": "اسم الموظف", "en": "Employee Name", "ru": "Имя работника" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "employee_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. העובד", "ar": "هوية الموظف", "en": "Employee ID Number", "ru": "ID работника" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "employee_address",
+            "type": "text",
+            "label": { "he": "כתובת העובד", "ar": "عنوان الموظف", "en": "Employee Address", "ru": "Адрес работника" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "employee_phone",
+            "type": "phone",
+            "label": { "he": "טלפון העובד", "ar": "هاتف الموظف", "en": "Employee Phone", "ru": "Телефон работника" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "employee_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל העובד", "ar": "بريد الموظف", "en": "Employee Email", "ru": "Email работника" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "position",
+        "title": { "he": "פרטי התפקיד", "ar": "تفاصيل الوظيفة", "en": "Position Details", "ru": "Детали должности" },
+        "description": { "he": "תפקיד, מחלקה ותנאי התחלה", "ar": "الوظيفة والقسم وشروط البدء", "en": "Role, department, and start conditions", "ru": "Должность, отдел и условия начала" },
+        "fields": [
+          {
+            "key": "job_title",
+            "type": "text",
+            "label": { "he": "תואר התפקיד", "ar": "المسمى الوظيفي", "en": "Job Title", "ru": "Название должности" },
+            "placeholder": { "he": "למשל: מנהל שיווק", "ar": "مثال: مدير تسويق", "en": "e.g. Marketing Manager", "ru": "например: менеджер по маркетингу" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "department",
+            "type": "text",
+            "label": { "he": "מחלקה", "ar": "القسم", "en": "Department", "ru": "Отдел" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "start_date",
+            "type": "date",
+            "label": { "he": "תאריך תחילת העסקה", "ar": "تاريخ بدء العمل", "en": "Employment Start Date", "ru": "Дата начала работы" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "has_probation",
+            "type": "checkbox",
+            "label": { "he": "תקופת ניסיון", "ar": "فترة تجريبية", "en": "Probation Period", "ru": "Испытательный срок" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "probation_months",
+            "type": "number",
+            "label": { "he": "משך תקופת הניסיון (חודשים)", "ar": "مدة الفترة التجريبية (أشهر)", "en": "Probation Duration (months)", "ru": "Продолжительность испытательного срока (месяцев)" },
+            "required": false,
+            "condition": { "field": "has_probation", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 12 },
+            "defaultValue": 3,
+            "width": "half"
+          },
+          {
+            "key": "job_description",
+            "type": "textarea",
+            "label": { "he": "תיאור התפקיד", "ar": "وصف الوظيفة", "en": "Job Description", "ru": "Описание должности" },
+            "placeholder": { "he": "תאר את תחומי האחריות והמשימות העיקריים...", "ar": "صف مجالات المسؤولية والمهام الرئيسية...", "en": "Describe the main responsibilities and tasks...", "ru": "Опишите основные обязанности и задачи..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "work_location",
+            "type": "text",
+            "label": { "he": "מקום העבודה", "ar": "مكان العمل", "en": "Work Location", "ru": "Место работы" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "reports_to",
+            "type": "text",
+            "label": { "he": "כפיפות ישירה ל", "ar": "التبعية المباشرة لـ", "en": "Reports To", "ru": "Непосредственный руководитель" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "compensation",
+        "title": { "he": "תנאי שכר והטבות", "ar": "شروط الراتب والمزايا", "en": "Compensation & Benefits", "ru": "Оплата и льготы" },
+        "description": { "he": "שכר, תשלומים והטבות נלוות", "ar": "الراتب والمدفوعات والمزايا الإضافية", "en": "Salary, payments, and additional benefits", "ru": "Зарплата, выплаты и дополнительные льготы" },
+        "fields": [
+          {
+            "key": "salary",
+            "type": "currency",
+            "label": { "he": "שכר ברוטו (ש\"ח)", "ar": "الراتب الإجمالي (شيكل)", "en": "Gross Salary (ILS)", "ru": "Зарплата брутто (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "payment_frequency",
+            "type": "select",
+            "label": { "he": "תדירות תשלום", "ar": "تكرار الدفع", "en": "Payment Frequency", "ru": "Периодичность оплаты" },
+            "required": true,
+            "options": [
+              { "value": "monthly", "label": { "he": "חודשי", "ar": "شهري", "en": "Monthly", "ru": "Ежемесячно" } },
+              { "value": "biweekly", "label": { "he": "דו-שבועי", "ar": "كل أسبوعين", "en": "Bi-weekly", "ru": "Раз в две недели" } },
+              { "value": "weekly", "label": { "he": "שבועי", "ar": "أسبوعي", "en": "Weekly", "ru": "Еженедельно" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "overtime_eligible",
+            "type": "checkbox",
+            "label": { "he": "זכאי לתשלום שעות נוספות", "ar": "مؤهل لتعويض العمل الإضافي", "en": "Eligible for Overtime Pay", "ru": "Право на оплату сверхурочных" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "overtime_rate",
+            "type": "select",
+            "label": { "he": "שיעור תשלום שעות נוספות", "ar": "معدل تعويض العمل الإضافي", "en": "Overtime Rate", "ru": "Ставка сверхурочных" },
+            "required": false,
+            "condition": { "field": "overtime_eligible", "operator": "equals", "value": true },
+            "options": [
+              { "value": "125", "label": { "he": "125%", "ar": "125%", "en": "125%", "ru": "125%" } },
+              { "value": "150", "label": { "he": "150%", "ar": "150%", "en": "150%", "ru": "150%" } },
+              { "value": "175", "label": { "he": "175%", "ar": "175%", "en": "175%", "ru": "175%" } },
+              { "value": "200", "label": { "he": "200%", "ar": "200%", "en": "200%", "ru": "200%" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "travel_allowance",
+            "type": "currency",
+            "label": { "he": "החזר נסיעות חודשי (ש\"ח)", "ar": "بدل مواصلات شهري (شيكل)", "en": "Monthly Travel Allowance (ILS)", "ru": "Ежемесячная компенсация проезда (шекель)" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "meal_allowance",
+            "type": "currency",
+            "label": { "he": "דמי הבראה / ארוחות (ש\"ח)", "ar": "بدل وجبات (شيكل)", "en": "Meal Allowance (ILS)", "ru": "Компенсация питания (шекель)" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "pension_contribution",
+            "type": "checkbox",
+            "label": { "he": "הפרשה לפנסיה", "ar": "مساهمة في التقاعد", "en": "Pension Contribution", "ru": "Пенсионные отчисления" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "education_fund",
+            "type": "checkbox",
+            "label": { "he": "הפרשה לקרן השתלמות", "ar": "مساهمة في صندوق التعليم", "en": "Education Fund Contribution", "ru": "Отчисления в образовательный фонд" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "terms",
+        "title": { "he": "תנאי העסקה", "ar": "شروط العمل", "en": "Employment Terms", "ru": "Условия занятости" },
+        "description": { "he": "שעות עבודה, חופשה וסיום העסקה", "ar": "ساعات العمل والإجازة وإنهاء العمل", "en": "Work hours, vacation, and termination", "ru": "Рабочие часы, отпуск и увольнение" },
+        "fields": [
+          {
+            "key": "work_hours_type",
+            "type": "select",
+            "label": { "he": "היקף משרה", "ar": "نوع الدوام", "en": "Employment Type", "ru": "Тип занятости" },
+            "required": true,
+            "options": [
+              { "value": "full_time", "label": { "he": "משרה מלאה", "ar": "دوام كامل", "en": "Full-time", "ru": "Полная занятость" } },
+              { "value": "part_time", "label": { "he": "משרה חלקית", "ar": "دوام جزئي", "en": "Part-time", "ru": "Частичная занятость" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "weekly_hours",
+            "type": "number",
+            "label": { "he": "שעות עבודה שבועיות", "ar": "ساعات العمل الأسبوعية", "en": "Weekly Work Hours", "ru": "Рабочие часы в неделю" },
+            "required": true,
+            "validation": { "min": 4, "max": 45 },
+            "defaultValue": 42,
+            "width": "half"
+          },
+          {
+            "key": "work_days",
+            "type": "select",
+            "label": { "he": "ימי עבודה", "ar": "أيام العمل", "en": "Work Days", "ru": "Рабочие дни" },
+            "required": true,
+            "options": [
+              { "value": "sun_thu", "label": { "he": "ראשון-חמישי", "ar": "الأحد-الخميس", "en": "Sunday-Thursday", "ru": "Воскресенье-четверг" } },
+              { "value": "sun_fri", "label": { "he": "ראשון-שישי (חצי יום)", "ar": "الأحد-الجمعة (نصف يوم)", "en": "Sunday-Friday (half day)", "ru": "Воскресенье-пятница (полдня)" } },
+              { "value": "mon_fri", "label": { "he": "שני-שישי", "ar": "الاثنين-الجمعة", "en": "Monday-Friday", "ru": "Понедельник-пятница" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "vacation_days",
+            "type": "number",
+            "label": { "he": "ימי חופשה שנתיים", "ar": "أيام الإجازة السنوية", "en": "Annual Vacation Days", "ru": "Ежегодные дни отпуска" },
+            "required": true,
+            "validation": { "min": 10, "max": 30 },
+            "defaultValue": 12,
+            "width": "half"
+          },
+          {
+            "key": "sick_days",
+            "type": "number",
+            "label": { "he": "ימי מחלה שנתיים", "ar": "أيام المرض السنوية", "en": "Annual Sick Days", "ru": "Ежегодные больничные дни" },
+            "required": true,
+            "validation": { "min": 0, "max": 30 },
+            "defaultValue": 18,
+            "width": "half"
+          },
+          {
+            "key": "notice_period_employer",
+            "type": "number",
+            "label": { "he": "תקופת הודעה מוקדמת מהמעסיק (ימים)", "ar": "فترة الإشعار من صاحب العمل (أيام)", "en": "Employer Notice Period (days)", "ru": "Срок уведомления от работодателя (дней)" },
+            "required": true,
+            "validation": { "min": 1, "max": 180 },
+            "defaultValue": 30,
+            "width": "half"
+          },
+          {
+            "key": "notice_period_employee",
+            "type": "number",
+            "label": { "he": "תקופת הודעה מוקדמת מהעובד (ימים)", "ar": "فترة الإشعار من الموظف (أيام)", "en": "Employee Notice Period (days)", "ru": "Срок уведомления от работника (дней)" },
+            "required": true,
+            "validation": { "min": 1, "max": 180 },
+            "defaultValue": 30,
+            "width": "half"
+          },
+          {
+            "key": "non_compete",
+            "type": "checkbox",
+            "label": { "he": "סעיף אי תחרות", "ar": "شرط عدم المنافسة", "en": "Non-Compete Clause", "ru": "Пункт о неконкуренции" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "non_compete_months",
+            "type": "number",
+            "label": { "he": "תקופת אי תחרות (חודשים)", "ar": "مدة عدم المنافسة (أشهر)", "en": "Non-Compete Period (months)", "ru": "Период неконкуренции (месяцев)" },
+            "required": false,
+            "condition": { "field": "non_compete", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 24 },
+            "defaultValue": 6,
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "חוזה העסקה אישי", "body": "<p style=\"text-align:center\"><strong>חוזה העסקה אישי</strong></p><p>שנערך ונחתם ביום {{start_date}}</p>" },
+        { "title": "1. הצדדים", "body": "<p><strong>בין:</strong> {{employer_name}}, ח.פ. {{employer_company_number}}, מרחוב {{employer_address}}, טלפון: {{employer_phone}} (להלן: <strong>\"המעסיק\"</strong>)</p><p><strong>לבין:</strong> {{employee_name}}, ת.ז. {{employee_id}}, מרחוב {{employee_address}}, טלפון: {{employee_phone}} (להלן: <strong>\"העובד\"</strong>)</p>" },
+        { "title": "2. התפקיד", "body": "<p>העובד יועסק בתפקיד <strong>{{job_title}}</strong>{{#if department}} במחלקת {{department}}{{/if}}, במקום העבודה: {{work_location}}.{{#if reports_to}} העובד יהיה כפוף ישירות ל-{{reports_to}}.{{/if}}</p><p>תיאור התפקיד: {{job_description}}</p>" },
+        { "title": "3. תחילת העסקה", "body": "<p>תאריך תחילת ההעסקה: <strong>{{start_date}}</strong>.</p>{{#if has_probation}}<p>העובד יעבור תקופת ניסיון של <strong>{{probation_months}} חודשים</strong>. במהלך תקופת הניסיון, כל אחד מהצדדים רשאי להפסיק את ההעסקה בהודעה מוקדמת מקוצרת בהתאם לדין.</p>{{/if}}" },
+        { "title": "4. שכר והטבות", "body": "<p>השכר החודשי ברוטו יעמוד על <strong>{{salary}} ש\"ח</strong>, המשולם {{payment_frequency}}.</p>{{#if overtime_eligible}}<p>העובד זכאי לתשלום שעות נוספות בשיעור של {{overtime_rate}}%.</p>{{/if}}{{#if travel_allowance}}<p>החזר נסיעות חודשי: {{travel_allowance}} ש\"ח.</p>{{/if}}{{#if meal_allowance}}<p>דמי הבראה / ארוחות: {{meal_allowance}} ש\"ח.</p>{{/if}}{{#if pension_contribution}}<p>המעסיק יפריש עבור העובד לפנסיה בהתאם להוראות הדין.</p>{{/if}}{{#if education_fund}}<p>המעסיק יפריש עבור העובד לקרן השתלמות בהתאם לנהלי החברה.</p>{{/if}}" },
+        { "title": "5. שעות עבודה וחופשות", "body": "<p>היקף המשרה: {{work_hours_type}}, {{weekly_hours}} שעות שבועיות, בימים {{work_days}}.</p><p>העובד זכאי ל-<strong>{{vacation_days}}</strong> ימי חופשה שנתיים ול-<strong>{{sick_days}}</strong> ימי מחלה שנתיים.</p>" },
+        { "title": "6. סיום העסקה", "body": "<p>תקופת ההודעה המוקדמת לסיום ההעסקה: מצד המעסיק — <strong>{{notice_period_employer}} ימים</strong>; מצד העובד — <strong>{{notice_period_employee}} ימים</strong>.</p>{{#if non_compete}}<p>העובד מתחייב שלא לעבוד אצל מתחרה ולא להתחרות במעסיק למשך <strong>{{non_compete_months}} חודשים</strong> לאחר סיום ההעסקה.</p>{{/if}}" },
+        { "title": "7. תנאים נוספים", "body": "{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>כל שינוי בחוזה זה יעשה בכתב בלבד ובחתימת שני הצדדים.</p>" },
+        { "title": "8. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המעסיק: {{employer_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>העובד: {{employee_name}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Employment Contract", "body": "<p style=\"text-align:center\"><strong>Personal Employment Agreement</strong></p><p>Made and signed on {{start_date}}</p>" },
+        { "title": "1. The Parties", "body": "<p><strong>Between:</strong> {{employer_name}}, Company No. {{employer_company_number}}, of {{employer_address}}, Phone: {{employer_phone}} (hereinafter: <strong>\"the Employer\"</strong>)</p><p><strong>And:</strong> {{employee_name}}, ID {{employee_id}}, of {{employee_address}}, Phone: {{employee_phone}} (hereinafter: <strong>\"the Employee\"</strong>)</p>" },
+        { "title": "2. Position", "body": "<p>The Employee shall be employed as <strong>{{job_title}}</strong>{{#if department}} in the {{department}} department{{/if}}, at the workplace: {{work_location}}.{{#if reports_to}} The Employee shall report directly to {{reports_to}}.{{/if}}</p><p>Job description: {{job_description}}</p>" },
+        { "title": "3. Commencement", "body": "<p>Employment start date: <strong>{{start_date}}</strong>.</p>{{#if has_probation}}<p>The Employee shall undergo a probation period of <strong>{{probation_months}} months</strong>. During the probation period, either party may terminate the employment with shortened notice as provided by law.</p>{{/if}}" },
+        { "title": "4. Compensation and Benefits", "body": "<p>The gross monthly salary shall be <strong>{{salary}} ILS</strong>, paid {{payment_frequency}}.</p>{{#if overtime_eligible}}<p>The Employee is entitled to overtime pay at a rate of {{overtime_rate}}%.</p>{{/if}}{{#if travel_allowance}}<p>Monthly travel allowance: {{travel_allowance}} ILS.</p>{{/if}}{{#if meal_allowance}}<p>Meal allowance: {{meal_allowance}} ILS.</p>{{/if}}{{#if pension_contribution}}<p>The Employer shall make pension contributions on behalf of the Employee as required by law.</p>{{/if}}{{#if education_fund}}<p>The Employer shall make education fund contributions on behalf of the Employee in accordance with company policy.</p>{{/if}}" },
+        { "title": "5. Working Hours and Leave", "body": "<p>Employment scope: {{work_hours_type}}, {{weekly_hours}} hours per week, on {{work_days}}.</p><p>The Employee is entitled to <strong>{{vacation_days}}</strong> annual vacation days and <strong>{{sick_days}}</strong> annual sick days.</p>" },
+        { "title": "6. Termination", "body": "<p>Notice period for termination: by the Employer — <strong>{{notice_period_employer}} days</strong>; by the Employee — <strong>{{notice_period_employee}} days</strong>.</p>{{#if non_compete}}<p>The Employee undertakes not to work for a competitor or compete with the Employer for a period of <strong>{{non_compete_months}} months</strong> following the termination of employment.</p>{{/if}}" },
+        { "title": "7. Additional Terms", "body": "{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>Any amendment to this agreement must be made in writing and signed by both parties.</p>" },
+        { "title": "8. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Employer: {{employer_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Employee: {{employee_name}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "عقد عمل", "body": "<p style=\"text-align:center\"><strong>عقد عمل شخصي</strong></p><p>تم تحريره والتوقيع عليه بتاريخ {{start_date}}</p>" },
+        { "title": "1. الأطراف", "body": "<p><strong>بين:</strong> {{employer_name}}، سجل تجاري رقم {{employer_company_number}}، من {{employer_address}}، هاتف: {{employer_phone}} (المشار إليه فيما يلي بـ <strong>\"صاحب العمل\"</strong>)</p><p><strong>وبين:</strong> {{employee_name}}، هوية رقم {{employee_id}}، من {{employee_address}}، هاتف: {{employee_phone}} (المشار إليه فيما يلي بـ <strong>\"الموظف\"</strong>)</p>" },
+        { "title": "2. الوظيفة", "body": "<p>يُوظف الموظف بصفة <strong>{{job_title}}</strong>{{#if department}} في قسم {{department}}{{/if}}، في مكان العمل: {{work_location}}.{{#if reports_to}} يتبع الموظف مباشرة لـ {{reports_to}}.{{/if}}</p><p>وصف الوظيفة: {{job_description}}</p>" },
+        { "title": "3. بداية العمل", "body": "<p>تاريخ بدء العمل: <strong>{{start_date}}</strong>.</p>{{#if has_probation}}<p>يخضع الموظف لفترة تجريبية مدتها <strong>{{probation_months}} أشهر</strong>. خلال الفترة التجريبية، يحق لأي من الطرفين إنهاء العمل بإشعار مختصر وفقاً للقانون.</p>{{/if}}" },
+        { "title": "4. الراتب والمزايا", "body": "<p>الراتب الشهري الإجمالي هو <strong>{{salary}} شيكل</strong>، يُدفع {{payment_frequency}}.</p>{{#if overtime_eligible}}<p>يستحق الموظف تعويض العمل الإضافي بمعدل {{overtime_rate}}%.</p>{{/if}}{{#if travel_allowance}}<p>بدل مواصلات شهري: {{travel_allowance}} شيكل.</p>{{/if}}{{#if meal_allowance}}<p>بدل وجبات: {{meal_allowance}} شيكل.</p>{{/if}}{{#if pension_contribution}}<p>يلتزم صاحب العمل بالمساهمة في التقاعد نيابة عن الموظف وفقاً للقانون.</p>{{/if}}{{#if education_fund}}<p>يلتزم صاحب العمل بالمساهمة في صندوق التعليم نيابة عن الموظف وفقاً لسياسة الشركة.</p>{{/if}}" },
+        { "title": "5. ساعات العمل والإجازات", "body": "<p>نوع الدوام: {{work_hours_type}}، {{weekly_hours}} ساعة أسبوعياً، أيام {{work_days}}.</p><p>يستحق الموظف <strong>{{vacation_days}}</strong> يوم إجازة سنوية و<strong>{{sick_days}}</strong> يوم مرض سنوياً.</p>" },
+        { "title": "6. إنهاء العمل", "body": "<p>فترة الإشعار لإنهاء العمل: من صاحب العمل — <strong>{{notice_period_employer}} يوماً</strong>؛ من الموظف — <strong>{{notice_period_employee}} يوماً</strong>.</p>{{#if non_compete}}<p>يتعهد الموظف بعدم العمل لدى منافس أو التنافس مع صاحب العمل لمدة <strong>{{non_compete_months}} أشهر</strong> بعد انتهاء العمل.</p>{{/if}}" },
+        { "title": "7. شروط إضافية", "body": "{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>أي تعديل على هذا العقد يجب أن يتم كتابياً وبتوقيع الطرفين.</p>" },
+        { "title": "8. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>صاحب العمل: {{employer_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>الموظف: {{employee_name}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Трудовой договор", "body": "<p style=\"text-align:center\"><strong>Индивидуальный трудовой договор</strong></p><p>Составлен и подписан {{start_date}}</p>" },
+        { "title": "1. Стороны", "body": "<p><strong>Между:</strong> {{employer_name}}, рег. номер {{employer_company_number}}, по адресу {{employer_address}}, тел: {{employer_phone}} (далее — <strong>«Работодатель»</strong>)</p><p><strong>И:</strong> {{employee_name}}, ID {{employee_id}}, по адресу {{employee_address}}, тел: {{employee_phone}} (далее — <strong>«Работник»</strong>)</p>" },
+        { "title": "2. Должность", "body": "<p>Работник принимается на должность <strong>{{job_title}}</strong>{{#if department}} в отдел {{department}}{{/if}}, место работы: {{work_location}}.{{#if reports_to}} Работник подчиняется непосредственно {{reports_to}}.{{/if}}</p><p>Описание должности: {{job_description}}</p>" },
+        { "title": "3. Начало работы", "body": "<p>Дата начала работы: <strong>{{start_date}}</strong>.</p>{{#if has_probation}}<p>Работник проходит испытательный срок продолжительностью <strong>{{probation_months}} месяцев</strong>. В течение испытательного срока любая из сторон может прекратить трудовые отношения с сокращённым сроком уведомления в соответствии с законом.</p>{{/if}}" },
+        { "title": "4. Оплата и льготы", "body": "<p>Ежемесячная зарплата брутто составляет <strong>{{salary}} шекелей</strong>, выплачиваемая {{payment_frequency}}.</p>{{#if overtime_eligible}}<p>Работник имеет право на оплату сверхурочных по ставке {{overtime_rate}}%.</p>{{/if}}{{#if travel_allowance}}<p>Ежемесячная компенсация проезда: {{travel_allowance}} шекелей.</p>{{/if}}{{#if meal_allowance}}<p>Компенсация питания: {{meal_allowance}} шекелей.</p>{{/if}}{{#if pension_contribution}}<p>Работодатель осуществляет пенсионные отчисления за Работника в соответствии с законом.</p>{{/if}}{{#if education_fund}}<p>Работодатель осуществляет отчисления в образовательный фонд за Работника в соответствии с политикой компании.</p>{{/if}}" },
+        { "title": "5. Рабочее время и отпуск", "body": "<p>Тип занятости: {{work_hours_type}}, {{weekly_hours}} часов в неделю, рабочие дни: {{work_days}}.</p><p>Работник имеет право на <strong>{{vacation_days}}</strong> ежегодных дней отпуска и <strong>{{sick_days}}</strong> ежегодных больничных дней.</p>" },
+        { "title": "6. Увольнение", "body": "<p>Срок уведомления об увольнении: от Работодателя — <strong>{{notice_period_employer}} дней</strong>; от Работника — <strong>{{notice_period_employee}} дней</strong>.</p>{{#if non_compete}}<p>Работник обязуется не работать у конкурентов и не конкурировать с Работодателем в течение <strong>{{non_compete_months}} месяцев</strong> после увольнения.</p>{{/if}}" },
+        { "title": "7. Дополнительные условия", "body": "{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}<p>Любые изменения настоящего договора должны быть оформлены в письменном виде и подписаны обеими сторонами.</p>" },
+        { "title": "8. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Работодатель: {{employer_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Работник: {{employee_name}}</td></tr></table>" }
+      ]
+    }
+  }
+}

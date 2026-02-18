@@ -1,0 +1,367 @@
+{
+  "slug": "partnership-agreement",
+  "category": "business",
+  "version": 1,
+  "name": {
+    "he": "הסכם שותפות",
+    "ar": "اتفاقية شراكة",
+    "en": "Partnership Agreement",
+    "ru": "Договор о партнёрстве"
+  },
+  "description": {
+    "he": "הסכם שותפות עסקית בין שני שותפים או יותר",
+    "ar": "اتفاقية شراكة تجارية بين شريكين أو أكثر",
+    "en": "Business partnership agreement between two or more partners",
+    "ru": "Договор о деловом партнёрстве между двумя или более партнёрами"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "partners",
+        "title": { "he": "השותפים", "ar": "الشركاء", "en": "Partners", "ru": "Партнёры" },
+        "description": { "he": "פרטי השותפים ותרומתם", "ar": "بيانات الشركاء ومساهماتهم", "en": "Partner details and contributions", "ru": "Данные партнёров и их вклады" },
+        "fields": [
+          {
+            "key": "partner_a_name",
+            "type": "text",
+            "label": { "he": "שם שותף א'", "ar": "اسم الشريك الأول", "en": "Partner A Name", "ru": "Имя партнёра А" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "partner_a_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. שותף א'", "ar": "هوية الشريك الأول", "en": "Partner A ID Number", "ru": "ID партнёра А" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "partner_a_address",
+            "type": "text",
+            "label": { "he": "כתובת שותף א'", "ar": "عنوان الشريك الأول", "en": "Partner A Address", "ru": "Адрес партнёра А" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "partner_a_phone",
+            "type": "phone",
+            "label": { "he": "טלפון שותף א'", "ar": "هاتف الشريك الأول", "en": "Partner A Phone", "ru": "Телефон партнёра А" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "partner_a_contribution",
+            "type": "currency",
+            "label": { "he": "השקעת שותף א' (ש\"ח)", "ar": "مساهمة الشريك الأول (شيكل)", "en": "Partner A Contribution (ILS)", "ru": "Вклад партнёра А (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "partner_b_name",
+            "type": "text",
+            "label": { "he": "שם שותף ב'", "ar": "اسم الشريك الثاني", "en": "Partner B Name", "ru": "Имя партнёра Б" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "partner_b_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. שותף ב'", "ar": "هوية الشريك الثاني", "en": "Partner B ID Number", "ru": "ID партнёра Б" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "partner_b_address",
+            "type": "text",
+            "label": { "he": "כתובת שותף ב'", "ar": "عنوان الشريك الثاني", "en": "Partner B Address", "ru": "Адрес партнёра Б" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "partner_b_phone",
+            "type": "phone",
+            "label": { "he": "טלפון שותף ב'", "ar": "هاتف الشريك الثاني", "en": "Partner B Phone", "ru": "Телефон партнёра Б" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "partner_b_contribution",
+            "type": "currency",
+            "label": { "he": "השקעת שותף ב' (ש\"ח)", "ar": "مساهمة الشريك الثاني (شيكل)", "en": "Partner B Contribution (ILS)", "ru": "Вклад партнёра Б (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "has_additional_partners",
+            "type": "checkbox",
+            "label": { "he": "שותפים נוספים", "ar": "شركاء إضافيون", "en": "Additional Partners", "ru": "Дополнительные партнёры" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "additional_partners_details",
+            "type": "textarea",
+            "label": { "he": "פרטי שותפים נוספים", "ar": "تفاصيل الشركاء الإضافيين", "en": "Additional Partners Details", "ru": "Данные дополнительных партнёров" },
+            "placeholder": { "he": "שם, ת.ז., כתובת והשקעה של כל שותף נוסף...", "ar": "الاسم والهوية والعنوان والمساهمة لكل شريك إضافي...", "en": "Name, ID, address, and contribution of each additional partner...", "ru": "Имя, ID, адрес и вклад каждого дополнительного партнёра..." },
+            "required": false,
+            "condition": { "field": "has_additional_partners", "operator": "equals", "value": true },
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "business",
+        "title": { "he": "פרטי העסק", "ar": "تفاصيل النشاط التجاري", "en": "Business Details", "ru": "Детали бизнеса" },
+        "description": { "he": "שם העסק, מטרתו וכתובתו", "ar": "اسم النشاط التجاري والغرض والعنوان", "en": "Business name, purpose, and address", "ru": "Название бизнеса, цель и адрес" },
+        "fields": [
+          {
+            "key": "business_name",
+            "type": "text",
+            "label": { "he": "שם השותפות / העסק", "ar": "اسم الشراكة / النشاط التجاري", "en": "Partnership / Business Name", "ru": "Название партнёрства / бизнеса" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "business_purpose",
+            "type": "textarea",
+            "label": { "he": "מטרת העסק", "ar": "الغرض من النشاط التجاري", "en": "Business Purpose", "ru": "Цель бизнеса" },
+            "placeholder": { "he": "תאר את מטרת השותפות ותחום פעילותה...", "ar": "صف الغرض من الشراكة ومجال نشاطها...", "en": "Describe the purpose of the partnership and its scope of activity...", "ru": "Опишите цель партнёрства и сферу его деятельности..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "business_address",
+            "type": "text",
+            "label": { "he": "כתובת העסק", "ar": "عنوان النشاط التجاري", "en": "Business Address", "ru": "Адрес бизнеса" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "effective_date",
+            "type": "date",
+            "label": { "he": "תאריך תחילת השותפות", "ar": "تاريخ بدء الشراكة", "en": "Partnership Start Date", "ru": "Дата начала партнёрства" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "partnership_duration",
+            "type": "select",
+            "label": { "he": "משך השותפות", "ar": "مدة الشراكة", "en": "Partnership Duration", "ru": "Срок партнёрства" },
+            "required": true,
+            "options": [
+              { "value": "indefinite", "label": { "he": "ללא הגבלת זמן", "ar": "غير محددة المدة", "en": "Indefinite", "ru": "Бессрочно" } },
+              { "value": "fixed", "label": { "he": "תקופה קצובה", "ar": "مدة محددة", "en": "Fixed Term", "ru": "Фиксированный срок" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "partnership_end_date",
+            "type": "date",
+            "label": { "he": "תאריך סיום השותפות", "ar": "تاريخ انتهاء الشراكة", "en": "Partnership End Date", "ru": "Дата окончания партнёрства" },
+            "required": false,
+            "condition": { "field": "partnership_duration", "operator": "equals", "value": "fixed" },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "financial",
+        "title": { "he": "תנאים כספיים", "ar": "الشروط المالية", "en": "Financial Terms", "ru": "Финансовые условия" },
+        "description": { "he": "חלוקת רווחים, הון והוצאות", "ar": "توزيع الأرباح ورأس المال والنفقات", "en": "Profit sharing, capital, and expenses", "ru": "Распределение прибыли, капитал и расходы" },
+        "fields": [
+          {
+            "key": "partner_a_share",
+            "type": "number",
+            "label": { "he": "חלק שותף א' ברווחים (%)", "ar": "حصة الشريك الأول من الأرباح (%)", "en": "Partner A Profit Share (%)", "ru": "Доля партнёра А в прибыли (%)" },
+            "required": true,
+            "validation": { "min": 0, "max": 100 },
+            "width": "half"
+          },
+          {
+            "key": "partner_b_share",
+            "type": "number",
+            "label": { "he": "חלק שותף ב' ברווחים (%)", "ar": "حصة الشريك الثاني من الأرباح (%)", "en": "Partner B Profit Share (%)", "ru": "Доля партнёра Б в прибыли (%)" },
+            "required": true,
+            "validation": { "min": 0, "max": 100 },
+            "width": "half"
+          },
+          {
+            "key": "loss_sharing_same",
+            "type": "checkbox",
+            "label": { "he": "חלוקת הפסדים זהה לחלוקת רווחים", "ar": "توزيع الخسائر مطابق لتوزيع الأرباح", "en": "Loss Sharing Same as Profit Sharing", "ru": "Распределение убытков как у прибыли" },
+            "required": false,
+            "defaultValue": true,
+            "width": "full"
+          },
+          {
+            "key": "salary_partner_a",
+            "type": "currency",
+            "label": { "he": "משכורת חודשית לשותף א' (ש\"ח)", "ar": "الراتب الشهري للشريك الأول (شيكل)", "en": "Partner A Monthly Salary (ILS)", "ru": "Ежемесячная зарплата партнёра А (шекель)" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "salary_partner_b",
+            "type": "currency",
+            "label": { "he": "משכורת חודשית לשותף ב' (ש\"ח)", "ar": "الراتب الشهري للشريك الثاني (شيكل)", "en": "Partner B Monthly Salary (ILS)", "ru": "Ежемесячная зарплата партнёра Б (шекель)" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "expense_approval_limit",
+            "type": "currency",
+            "label": { "he": "תקרת הוצאה ללא אישור (ש\"ח)", "ar": "سقف المصاريف بدون موافقة (شيكل)", "en": "Expense Limit Without Approval (ILS)", "ru": "Лимит расходов без согласования (шекель)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "bank_account_joint",
+            "type": "checkbox",
+            "label": { "he": "חשבון בנק משותף", "ar": "حساب بنكي مشترك", "en": "Joint Bank Account", "ru": "Совместный банковский счёт" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "management",
+        "title": { "he": "ניהול וסיום", "ar": "الإدارة والإنهاء", "en": "Management & Dissolution", "ru": "Управление и расторжение" },
+        "description": { "he": "קבלת החלטות, פרישה ופירוק", "ar": "اتخاذ القرارات والانسحاب والتصفية", "en": "Decision making, withdrawal, and dissolution", "ru": "Принятие решений, выход и ликвидация" },
+        "fields": [
+          {
+            "key": "decision_making",
+            "type": "select",
+            "label": { "he": "אופן קבלת החלטות", "ar": "طريقة اتخاذ القرارات", "en": "Decision Making Method", "ru": "Метод принятия решений" },
+            "required": true,
+            "options": [
+              { "value": "unanimous", "label": { "he": "פה אחד", "ar": "بالإجماع", "en": "Unanimous", "ru": "Единогласно" } },
+              { "value": "majority", "label": { "he": "רוב דעות", "ar": "بالأغلبية", "en": "Majority Vote", "ru": "Большинством голосов" } },
+              { "value": "managing_partner", "label": { "he": "שותף מנהל", "ar": "الشريك المدير", "en": "Managing Partner", "ru": "Управляющий партнёр" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "managing_partner_name",
+            "type": "text",
+            "label": { "he": "שם השותף המנהל", "ar": "اسم الشريك المدير", "en": "Managing Partner Name", "ru": "Имя управляющего партнёра" },
+            "required": false,
+            "condition": { "field": "decision_making", "operator": "equals", "value": "managing_partner" },
+            "width": "half"
+          },
+          {
+            "key": "withdrawal_notice_days",
+            "type": "number",
+            "label": { "he": "ימי הודעה לפרישה", "ar": "أيام الإشعار للانسحاب", "en": "Withdrawal Notice (days)", "ru": "Срок уведомления о выходе (дней)" },
+            "required": true,
+            "validation": { "min": 30, "max": 365 },
+            "defaultValue": 90,
+            "width": "half"
+          },
+          {
+            "key": "non_compete_applies",
+            "type": "checkbox",
+            "label": { "he": "סעיף אי תחרות לאחר פרישה", "ar": "شرط عدم المنافسة بعد الانسحاب", "en": "Non-Compete After Withdrawal", "ru": "Неконкуренция после выхода" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "non_compete_months",
+            "type": "number",
+            "label": { "he": "תקופת אי תחרות (חודשים)", "ar": "مدة عدم المنافسة (أشهر)", "en": "Non-Compete Period (months)", "ru": "Период неконкуренции (месяцев)" },
+            "required": false,
+            "condition": { "field": "non_compete_applies", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 36 },
+            "defaultValue": 12,
+            "width": "half"
+          },
+          {
+            "key": "dispute_resolution",
+            "type": "select",
+            "label": { "he": "יישוב סכסוכים", "ar": "حل النزاعات", "en": "Dispute Resolution", "ru": "Разрешение споров" },
+            "required": true,
+            "options": [
+              { "value": "mediation", "label": { "he": "גישור", "ar": "وساطة", "en": "Mediation", "ru": "Медиация" } },
+              { "value": "arbitration", "label": { "he": "בוררות", "ar": "تحكيم", "en": "Arbitration", "ru": "Арбитраж" } },
+              { "value": "court", "label": { "he": "בית משפט", "ar": "محكمة", "en": "Court", "ru": "Суд" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "dissolution_method",
+            "type": "select",
+            "label": { "he": "אופן פירוק השותפות", "ar": "طريقة تصفية الشراكة", "en": "Dissolution Method", "ru": "Порядок ликвидации партнёрства" },
+            "required": true,
+            "options": [
+              { "value": "mutual_agreement", "label": { "he": "הסכמה הדדית", "ar": "اتفاق متبادل", "en": "Mutual Agreement", "ru": "По взаимному согласию" } },
+              { "value": "notice_period", "label": { "he": "הודעה מוקדמת", "ar": "إشعار مسبق", "en": "Notice Period", "ru": "С уведомлением" } },
+              { "value": "buyout", "label": { "he": "רכישת חלק השותף", "ar": "شراء حصة الشريك", "en": "Buyout", "ru": "Выкуп доли партнёра" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "הסכם שותפות", "body": "<p style=\"text-align:center\"><strong>הסכם שותפות עסקית</strong></p><p>שנערך ונחתם ביום {{effective_date}}</p>" },
+        { "title": "1. השותפים", "body": "<p><strong>בין:</strong> {{partner_a_name}}, ת.ז. {{partner_a_id}}, מרחוב {{partner_a_address}}, טלפון: {{partner_a_phone}} (להלן: <strong>\"שותף א'\"</strong>)</p><p><strong>לבין:</strong> {{partner_b_name}}, ת.ז. {{partner_b_id}}, מרחוב {{partner_b_address}}, טלפון: {{partner_b_phone}} (להלן: <strong>\"שותף ב'\"</strong>)</p>{{#if has_additional_partners}}<p><strong>שותפים נוספים:</strong> {{additional_partners_details}}</p>{{/if}}<p>(להלן יחד: <strong>\"השותפים\"</strong>)</p>" },
+        { "title": "2. השותפות", "body": "<p>השותפים מקימים בזאת שותפות בשם <strong>\"{{business_name}}\"</strong> לצורך: {{business_purpose}}.</p><p>כתובת העסק: {{business_address}}.</p><p>תאריך תחילת השותפות: {{effective_date}}.{{#if partnership_end_date}} תאריך סיום: {{partnership_end_date}}.{{/if}}</p>" },
+        { "title": "3. השקעות הון", "body": "<p>שותף א' ישקיע סך <strong>{{partner_a_contribution}} ש\"ח</strong>.</p><p>שותף ב' ישקיע סך <strong>{{partner_b_contribution}} ש\"ח</strong>.</p>" },
+        { "title": "4. חלוקת רווחים והפסדים", "body": "<p>חלקו של שותף א' ברווחים: <strong>{{partner_a_share}}%</strong>.</p><p>חלקו של שותף ב' ברווחים: <strong>{{partner_b_share}}%</strong>.</p>{{#if loss_sharing_same}}<p>חלוקת ההפסדים תהיה זהה לחלוקת הרווחים.</p>{{/if}}{{#if salary_partner_a}}<p>שותף א' יקבל משכורת חודשית של {{salary_partner_a}} ש\"ח.</p>{{/if}}{{#if salary_partner_b}}<p>שותף ב' יקבל משכורת חודשית של {{salary_partner_b}} ש\"ח.</p>{{/if}}" },
+        { "title": "5. ניהול וקבלת החלטות", "body": "<p>אופן קבלת החלטות: {{decision_making}}.{{#if managing_partner_name}} השותף המנהל: {{managing_partner_name}}.{{/if}}</p><p>הוצאה עד סך <strong>{{expense_approval_limit}} ש\"ח</strong> אינה דורשת אישור מוקדם של כל השותפים.</p>{{#if bank_account_joint}}<p>השותפים יפתחו חשבון בנק משותף לצורכי העסק.</p>{{/if}}" },
+        { "title": "6. פרישה ופירוק", "body": "<p>שותף המבקש לפרוש מהשותפות יתן הודעה מוקדמת של <strong>{{withdrawal_notice_days}} ימים</strong>.</p>{{#if non_compete_applies}}<p>שותף שפרש מתחייב שלא להתחרות בשותפות למשך <strong>{{non_compete_months}} חודשים</strong>.</p>{{/if}}<p>אופן פירוק השותפות: {{dissolution_method}}.</p><p>יישוב סכסוכים: {{dispute_resolution}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>שותף א': {{partner_a_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>שותף ב': {{partner_b_name}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Partnership Agreement", "body": "<p style=\"text-align:center\"><strong>Business Partnership Agreement</strong></p><p>Made and signed on {{effective_date}}</p>" },
+        { "title": "1. The Partners", "body": "<p><strong>Between:</strong> {{partner_a_name}}, ID {{partner_a_id}}, of {{partner_a_address}}, Phone: {{partner_a_phone}} (hereinafter: <strong>\"Partner A\"</strong>)</p><p><strong>And:</strong> {{partner_b_name}}, ID {{partner_b_id}}, of {{partner_b_address}}, Phone: {{partner_b_phone}} (hereinafter: <strong>\"Partner B\"</strong>)</p>{{#if has_additional_partners}}<p><strong>Additional Partners:</strong> {{additional_partners_details}}</p>{{/if}}<p>(collectively referred to as <strong>\"the Partners\"</strong>)</p>" },
+        { "title": "2. The Partnership", "body": "<p>The Partners hereby establish a partnership under the name <strong>\"{{business_name}}\"</strong> for the purpose of: {{business_purpose}}.</p><p>Business address: {{business_address}}.</p><p>Partnership commencement date: {{effective_date}}.{{#if partnership_end_date}} End date: {{partnership_end_date}}.{{/if}}</p>" },
+        { "title": "3. Capital Contributions", "body": "<p>Partner A shall contribute <strong>{{partner_a_contribution}} ILS</strong>.</p><p>Partner B shall contribute <strong>{{partner_b_contribution}} ILS</strong>.</p>" },
+        { "title": "4. Profit and Loss Sharing", "body": "<p>Partner A's share of profits: <strong>{{partner_a_share}}%</strong>.</p><p>Partner B's share of profits: <strong>{{partner_b_share}}%</strong>.</p>{{#if loss_sharing_same}}<p>Loss sharing shall be identical to profit sharing.</p>{{/if}}{{#if salary_partner_a}}<p>Partner A shall receive a monthly salary of {{salary_partner_a}} ILS.</p>{{/if}}{{#if salary_partner_b}}<p>Partner B shall receive a monthly salary of {{salary_partner_b}} ILS.</p>{{/if}}" },
+        { "title": "5. Management and Decision Making", "body": "<p>Decision making method: {{decision_making}}.{{#if managing_partner_name}} Managing Partner: {{managing_partner_name}}.{{/if}}</p><p>Expenses up to <strong>{{expense_approval_limit}} ILS</strong> do not require prior approval from all partners.</p>{{#if bank_account_joint}}<p>The Partners shall open a joint bank account for business purposes.</p>{{/if}}" },
+        { "title": "6. Withdrawal and Dissolution", "body": "<p>A Partner wishing to withdraw from the partnership must provide <strong>{{withdrawal_notice_days}} days'</strong> prior notice.</p>{{#if non_compete_applies}}<p>A withdrawing Partner undertakes not to compete with the partnership for a period of <strong>{{non_compete_months}} months</strong>.</p>{{/if}}<p>Dissolution method: {{dissolution_method}}.</p><p>Dispute resolution: {{dispute_resolution}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Partner A: {{partner_a_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Partner B: {{partner_b_name}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "اتفاقية شراكة", "body": "<p style=\"text-align:center\"><strong>اتفاقية شراكة تجارية</strong></p><p>تم تحريرها والتوقيع عليها بتاريخ {{effective_date}}</p>" },
+        { "title": "1. الشركاء", "body": "<p><strong>بين:</strong> {{partner_a_name}}، هوية رقم {{partner_a_id}}، من {{partner_a_address}}، هاتف: {{partner_a_phone}} (المشار إليه فيما يلي بـ <strong>\"الشريك الأول\"</strong>)</p><p><strong>وبين:</strong> {{partner_b_name}}، هوية رقم {{partner_b_id}}، من {{partner_b_address}}، هاتف: {{partner_b_phone}} (المشار إليه فيما يلي بـ <strong>\"الشريك الثاني\"</strong>)</p>{{#if has_additional_partners}}<p><strong>شركاء إضافيون:</strong> {{additional_partners_details}}</p>{{/if}}<p>(يُشار إليهم مجتمعين بـ <strong>\"الشركاء\"</strong>)</p>" },
+        { "title": "2. الشراكة", "body": "<p>يؤسس الشركاء بموجب هذا شراكة باسم <strong>\"{{business_name}}\"</strong> لغرض: {{business_purpose}}.</p><p>عنوان النشاط التجاري: {{business_address}}.</p><p>تاريخ بدء الشراكة: {{effective_date}}.{{#if partnership_end_date}} تاريخ الانتهاء: {{partnership_end_date}}.{{/if}}</p>" },
+        { "title": "3. المساهمات الرأسمالية", "body": "<p>يساهم الشريك الأول بمبلغ <strong>{{partner_a_contribution}} شيكل</strong>.</p><p>يساهم الشريك الثاني بمبلغ <strong>{{partner_b_contribution}} شيكل</strong>.</p>" },
+        { "title": "4. توزيع الأرباح والخسائر", "body": "<p>حصة الشريك الأول من الأرباح: <strong>{{partner_a_share}}%</strong>.</p><p>حصة الشريك الثاني من الأرباح: <strong>{{partner_b_share}}%</strong>.</p>{{#if loss_sharing_same}}<p>يكون توزيع الخسائر مطابقاً لتوزيع الأرباح.</p>{{/if}}{{#if salary_partner_a}}<p>يتقاضى الشريك الأول راتباً شهرياً قدره {{salary_partner_a}} شيكل.</p>{{/if}}{{#if salary_partner_b}}<p>يتقاضى الشريك الثاني راتباً شهرياً قدره {{salary_partner_b}} شيكل.</p>{{/if}}" },
+        { "title": "5. الإدارة واتخاذ القرارات", "body": "<p>طريقة اتخاذ القرارات: {{decision_making}}.{{#if managing_partner_name}} الشريك المدير: {{managing_partner_name}}.{{/if}}</p><p>المصاريف حتى <strong>{{expense_approval_limit}} شيكل</strong> لا تتطلب موافقة مسبقة من جميع الشركاء.</p>{{#if bank_account_joint}}<p>يفتح الشركاء حساباً بنكياً مشتركاً لأغراض النشاط التجاري.</p>{{/if}}" },
+        { "title": "6. الانسحاب والتصفية", "body": "<p>على الشريك الراغب في الانسحاب من الشراكة تقديم إشعار مسبق قبل <strong>{{withdrawal_notice_days}} يوماً</strong>.</p>{{#if non_compete_applies}}<p>يتعهد الشريك المنسحب بعدم التنافس مع الشراكة لمدة <strong>{{non_compete_months}} شهراً</strong>.</p>{{/if}}<p>طريقة التصفية: {{dissolution_method}}.</p><p>حل النزاعات: {{dispute_resolution}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>الشريك الأول: {{partner_a_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>الشريك الثاني: {{partner_b_name}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Договор о партнёрстве", "body": "<p style=\"text-align:center\"><strong>Договор о деловом партнёрстве</strong></p><p>Составлен и подписан {{effective_date}}</p>" },
+        { "title": "1. Партнёры", "body": "<p><strong>Между:</strong> {{partner_a_name}}, ID {{partner_a_id}}, по адресу {{partner_a_address}}, тел: {{partner_a_phone}} (далее — <strong>«Партнёр А»</strong>)</p><p><strong>И:</strong> {{partner_b_name}}, ID {{partner_b_id}}, по адресу {{partner_b_address}}, тел: {{partner_b_phone}} (далее — <strong>«Партнёр Б»</strong>)</p>{{#if has_additional_partners}}<p><strong>Дополнительные партнёры:</strong> {{additional_partners_details}}</p>{{/if}}<p>(совместно именуемые <strong>«Партнёры»</strong>)</p>" },
+        { "title": "2. Партнёрство", "body": "<p>Партнёры настоящим учреждают партнёрство под названием <strong>«{{business_name}}»</strong> с целью: {{business_purpose}}.</p><p>Адрес бизнеса: {{business_address}}.</p><p>Дата начала партнёрства: {{effective_date}}.{{#if partnership_end_date}} Дата окончания: {{partnership_end_date}}.{{/if}}</p>" },
+        { "title": "3. Вклады в капитал", "body": "<p>Партнёр А вносит <strong>{{partner_a_contribution}} шекелей</strong>.</p><p>Партнёр Б вносит <strong>{{partner_b_contribution}} шекелей</strong>.</p>" },
+        { "title": "4. Распределение прибыли и убытков", "body": "<p>Доля Партнёра А в прибыли: <strong>{{partner_a_share}}%</strong>.</p><p>Доля Партнёра Б в прибыли: <strong>{{partner_b_share}}%</strong>.</p>{{#if loss_sharing_same}}<p>Распределение убытков аналогично распределению прибыли.</p>{{/if}}{{#if salary_partner_a}}<p>Партнёр А получает ежемесячную зарплату в размере {{salary_partner_a}} шекелей.</p>{{/if}}{{#if salary_partner_b}}<p>Партнёр Б получает ежемесячную зарплату в размере {{salary_partner_b}} шекелей.</p>{{/if}}" },
+        { "title": "5. Управление и принятие решений", "body": "<p>Метод принятия решений: {{decision_making}}.{{#if managing_partner_name}} Управляющий партнёр: {{managing_partner_name}}.{{/if}}</p><p>Расходы до <strong>{{expense_approval_limit}} шекелей</strong> не требуют предварительного одобрения всех партнёров.</p>{{#if bank_account_joint}}<p>Партнёры откроют совместный банковский счёт для нужд бизнеса.</p>{{/if}}" },
+        { "title": "6. Выход и ликвидация", "body": "<p>Партнёр, желающий выйти из партнёрства, обязан уведомить об этом за <strong>{{withdrawal_notice_days}} дней</strong>.</p>{{#if non_compete_applies}}<p>Выходящий партнёр обязуется не конкурировать с партнёрством в течение <strong>{{non_compete_months}} месяцев</strong>.</p>{{/if}}<p>Порядок ликвидации: {{dissolution_method}}.</p><p>Разрешение споров: {{dispute_resolution}}.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Партнёр А: {{partner_a_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Партнёр Б: {{partner_b_name}}</td></tr></table>" }
+      ]
+    }
+  }
+}

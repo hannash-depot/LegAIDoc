@@ -1,0 +1,438 @@
+{
+  "slug": "short-term-rental",
+  "category": "rental",
+  "version": 1,
+  "name": {
+    "he": "חוזה שכירות לטווח קצר",
+    "ar": "عقد إيجار قصير الأجل",
+    "en": "Short-term Rental Agreement",
+    "ru": "Договор краткосрочной аренды"
+  },
+  "description": {
+    "he": "חוזה שכירות לתקופה קצרה - Airbnb, נופש, תיירות",
+    "ar": "عقد إيجار لفترة قصيرة - Airbnb، عطلة، سياحة",
+    "en": "Short-term rental agreement for Airbnb, vacation, tourism",
+    "ru": "Договор краткосрочной аренды - Airbnb, отпуск, туризм"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי המשכיר והאורח", "ar": "بيانات المضيف والضيف", "en": "Host and guest details", "ru": "Данные хозяина и гостя" },
+        "fields": [
+          {
+            "key": "host_name",
+            "type": "text",
+            "label": { "he": "שם המשכיר", "ar": "اسم المضيف", "en": "Host Name", "ru": "Имя хозяина" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "host_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. המשכיר", "ar": "هوية المضيف", "en": "Host ID Number", "ru": "ID хозяина" },
+            "placeholder": { "he": "9 ספרות", "ar": "9 أرقام", "en": "9 digits", "ru": "9 цифр" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "host_phone",
+            "type": "phone",
+            "label": { "he": "טלפון המשכיר", "ar": "هاتف المضيف", "en": "Host Phone", "ru": "Телефон хозяина" },
+            "placeholder": { "he": "05X-XXXXXXX", "ar": "05X-XXXXXXX", "en": "05X-XXXXXXX", "ru": "05X-XXXXXXX" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "host_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל המשכיר", "ar": "بريد المضيف", "en": "Host Email", "ru": "Email хозяина" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "guest_name",
+            "type": "text",
+            "label": { "he": "שם האורח", "ar": "اسم الضيف", "en": "Guest Name", "ru": "Имя гостя" },
+            "placeholder": { "he": "שם מלא", "ar": "الاسم الكامل", "en": "Full name", "ru": "Полное имя" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 100 },
+            "width": "half"
+          },
+          {
+            "key": "guest_id",
+            "type": "id-number",
+            "label": { "he": "ת.ז. האורח", "ar": "هوية الضيف", "en": "Guest ID Number", "ru": "ID гостя" },
+            "placeholder": { "he": "9 ספרות", "ar": "9 أرقام", "en": "9 digits", "ru": "9 цифр" },
+            "required": true,
+            "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
+            "width": "half"
+          },
+          {
+            "key": "guest_phone",
+            "type": "phone",
+            "label": { "he": "טלפון האורח", "ar": "هاتف الضيف", "en": "Guest Phone", "ru": "Телефон гостя" },
+            "placeholder": { "he": "05X-XXXXXXX", "ar": "05X-XXXXXXX", "en": "05X-XXXXXXX", "ru": "05X-XXXXXXX" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "num_guests",
+            "type": "number",
+            "label": { "he": "מספר אורחים", "ar": "عدد الضيوف", "en": "Number of Guests", "ru": "Количество гостей" },
+            "required": true,
+            "validation": { "min": 1, "max": 20 },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "property",
+        "title": { "he": "הנכס", "ar": "العقار", "en": "Property", "ru": "Объект" },
+        "description": { "he": "פרטי הנכס המושכר", "ar": "تفاصيل العقار المؤجر", "en": "Details of the rented property", "ru": "Детали арендуемого объекта" },
+        "fields": [
+          {
+            "key": "property_address",
+            "type": "text",
+            "label": { "he": "כתובת הנכס", "ar": "عنوان العقار", "en": "Property Address", "ru": "Адрес объекта" },
+            "placeholder": { "he": "רחוב, מספר, עיר", "ar": "شارع، رقم، مدينة", "en": "Street, number, city", "ru": "Улица, номер, город" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "property_type",
+            "type": "select",
+            "label": { "he": "סוג הנכס", "ar": "نوع العقار", "en": "Property Type", "ru": "Тип объекта" },
+            "required": true,
+            "options": [
+              { "value": "דירה", "label": { "he": "דירה", "ar": "شقة", "en": "Apartment", "ru": "Квартира" } },
+              { "value": "בית פרטי", "label": { "he": "בית פרטי", "ar": "منزل خاص", "en": "Private House", "ru": "Частный дом" } },
+              { "value": "וילה", "label": { "he": "וילה", "ar": "فيلا", "en": "Villa", "ru": "Вилла" } },
+              { "value": "סטודיו", "label": { "he": "סטודיו", "ar": "استوديو", "en": "Studio", "ru": "Студия" } },
+              { "value": "חדר", "label": { "he": "חדר", "ar": "غرفة", "en": "Room", "ru": "Комната" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "num_rooms",
+            "type": "number",
+            "label": { "he": "מספר חדרים", "ar": "عدد الغرف", "en": "Number of Rooms", "ru": "Кол-во комнат" },
+            "required": false,
+            "validation": { "min": 1, "max": 20 },
+            "width": "half"
+          },
+          {
+            "key": "amenities",
+            "type": "textarea",
+            "label": { "he": "ציוד ושירותים", "ar": "المعدات والخدمات", "en": "Amenities & Equipment", "ru": "Удобства и оборудование" },
+            "placeholder": { "he": "Wi-Fi, מזגן, חניה, בריכה...", "ar": "Wi-Fi، تكييف، موقف سيارات، مسبح...", "en": "Wi-Fi, AC, parking, pool...", "ru": "Wi-Fi, кондиционер, парковка, бассейн..." },
+            "required": false,
+            "validation": { "maxLength": 500 },
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "dates",
+        "title": { "he": "תאריכים", "ar": "التواريخ", "en": "Dates", "ru": "Даты" },
+        "description": { "he": "תאריכי כניסה ויציאה", "ar": "تواريخ الوصول والمغادرة", "en": "Check-in and check-out dates", "ru": "Даты заезда и выезда" },
+        "fields": [
+          {
+            "key": "check_in_date",
+            "type": "date",
+            "label": { "he": "תאריך כניסה", "ar": "تاريخ الوصول", "en": "Check-in Date", "ru": "Дата заезда" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "check_in_time",
+            "type": "text",
+            "label": { "he": "שעת כניסה", "ar": "وقت الوصول", "en": "Check-in Time", "ru": "Время заезда" },
+            "placeholder": { "he": "14:00", "ar": "14:00", "en": "14:00", "ru": "14:00" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "check_out_date",
+            "type": "date",
+            "label": { "he": "תאריך יציאה", "ar": "تاريخ المغادرة", "en": "Check-out Date", "ru": "Дата выезда" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "check_out_time",
+            "type": "text",
+            "label": { "he": "שעת יציאה", "ar": "وقت المغادرة", "en": "Check-out Time", "ru": "Время выезда" },
+            "placeholder": { "he": "11:00", "ar": "11:00", "en": "11:00", "ru": "11:00" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "num_nights",
+            "type": "number",
+            "label": { "he": "מספר לילות", "ar": "عدد الليالي", "en": "Number of Nights", "ru": "Количество ночей" },
+            "required": true,
+            "validation": { "min": 1, "max": 365 },
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "payment",
+        "title": { "he": "תשלום", "ar": "الدفع", "en": "Payment", "ru": "Оплата" },
+        "description": { "he": "פרטי התשלום", "ar": "تفاصيل الدفع", "en": "Payment details", "ru": "Детали оплаты" },
+        "fields": [
+          {
+            "key": "nightly_rate",
+            "type": "number",
+            "label": { "he": "מחיר ללילה (₪)", "ar": "السعر لليلة (₪)", "en": "Nightly Rate (₪)", "ru": "Стоимость за ночь (₪)" },
+            "required": true,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "cleaning_fee",
+            "type": "number",
+            "label": { "he": "דמי ניקיון (₪)", "ar": "رسوم التنظيف (₪)", "en": "Cleaning Fee (₪)", "ru": "Плата за уборку (₪)" },
+            "placeholder": { "he": "0", "ar": "0", "en": "0", "ru": "0" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "security_deposit",
+            "type": "number",
+            "label": { "he": "פיקדון ביטחון (₪)", "ar": "وديعة ضمان (₪)", "en": "Security Deposit (₪)", "ru": "Залог (₪)" },
+            "placeholder": { "he": "0", "ar": "0", "en": "0", "ru": "0" },
+            "required": false,
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "payment_method",
+            "type": "select",
+            "label": { "he": "אמצעי תשלום", "ar": "طريقة الدفع", "en": "Payment Method", "ru": "Способ оплаты" },
+            "required": true,
+            "options": [
+              { "value": "מזומן", "label": { "he": "מזומן", "ar": "نقدًا", "en": "Cash", "ru": "Наличные" } },
+              { "value": "העברה בנקאית", "label": { "he": "העברה בנקאית", "ar": "تحويل بنكي", "en": "Bank Transfer", "ru": "Банковский перевод" } },
+              { "value": "כרטיס אשראי", "label": { "he": "כרטיס אשראי", "ar": "بطاقة ائتمان", "en": "Credit Card", "ru": "Кредитная карта" } },
+              { "value": "PayPal", "label": { "he": "PayPal", "ar": "PayPal", "en": "PayPal", "ru": "PayPal" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "cancellation_policy",
+            "type": "select",
+            "label": { "he": "מדיניות ביטול", "ar": "سياسة الإلغاء", "en": "Cancellation Policy", "ru": "Политика отмены" },
+            "required": true,
+            "options": [
+              { "value": "גמישה - החזר מלא עד 24 שעות לפני הגעה", "label": { "he": "גמישה - החזר מלא עד 24 שעות לפני", "ar": "مرنة - استرداد كامل حتى 24 ساعة قبل", "en": "Flexible - Full refund until 24h before", "ru": "Гибкая - полный возврат за 24 часа" } },
+              { "value": "מתונה - החזר מלא עד 5 ימים לפני הגעה", "label": { "he": "מתונה - החזר מלא עד 5 ימים לפני", "ar": "معتدلة - استرداد كامل حتى 5 أيام قبل", "en": "Moderate - Full refund until 5 days before", "ru": "Умеренная - полный возврат за 5 дней" } },
+              { "value": "נוקשה - החזר מלא עד 7 ימים לפני הגעה", "label": { "he": "נוקשה - החזר מלא עד 7 ימים לפני", "ar": "صارمة - استرداد كامل حتى 7 أيام قبل", "en": "Strict - Full refund until 7 days before", "ru": "Строгая - полный возврат за 7 дней" } },
+              { "value": "ללא החזר כספי", "label": { "he": "ללא החזר כספי", "ar": "غير قابلة للاسترداد", "en": "Non-refundable", "ru": "Без возврата" } }
+            ],
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "rules",
+        "title": { "he": "כללי הבית", "ar": "قواعد المنزل", "en": "House Rules", "ru": "Правила дома" },
+        "description": { "he": "כללים והגבלות לשהייה בנכס", "ar": "القواعد والقيود للإقامة في العقار", "en": "Rules and restrictions for staying at the property", "ru": "Правила и ограничения проживания" },
+        "fields": [
+          {
+            "key": "smoking_allowed",
+            "type": "radio",
+            "label": { "he": "עישון", "ar": "التدخين", "en": "Smoking", "ru": "Курение" },
+            "required": true,
+            "options": [
+              { "value": "מותר", "label": { "he": "מותר", "ar": "مسموح", "en": "Allowed", "ru": "Разрешено" } },
+              { "value": "אסור", "label": { "he": "אסור", "ar": "ممنوع", "en": "Not allowed", "ru": "Запрещено" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "pets_allowed",
+            "type": "radio",
+            "label": { "he": "חיות מחמד", "ar": "الحيوانات الأليفة", "en": "Pets", "ru": "Домашние животные" },
+            "required": true,
+            "options": [
+              { "value": "מותרות", "label": { "he": "מותרות", "ar": "مسموحة", "en": "Allowed", "ru": "Разрешены" } },
+              { "value": "אסורות", "label": { "he": "אסורות", "ar": "ممنوعة", "en": "Not allowed", "ru": "Запрещены" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "quiet_hours",
+            "type": "text",
+            "label": { "he": "שעות שקט", "ar": "ساعات الهدوء", "en": "Quiet Hours", "ru": "Часы тишины" },
+            "placeholder": { "he": "23:00 - 07:00", "ar": "23:00 - 07:00", "en": "23:00 - 07:00", "ru": "23:00 - 07:00" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "max_guests",
+            "type": "number",
+            "label": { "he": "מקסימום אורחים", "ar": "الحد الأقصى للضيوف", "en": "Maximum Guests", "ru": "Максимум гостей" },
+            "required": false,
+            "validation": { "min": 1, "max": 50 },
+            "width": "half"
+          },
+          {
+            "key": "additional_rules",
+            "type": "textarea",
+            "label": { "he": "כללים נוספים", "ar": "قواعد إضافية", "en": "Additional Rules", "ru": "Дополнительные правила" },
+            "placeholder": { "he": "הוסף כללים נוספים לפי הצורך...", "ar": "أضف قواعد إضافية حسب الحاجة...", "en": "Add any additional rules as needed...", "ru": "Добавьте дополнительные правила при необходимости..." },
+            "required": false,
+            "validation": { "maxLength": 1000 },
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        {
+          "title": "חוזה שכירות לטווח קצר",
+          "body": "<p style=\"text-align:center\"><strong>חוזה שכירות לטווח קצר</strong></p><p style=\"text-align:center\">נערך ונחתם בתאריך כניסה: {{check_in_date}}</p>"
+        },
+        {
+          "title": "1. הצדדים",
+          "body": "<p><strong>המשכיר:</strong> {{host_name}}, ת.ז. {{host_id}}, טלפון: {{host_phone}}</p><p><strong>האורח:</strong> {{guest_name}}, ת.ז. {{guest_id}}, טלפון: {{guest_phone}}</p><p>מספר אורחים: <strong>{{num_guests}}</strong></p>"
+        },
+        {
+          "title": "2. הנכס",
+          "body": "<p>המשכיר משכיר לאורח את הנכס מסוג <strong>{{property_type}}</strong> הממוקם ב: <strong>{{property_address}}</strong>.</p>{{#if amenities}}<p><strong>ציוד ושירותים:</strong> {{amenities}}</p>{{/if}}"
+        },
+        {
+          "title": "3. תקופת השכירות",
+          "body": "<p>הכניסה לנכס: <strong>{{check_in_date}}</strong> בשעה <strong>{{check_in_time}}</strong></p><p>היציאה מהנכס: <strong>{{check_out_date}}</strong> בשעה <strong>{{check_out_time}}</strong></p><p>סה\"כ: <strong>{{num_nights}} לילות</strong></p>"
+        },
+        {
+          "title": "4. תשלום",
+          "body": "<p>מחיר ללילה: <strong>{{nightly_rate}} ₪</strong></p>{{#if cleaning_fee}}<p>דמי ניקיון: <strong>{{cleaning_fee}} ₪</strong></p>{{/if}}{{#if security_deposit}}<p>פיקדון ביטחון: <strong>{{security_deposit}} ₪</strong> (יוחזר בסיום שהייה תקינה)</p>{{/if}}<p>אמצעי תשלום: <strong>{{payment_method}}</strong></p><p><strong>מדיניות ביטול:</strong> {{cancellation_policy}}</p>"
+        },
+        {
+          "title": "5. כללי הבית",
+          "body": "<p>עישון: <strong>{{smoking_allowed}}</strong></p><p>חיות מחמד: <strong>{{pets_allowed}}</strong></p>{{#if quiet_hours}}<p>שעות שקט: <strong>{{quiet_hours}}</strong></p>{{/if}}{{#if additional_rules}}<p><strong>כללים נוספים:</strong> {{additional_rules}}</p>{{/if}}"
+        },
+        {
+          "title": "6. אחריות",
+          "body": "<p>האורח מתחייב לשמור על הנכס ולהשיבו במצבו המקורי. כל נזק שייגרם לנכס על ידי האורח או מי מטעמו יחויב לאורח בנפרד.</p><p>המשכיר אינו אחראי לנזקים אישיים או לאובדן רכוש האורח.</p>"
+        },
+        {
+          "title": "7. חתימות",
+          "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>המשכיר</strong><br/>{{host_name}}<br/>תאריך: ________</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>האורח</strong><br/>{{guest_name}}<br/>תאריך: ________</td></tr></table>"
+        }
+      ],
+      "ar": [
+        {
+          "title": "عقد إيجار قصير الأجل",
+          "body": "<p style=\"text-align:center\"><strong>عقد إيجار قصير الأجل</strong></p><p style=\"text-align:center\">تم التحرير في تاريخ الوصول: {{check_in_date}}</p>"
+        },
+        {
+          "title": "1. الأطراف",
+          "body": "<p><strong>المضيف:</strong> {{host_name}}، هوية {{host_id}}، هاتف: {{host_phone}}</p><p><strong>الضيف:</strong> {{guest_name}}، هوية {{guest_id}}، هاتف: {{guest_phone}}</p><p>عدد الضيوف: <strong>{{num_guests}}</strong></p>"
+        },
+        {
+          "title": "2. العقار",
+          "body": "<p>يؤجر المضيف للضيف العقار من نوع <strong>{{property_type}}</strong> الموجود في: <strong>{{property_address}}</strong>.</p>{{#if amenities}}<p><strong>المعدات والخدمات:</strong> {{amenities}}</p>{{/if}}"
+        },
+        {
+          "title": "3. فترة الإيجار",
+          "body": "<p>تسجيل الوصول: <strong>{{check_in_date}}</strong> الساعة <strong>{{check_in_time}}</strong></p><p>تسجيل المغادرة: <strong>{{check_out_date}}</strong> الساعة <strong>{{check_out_time}}</strong></p><p>الإجمالي: <strong>{{num_nights}} ليلة</strong></p>"
+        },
+        {
+          "title": "4. الدفع",
+          "body": "<p>السعر لليلة: <strong>{{nightly_rate}} ₪</strong></p>{{#if cleaning_fee}}<p>رسوم التنظيف: <strong>{{cleaning_fee}} ₪</strong></p>{{/if}}{{#if security_deposit}}<p>وديعة الضمان: <strong>{{security_deposit}} ₪</strong> (تُعاد عند انتهاء الإقامة بشكل سليم)</p>{{/if}}<p>طريقة الدفع: <strong>{{payment_method}}</strong></p><p><strong>سياسة الإلغاء:</strong> {{cancellation_policy}}</p>"
+        },
+        {
+          "title": "5. قواعد المنزل",
+          "body": "<p>التدخين: <strong>{{smoking_allowed}}</strong></p><p>الحيوانات الأليفة: <strong>{{pets_allowed}}</strong></p>{{#if quiet_hours}}<p>ساعات الهدوء: <strong>{{quiet_hours}}</strong></p>{{/if}}{{#if additional_rules}}<p><strong>قواعد إضافية:</strong> {{additional_rules}}</p>{{/if}}"
+        },
+        {
+          "title": "6. المسؤولية",
+          "body": "<p>يتعهد الضيف بالحفاظ على العقار وإعادته بحالته الأصلية. أي ضرر يلحق بالعقار من قبل الضيف أو من يمثله سيُحمَّل للضيف بشكل منفصل.</p><p>المضيف غير مسؤول عن الأضرار الشخصية أو فقدان ممتلكات الضيف.</p>"
+        },
+        {
+          "title": "7. التوقيعات",
+          "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>المضيف</strong><br/>{{host_name}}<br/>التاريخ: ________</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>الضيف</strong><br/>{{guest_name}}<br/>التاريخ: ________</td></tr></table>"
+        }
+      ],
+      "en": [
+        {
+          "title": "Short-term Rental Agreement",
+          "body": "<p style=\"text-align:center\"><strong>Short-term Rental Agreement</strong></p><p style=\"text-align:center\">Made on check-in date: {{check_in_date}}</p>"
+        },
+        {
+          "title": "1. Parties",
+          "body": "<p><strong>Host:</strong> {{host_name}}, ID {{host_id}}, Phone: {{host_phone}}</p><p><strong>Guest:</strong> {{guest_name}}, ID {{guest_id}}, Phone: {{guest_phone}}</p><p>Number of guests: <strong>{{num_guests}}</strong></p>"
+        },
+        {
+          "title": "2. Property",
+          "body": "<p>The Host rents to the Guest the property of type <strong>{{property_type}}</strong> located at: <strong>{{property_address}}</strong>.</p>{{#if amenities}}<p><strong>Amenities & Equipment:</strong> {{amenities}}</p>{{/if}}"
+        },
+        {
+          "title": "3. Rental Period",
+          "body": "<p>Check-in: <strong>{{check_in_date}}</strong> at <strong>{{check_in_time}}</strong></p><p>Check-out: <strong>{{check_out_date}}</strong> at <strong>{{check_out_time}}</strong></p><p>Total: <strong>{{num_nights}} nights</strong></p>"
+        },
+        {
+          "title": "4. Payment",
+          "body": "<p>Nightly rate: <strong>{{nightly_rate}} ₪</strong></p>{{#if cleaning_fee}}<p>Cleaning fee: <strong>{{cleaning_fee}} ₪</strong></p>{{/if}}{{#if security_deposit}}<p>Security deposit: <strong>{{security_deposit}} ₪</strong> (refunded after proper stay)</p>{{/if}}<p>Payment method: <strong>{{payment_method}}</strong></p><p><strong>Cancellation policy:</strong> {{cancellation_policy}}</p>"
+        },
+        {
+          "title": "5. House Rules",
+          "body": "<p>Smoking: <strong>{{smoking_allowed}}</strong></p><p>Pets: <strong>{{pets_allowed}}</strong></p>{{#if quiet_hours}}<p>Quiet hours: <strong>{{quiet_hours}}</strong></p>{{/if}}{{#if additional_rules}}<p><strong>Additional rules:</strong> {{additional_rules}}</p>{{/if}}"
+        },
+        {
+          "title": "6. Liability",
+          "body": "<p>The Guest commits to preserve the property and return it in its original condition. Any damage caused by the Guest or anyone on their behalf will be charged separately.</p><p>The Host is not liable for personal injury or loss of the Guest's belongings.</p>"
+        },
+        {
+          "title": "7. Signatures",
+          "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>Host</strong><br/>{{host_name}}<br/>Date: ________</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>Guest</strong><br/>{{guest_name}}<br/>Date: ________</td></tr></table>"
+        }
+      ],
+      "ru": [
+        {
+          "title": "Договор краткосрочной аренды",
+          "body": "<p style=\"text-align:center\"><strong>Договор краткосрочной аренды</strong></p><p style=\"text-align:center\">Составлен в дату заезда: {{check_in_date}}</p>"
+        },
+        {
+          "title": "1. Стороны",
+          "body": "<p><strong>Хозяин:</strong> {{host_name}}, ID {{host_id}}, Телефон: {{host_phone}}</p><p><strong>Гость:</strong> {{guest_name}}, ID {{guest_id}}, Телефон: {{guest_phone}}</p><p>Количество гостей: <strong>{{num_guests}}</strong></p>"
+        },
+        {
+          "title": "2. Объект",
+          "body": "<p>Хозяин сдаёт Гостю объект типа <strong>{{property_type}}</strong>, расположенный по адресу: <strong>{{property_address}}</strong>.</p>{{#if amenities}}<p><strong>Удобства и оборудование:</strong> {{amenities}}</p>{{/if}}"
+        },
+        {
+          "title": "3. Период аренды",
+          "body": "<p>Заезд: <strong>{{check_in_date}}</strong> в <strong>{{check_in_time}}</strong></p><p>Выезд: <strong>{{check_out_date}}</strong> в <strong>{{check_out_time}}</strong></p><p>Итого: <strong>{{num_nights}} ночей</strong></p>"
+        },
+        {
+          "title": "4. Оплата",
+          "body": "<p>Стоимость за ночь: <strong>{{nightly_rate}} ₪</strong></p>{{#if cleaning_fee}}<p>Плата за уборку: <strong>{{cleaning_fee}} ₪</strong></p>{{/if}}{{#if security_deposit}}<p>Залог: <strong>{{security_deposit}} ₪</strong> (возвращается после надлежащего проживания)</p>{{/if}}<p>Способ оплаты: <strong>{{payment_method}}</strong></p><p><strong>Политика отмены:</strong> {{cancellation_policy}}</p>"
+        },
+        {
+          "title": "5. Правила дома",
+          "body": "<p>Курение: <strong>{{smoking_allowed}}</strong></p><p>Домашние животные: <strong>{{pets_allowed}}</strong></p>{{#if quiet_hours}}<p>Часы тишины: <strong>{{quiet_hours}}</strong></p>{{/if}}{{#if additional_rules}}<p><strong>Дополнительные правила:</strong> {{additional_rules}}</p>{{/if}}"
+        },
+        {
+          "title": "6. Ответственность",
+          "body": "<p>Гость обязуется сохранять объект и вернуть его в первоначальном состоянии. Любой ущерб, причинённый Гостем или лицами, которых он представляет, будет отдельно выставлен к оплате.</p><p>Хозяин не несёт ответственности за личный ущерб или потерю имущества Гостя.</p>"
+        },
+        {
+          "title": "7. Подписи",
+          "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>Хозяин</strong><br/>{{host_name}}<br/>Дата: ________</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">____________________<br/><strong>Гость</strong><br/>{{guest_name}}<br/>Дата: ________</td></tr></table>"
+        }
+      ]
+    }
+  }
+}

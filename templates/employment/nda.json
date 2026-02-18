@@ -1,0 +1,339 @@
+{
+  "slug": "nda",
+  "category": "employment",
+  "version": 1,
+  "name": {
+    "he": "הסכם סודיות (NDA)",
+    "ar": "اتفاقية عدم إفشاء (NDA)",
+    "en": "Non-Disclosure Agreement (NDA)",
+    "ru": "Соглашение о неразглашении (NDA)"
+  },
+  "description": {
+    "he": "הסכם לשמירה על סודיות מידע בין צדדים",
+    "ar": "اتفاقية للحفاظ على سرية المعلومات بين الأطراف",
+    "en": "Agreement for maintaining confidentiality of information between parties",
+    "ru": "Соглашение о сохранении конфиденциальности информации между сторонами"
+  },
+  "definition": {
+    "version": 1,
+    "steps": [
+      {
+        "key": "parties",
+        "title": { "he": "הצדדים", "ar": "الأطراف", "en": "Parties", "ru": "Стороны" },
+        "description": { "he": "פרטי הצד המגלה והצד המקבל", "ar": "بيانات الطرف المفصح والطرف المتلقي", "en": "Disclosing and receiving party details", "ru": "Данные раскрывающей и получающей стороны" },
+        "fields": [
+          {
+            "key": "nda_type",
+            "type": "select",
+            "label": { "he": "סוג ההסכם", "ar": "نوع الاتفاقية", "en": "Agreement Type", "ru": "Тип соглашения" },
+            "required": true,
+            "options": [
+              { "value": "unilateral", "label": { "he": "חד-צדדי", "ar": "أحادي الجانب", "en": "Unilateral (One-way)", "ru": "Односторонний" } },
+              { "value": "mutual", "label": { "he": "הדדי", "ar": "متبادل", "en": "Mutual (Two-way)", "ru": "Взаимный" } }
+            ],
+            "width": "full"
+          },
+          {
+            "key": "disclosing_party_name",
+            "type": "text",
+            "label": { "he": "שם הצד המגלה", "ar": "اسم الطرف المفصح", "en": "Disclosing Party Name", "ru": "Имя раскрывающей стороны" },
+            "placeholder": { "he": "שם מלא או שם חברה", "ar": "الاسم الكامل أو اسم الشركة", "en": "Full name or company name", "ru": "Полное имя или название компании" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 150 },
+            "width": "half"
+          },
+          {
+            "key": "disclosing_party_id",
+            "type": "text",
+            "label": { "he": "ת.ז. / ח.פ. הצד המגלה", "ar": "هوية / سجل تجاري للطرف المفصح", "en": "Disclosing Party ID / Company No.", "ru": "ID / рег. номер раскрывающей стороны" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "disclosing_party_address",
+            "type": "text",
+            "label": { "he": "כתובת הצד המגלה", "ar": "عنوان الطرف المفصح", "en": "Disclosing Party Address", "ru": "Адрес раскрывающей стороны" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "disclosing_party_phone",
+            "type": "phone",
+            "label": { "he": "טלפון הצד המגלה", "ar": "هاتف الطرف المفصح", "en": "Disclosing Party Phone", "ru": "Телефон раскрывающей стороны" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "disclosing_party_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל הצד המגלה", "ar": "بريد الطرف المفصح", "en": "Disclosing Party Email", "ru": "Email раскрывающей стороны" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "receiving_party_name",
+            "type": "text",
+            "label": { "he": "שם הצד המקבל", "ar": "اسم الطرف المتلقي", "en": "Receiving Party Name", "ru": "Имя получающей стороны" },
+            "placeholder": { "he": "שם מלא או שם חברה", "ar": "الاسم الكامل أو اسم الشركة", "en": "Full name or company name", "ru": "Полное имя или название компании" },
+            "required": true,
+            "validation": { "minLength": 2, "maxLength": 150 },
+            "width": "half"
+          },
+          {
+            "key": "receiving_party_id",
+            "type": "text",
+            "label": { "he": "ת.ז. / ח.פ. הצד המקבל", "ar": "هوية / سجل تجاري للطرف المتلقي", "en": "Receiving Party ID / Company No.", "ru": "ID / рег. номер получающей стороны" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "receiving_party_address",
+            "type": "text",
+            "label": { "he": "כתובת הצד המקבל", "ar": "عنوان الطرف المتلقي", "en": "Receiving Party Address", "ru": "Адрес получающей стороны" },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "receiving_party_phone",
+            "type": "phone",
+            "label": { "he": "טלפון הצד המקבל", "ar": "هاتف الطرف المتلقي", "en": "Receiving Party Phone", "ru": "Телефон получающей стороны" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "receiving_party_email",
+            "type": "email",
+            "label": { "he": "דוא\"ל הצד המקבל", "ar": "بريد الطرف المتلقي", "en": "Receiving Party Email", "ru": "Email получающей стороны" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
+        "key": "scope",
+        "title": { "he": "היקף הסודיות", "ar": "نطاق السرية", "en": "Scope of Confidentiality", "ru": "Объём конфиденциальности" },
+        "description": { "he": "הגדרת המידע הסודי, משך ההסכם וחריגים", "ar": "تعريف المعلومات السرية ومدة الاتفاقية والاستثناءات", "en": "Definition of confidential information, duration, and exceptions", "ru": "Определение конфиденциальной информации, срок и исключения" },
+        "fields": [
+          {
+            "key": "effective_date",
+            "type": "date",
+            "label": { "he": "תאריך תחילת ההסכם", "ar": "تاريخ سريان الاتفاقية", "en": "Effective Date", "ru": "Дата вступления в силу" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "duration_years",
+            "type": "number",
+            "label": { "he": "משך תוקף ההסכם (שנים)", "ar": "مدة صلاحية الاتفاقية (سنوات)", "en": "Agreement Duration (years)", "ru": "Срок действия соглашения (лет)" },
+            "required": true,
+            "validation": { "min": 1, "max": 10 },
+            "defaultValue": 3,
+            "width": "half"
+          },
+          {
+            "key": "confidential_info_definition",
+            "type": "textarea",
+            "label": { "he": "הגדרת מידע סודי", "ar": "تعريف المعلومات السرية", "en": "Definition of Confidential Information", "ru": "Определение конфиденциальной информации" },
+            "placeholder": { "he": "תאר את סוגי המידע הסודי המוגנים תחת הסכם זה...", "ar": "صف أنواع المعلومات السرية المحمية بموجب هذه الاتفاقية...", "en": "Describe the types of confidential information protected under this agreement...", "ru": "Опишите виды конфиденциальной информации, защищаемой данным соглашением..." },
+            "required": true,
+            "width": "full"
+          },
+          {
+            "key": "includes_trade_secrets",
+            "type": "checkbox",
+            "label": { "he": "כולל סודות מסחריים", "ar": "يشمل الأسرار التجارية", "en": "Includes Trade Secrets", "ru": "Включает коммерческие тайны" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "includes_client_data",
+            "type": "checkbox",
+            "label": { "he": "כולל מידע על לקוחות", "ar": "يشمل بيانات العملاء", "en": "Includes Client Data", "ru": "Включает данные клиентов" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "includes_financial_data",
+            "type": "checkbox",
+            "label": { "he": "כולל מידע פיננסי", "ar": "يشمل بيانات مالية", "en": "Includes Financial Data", "ru": "Включает финансовые данные" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "includes_technical_data",
+            "type": "checkbox",
+            "label": { "he": "כולל מידע טכני / קניין רוחני", "ar": "يشمل بيانات تقنية / ملكية فكرية", "en": "Includes Technical / IP Data", "ru": "Включает технические данные / интеллектуальную собственность" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "exceptions",
+            "type": "textarea",
+            "label": { "he": "חריגים לסודיות", "ar": "استثناءات من السرية", "en": "Exceptions to Confidentiality", "ru": "Исключения из конфиденциальности" },
+            "placeholder": { "he": "פרט מידע שאינו נחשב סודי (למשל מידע שהיה ידוע לציבור)...", "ar": "حدد المعلومات غير السرية (مثل المعلومات المعروفة للجمهور)...", "en": "Specify information not considered confidential (e.g. publicly known information)...", "ru": "Укажите информацию, не считающуюся конфиденциальной (например, общедоступная информация)..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "obligations",
+        "title": { "he": "חובות הצדדים", "ar": "التزامات الأطراف", "en": "Obligations", "ru": "Обязательства" },
+        "description": { "he": "חובות סודיות, אי-תחרות והחזרת חומרים", "ar": "التزامات السرية وعدم المنافسة وإعادة المواد", "en": "Confidentiality, non-compete, and return of materials", "ru": "Обязательства по конфиденциальности, неконкуренции и возврату материалов" },
+        "fields": [
+          {
+            "key": "non_compete_applies",
+            "type": "checkbox",
+            "label": { "he": "סעיף אי תחרות", "ar": "شرط عدم المنافسة", "en": "Non-Compete Clause Applies", "ru": "Применяется пункт о неконкуренции" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "non_compete_duration_months",
+            "type": "number",
+            "label": { "he": "תקופת אי תחרות (חודשים)", "ar": "مدة عدم المنافسة (أشهر)", "en": "Non-Compete Duration (months)", "ru": "Период неконкуренции (месяцев)" },
+            "required": false,
+            "condition": { "field": "non_compete_applies", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 36 },
+            "defaultValue": 12,
+            "width": "half"
+          },
+          {
+            "key": "non_solicitation_applies",
+            "type": "checkbox",
+            "label": { "he": "סעיף אי שידול עובדים / לקוחות", "ar": "شرط عدم استقطاب الموظفين / العملاء", "en": "Non-Solicitation Clause Applies", "ru": "Применяется пункт о непереманивании сотрудников / клиентов" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "return_materials_days",
+            "type": "number",
+            "label": { "he": "מועד להחזרת חומרים (ימים לאחר סיום)", "ar": "مهلة إعادة المواد (أيام بعد الانتهاء)", "en": "Return Materials Deadline (days after termination)", "ru": "Срок возврата материалов (дней после расторжения)" },
+            "required": true,
+            "validation": { "min": 1, "max": 90 },
+            "defaultValue": 14,
+            "width": "half"
+          },
+          {
+            "key": "destroy_copies",
+            "type": "checkbox",
+            "label": { "he": "חובת השמדת עותקים", "ar": "واجب إتلاف النسخ", "en": "Obligation to Destroy Copies", "ru": "Обязательство уничтожить копии" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "permitted_disclosure",
+            "type": "textarea",
+            "label": { "he": "גילוי מותר", "ar": "الإفصاح المسموح", "en": "Permitted Disclosure", "ru": "Разрешённое раскрытие" },
+            "placeholder": { "he": "פרט מצבים בהם מותר לגלות מידע (למשל צו בית משפט)...", "ar": "حدد الحالات المسموح فيها بالإفصاح (مثل أمر المحكمة)...", "en": "Specify situations where disclosure is permitted (e.g. court order)...", "ru": "Укажите ситуации, когда раскрытие разрешено (например, по решению суда)..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      },
+      {
+        "key": "remedies",
+        "title": { "he": "סעדים ושיפוט", "ar": "العلاجات والاختصاص القضائي", "en": "Remedies & Jurisdiction", "ru": "Средства защиты и юрисдикция" },
+        "description": { "he": "עונשים, פיצויים וסמכות שיפוט", "ar": "العقوبات والتعويضات والاختصاص القضائي", "en": "Penalties, damages, and governing jurisdiction", "ru": "Штрафы, компенсации и юрисдикция" },
+        "fields": [
+          {
+            "key": "has_penalty_clause",
+            "type": "checkbox",
+            "label": { "he": "סעיף פיצוי מוסכם", "ar": "شرط التعويض المتفق عليه", "en": "Liquidated Damages Clause", "ru": "Пункт о заранее оценённых убытках" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "penalty_amount",
+            "type": "currency",
+            "label": { "he": "סכום פיצוי מוסכם (ש\"ח)", "ar": "مبلغ التعويض المتفق عليه (شيكل)", "en": "Liquidated Damages Amount (ILS)", "ru": "Сумма заранее оценённых убытков (шекель)" },
+            "required": false,
+            "condition": { "field": "has_penalty_clause", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "injunctive_relief",
+            "type": "checkbox",
+            "label": { "he": "זכות לצו מניעה", "ar": "الحق في أمر قضائي", "en": "Right to Injunctive Relief", "ru": "Право на судебный запрет" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "governing_law",
+            "type": "select",
+            "label": { "he": "הדין החל", "ar": "القانون المعمول به", "en": "Governing Law", "ru": "Применимое право" },
+            "required": true,
+            "options": [
+              { "value": "israel", "label": { "he": "דין מדינת ישראל", "ar": "قانون دولة إسرائيل", "en": "Laws of the State of Israel", "ru": "Законодательство Государства Израиль" } },
+              { "value": "other", "label": { "he": "אחר", "ar": "أخرى", "en": "Other", "ru": "Другое" } }
+            ],
+            "width": "half"
+          },
+          {
+            "key": "jurisdiction_court",
+            "type": "text",
+            "label": { "he": "בית משפט מוסמך", "ar": "المحكمة المختصة", "en": "Competent Court", "ru": "Компетентный суд" },
+            "placeholder": { "he": "למשל: בית המשפט המחוזי בתל אביב", "ar": "مثال: المحكمة المركزية في تل أبيب", "en": "e.g. Tel Aviv District Court", "ru": "например: Окружной суд Тель-Авива" },
+            "required": true,
+            "width": "half"
+          },
+          {
+            "key": "additional_terms",
+            "type": "textarea",
+            "label": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
+            "placeholder": { "he": "הוסף תנאים נוספים כאן...", "ar": "أضف شروطاً إضافية هنا...", "en": "Add any additional terms here...", "ru": "Добавьте дополнительные условия здесь..." },
+            "required": false,
+            "width": "full"
+          }
+        ]
+      }
+    ],
+    "documentBody": {
+      "he": [
+        { "title": "הסכם סודיות", "body": "<p style=\"text-align:center\"><strong>הסכם סודיות ואי-גילוי</strong></p><p>שנערך ונחתם ביום {{effective_date}}</p>" },
+        { "title": "1. הצדדים", "body": "<p><strong>בין:</strong> {{disclosing_party_name}}, ת.ז./ח.פ. {{disclosing_party_id}}, מרחוב {{disclosing_party_address}}, טלפון: {{disclosing_party_phone}} (להלן: <strong>\"הצד המגלה\"</strong>)</p><p><strong>לבין:</strong> {{receiving_party_name}}, ת.ז./ח.פ. {{receiving_party_id}}, מרחוב {{receiving_party_address}}, טלפון: {{receiving_party_phone}} (להלן: <strong>\"הצד המקבל\"</strong>)</p>" },
+        { "title": "2. הגדרת מידע סודי", "body": "<p>\"מידע סודי\" לצורך הסכם זה כולל: {{confidential_info_definition}}</p>{{#if includes_trade_secrets}}<p>ובכלל זה סודות מסחריים.</p>{{/if}}{{#if includes_client_data}}<p>ובכלל זה מידע אודות לקוחות.</p>{{/if}}{{#if includes_financial_data}}<p>ובכלל זה מידע פיננסי.</p>{{/if}}{{#if includes_technical_data}}<p>ובכלל זה מידע טכני וקניין רוחני.</p>{{/if}}{{#if exceptions}}<p><strong>חריגים:</strong> {{exceptions}}</p>{{/if}}" },
+        { "title": "3. תקופת ההסכם", "body": "<p>הסכם זה ייכנס לתוקף ביום {{effective_date}} ויעמוד בתוקפו למשך <strong>{{duration_years}} שנים</strong>.</p>" },
+        { "title": "4. חובות הצד המקבל", "body": "<p>הצד המקבל מתחייב:</p><ul><li>לשמור על סודיות המידע הסודי ולא לגלותו לצד שלישי כלשהו.</li><li>להשתמש במידע הסודי אך ורק למטרה שלשמה נמסר.</li><li>להחזיר או להשמיד את כל החומרים המכילים מידע סודי תוך <strong>{{return_materials_days}} ימים</strong> ממועד סיום ההסכם או על פי דרישה.</li>{{#if destroy_copies}}<li>להשמיד את כל העותקים, לרבות עותקים דיגיטליים, של המידע הסודי.</li>{{/if}}</ul>{{#if permitted_disclosure}}<p><strong>גילוי מותר:</strong> {{permitted_disclosure}}</p>{{/if}}" },
+        { "title": "5. אי תחרות ואי שידול", "body": "{{#if non_compete_applies}}<p>הצד המקבל מתחייב שלא להתחרות בצד המגלה למשך <strong>{{non_compete_duration_months}} חודשים</strong> ממועד סיום ההסכם.</p>{{/if}}{{#if non_solicitation_applies}}<p>הצד המקבל מתחייב שלא לשדל עובדים או לקוחות של הצד המגלה.</p>{{/if}}" },
+        { "title": "6. סעדים בגין הפרה", "body": "{{#if has_penalty_clause}}<p>בגין כל הפרה של הסכם זה, ישלם הצד המפר לצד השני פיצוי מוסכם בסך <strong>{{penalty_amount}} ש\"ח</strong>, וזאת מבלי לגרוע מכל סעד אחר.</p>{{/if}}{{#if injunctive_relief}}<p>הצד הנפגע יהיה זכאי לפנות לבית המשפט לקבלת צו מניעה לאלתר.</p>{{/if}}" },
+        { "title": "7. דין חל וסמכות שיפוט", "body": "<p>הסכם זה יפורש בהתאם לדיני {{governing_law}}. סמכות השיפוט הבלעדית תהיה נתונה ל<strong>{{jurisdiction_court}}</strong>.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "8. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>הצד המגלה: {{disclosing_party_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>הצד המקבל: {{receiving_party_name}}</td></tr></table>" }
+      ],
+      "en": [
+        { "title": "Non-Disclosure Agreement", "body": "<p style=\"text-align:center\"><strong>Non-Disclosure and Confidentiality Agreement</strong></p><p>Made and signed on {{effective_date}}</p>" },
+        { "title": "1. The Parties", "body": "<p><strong>Between:</strong> {{disclosing_party_name}}, ID/Company No. {{disclosing_party_id}}, of {{disclosing_party_address}}, Phone: {{disclosing_party_phone}} (hereinafter: <strong>\"the Disclosing Party\"</strong>)</p><p><strong>And:</strong> {{receiving_party_name}}, ID/Company No. {{receiving_party_id}}, of {{receiving_party_address}}, Phone: {{receiving_party_phone}} (hereinafter: <strong>\"the Receiving Party\"</strong>)</p>" },
+        { "title": "2. Definition of Confidential Information", "body": "<p>\"Confidential Information\" for the purposes of this agreement includes: {{confidential_info_definition}}</p>{{#if includes_trade_secrets}}<p>Including trade secrets.</p>{{/if}}{{#if includes_client_data}}<p>Including client and customer data.</p>{{/if}}{{#if includes_financial_data}}<p>Including financial information.</p>{{/if}}{{#if includes_technical_data}}<p>Including technical information and intellectual property.</p>{{/if}}{{#if exceptions}}<p><strong>Exceptions:</strong> {{exceptions}}</p>{{/if}}" },
+        { "title": "3. Term", "body": "<p>This agreement shall take effect on {{effective_date}} and remain in force for <strong>{{duration_years}} years</strong>.</p>" },
+        { "title": "4. Obligations of the Receiving Party", "body": "<p>The Receiving Party undertakes to:</p><ul><li>Maintain the confidentiality of the Confidential Information and not disclose it to any third party.</li><li>Use the Confidential Information solely for the purpose for which it was disclosed.</li><li>Return or destroy all materials containing Confidential Information within <strong>{{return_materials_days}} days</strong> of the termination of this agreement or upon request.</li>{{#if destroy_copies}}<li>Destroy all copies, including digital copies, of the Confidential Information.</li>{{/if}}</ul>{{#if permitted_disclosure}}<p><strong>Permitted Disclosure:</strong> {{permitted_disclosure}}</p>{{/if}}" },
+        { "title": "5. Non-Compete and Non-Solicitation", "body": "{{#if non_compete_applies}}<p>The Receiving Party undertakes not to compete with the Disclosing Party for a period of <strong>{{non_compete_duration_months}} months</strong> following the termination of this agreement.</p>{{/if}}{{#if non_solicitation_applies}}<p>The Receiving Party undertakes not to solicit employees or clients of the Disclosing Party.</p>{{/if}}" },
+        { "title": "6. Remedies for Breach", "body": "{{#if has_penalty_clause}}<p>For any breach of this agreement, the breaching party shall pay the other party liquidated damages in the amount of <strong>{{penalty_amount}} ILS</strong>, without prejudice to any other remedy.</p>{{/if}}{{#if injunctive_relief}}<p>The aggrieved party shall be entitled to seek immediate injunctive relief from the court.</p>{{/if}}" },
+        { "title": "7. Governing Law and Jurisdiction", "body": "<p>This agreement shall be governed by the laws of {{governing_law}}. Exclusive jurisdiction shall be vested in <strong>{{jurisdiction_court}}</strong>.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "8. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Disclosing Party: {{disclosing_party_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Receiving Party: {{receiving_party_name}}</td></tr></table>" }
+      ],
+      "ar": [
+        { "title": "اتفاقية عدم إفشاء", "body": "<p style=\"text-align:center\"><strong>اتفاقية عدم الإفشاء والسرية</strong></p><p>تم تحريرها والتوقيع عليها بتاريخ {{effective_date}}</p>" },
+        { "title": "1. الأطراف", "body": "<p><strong>بين:</strong> {{disclosing_party_name}}، هوية / سجل تجاري رقم {{disclosing_party_id}}، من {{disclosing_party_address}}، هاتف: {{disclosing_party_phone}} (المشار إليه فيما يلي بـ <strong>\"الطرف المفصح\"</strong>)</p><p><strong>وبين:</strong> {{receiving_party_name}}، هوية / سجل تجاري رقم {{receiving_party_id}}، من {{receiving_party_address}}، هاتف: {{receiving_party_phone}} (المشار إليه فيما يلي بـ <strong>\"الطرف المتلقي\"</strong>)</p>" },
+        { "title": "2. تعريف المعلومات السرية", "body": "<p>\"المعلومات السرية\" لأغراض هذه الاتفاقية تشمل: {{confidential_info_definition}}</p>{{#if includes_trade_secrets}}<p>بما في ذلك الأسرار التجارية.</p>{{/if}}{{#if includes_client_data}}<p>بما في ذلك بيانات العملاء.</p>{{/if}}{{#if includes_financial_data}}<p>بما في ذلك المعلومات المالية.</p>{{/if}}{{#if includes_technical_data}}<p>بما في ذلك المعلومات التقنية والملكية الفكرية.</p>{{/if}}{{#if exceptions}}<p><strong>الاستثناءات:</strong> {{exceptions}}</p>{{/if}}" },
+        { "title": "3. المدة", "body": "<p>تدخل هذه الاتفاقية حيز التنفيذ بتاريخ {{effective_date}} وتبقى سارية المفعول لمدة <strong>{{duration_years}} سنوات</strong>.</p>" },
+        { "title": "4. التزامات الطرف المتلقي", "body": "<p>يتعهد الطرف المتلقي بما يلي:</p><ul><li>الحفاظ على سرية المعلومات السرية وعدم إفشائها لأي طرف ثالث.</li><li>استخدام المعلومات السرية فقط للغرض الذي أُفصح عنها من أجله.</li><li>إعادة أو إتلاف جميع المواد المحتوية على معلومات سرية خلال <strong>{{return_materials_days}} يوماً</strong> من انتهاء هذه الاتفاقية أو عند الطلب.</li>{{#if destroy_copies}}<li>إتلاف جميع النسخ، بما في ذلك النسخ الرقمية، من المعلومات السرية.</li>{{/if}}</ul>{{#if permitted_disclosure}}<p><strong>الإفصاح المسموح:</strong> {{permitted_disclosure}}</p>{{/if}}" },
+        { "title": "5. عدم المنافسة وعدم الاستقطاب", "body": "{{#if non_compete_applies}}<p>يتعهد الطرف المتلقي بعدم التنافس مع الطرف المفصح لمدة <strong>{{non_compete_duration_months}} شهراً</strong> بعد انتهاء هذه الاتفاقية.</p>{{/if}}{{#if non_solicitation_applies}}<p>يتعهد الطرف المتلقي بعدم استقطاب موظفي أو عملاء الطرف المفصح.</p>{{/if}}" },
+        { "title": "6. العلاجات في حالة الإخلال", "body": "{{#if has_penalty_clause}}<p>في حالة أي إخلال بهذه الاتفاقية، يدفع الطرف المخل للطرف الآخر تعويضاً متفقاً عليه بمبلغ <strong>{{penalty_amount}} شيكل</strong>، دون الإخلال بأي علاج آخر.</p>{{/if}}{{#if injunctive_relief}}<p>يحق للطرف المتضرر التقدم إلى المحكمة للحصول على أمر قضائي فوري.</p>{{/if}}" },
+        { "title": "7. القانون المعمول به والاختصاص القضائي", "body": "<p>تخضع هذه الاتفاقية لقوانين {{governing_law}}. الاختصاص القضائي الحصري يكون لـ <strong>{{jurisdiction_court}}</strong>.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "8. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>الطرف المفصح: {{disclosing_party_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>الطرف المتلقي: {{receiving_party_name}}</td></tr></table>" }
+      ],
+      "ru": [
+        { "title": "Соглашение о неразглашении", "body": "<p style=\"text-align:center\"><strong>Соглашение о неразглашении и конфиденциальности</strong></p><p>Составлено и подписано {{effective_date}}</p>" },
+        { "title": "1. Стороны", "body": "<p><strong>Между:</strong> {{disclosing_party_name}}, ID/рег. номер {{disclosing_party_id}}, по адресу {{disclosing_party_address}}, тел: {{disclosing_party_phone}} (далее — <strong>«Раскрывающая сторона»</strong>)</p><p><strong>И:</strong> {{receiving_party_name}}, ID/рег. номер {{receiving_party_id}}, по адресу {{receiving_party_address}}, тел: {{receiving_party_phone}} (далее — <strong>«Получающая сторона»</strong>)</p>" },
+        { "title": "2. Определение конфиденциальной информации", "body": "<p>«Конфиденциальная информация» в рамках настоящего соглашения включает: {{confidential_info_definition}}</p>{{#if includes_trade_secrets}}<p>Включая коммерческие тайны.</p>{{/if}}{{#if includes_client_data}}<p>Включая данные клиентов.</p>{{/if}}{{#if includes_financial_data}}<p>Включая финансовую информацию.</p>{{/if}}{{#if includes_technical_data}}<p>Включая техническую информацию и интеллектуальную собственность.</p>{{/if}}{{#if exceptions}}<p><strong>Исключения:</strong> {{exceptions}}</p>{{/if}}" },
+        { "title": "3. Срок действия", "body": "<p>Настоящее соглашение вступает в силу {{effective_date}} и действует в течение <strong>{{duration_years}} лет</strong>.</p>" },
+        { "title": "4. Обязательства Получающей стороны", "body": "<p>Получающая сторона обязуется:</p><ul><li>Сохранять конфиденциальность полученной информации и не раскрывать её третьим лицам.</li><li>Использовать конфиденциальную информацию исключительно в целях, для которых она была раскрыта.</li><li>Вернуть или уничтожить все материалы, содержащие конфиденциальную информацию, в течение <strong>{{return_materials_days}} дней</strong> после прекращения действия настоящего соглашения или по требованию.</li>{{#if destroy_copies}}<li>Уничтожить все копии, включая цифровые, конфиденциальной информации.</li>{{/if}}</ul>{{#if permitted_disclosure}}<p><strong>Разрешённое раскрытие:</strong> {{permitted_disclosure}}</p>{{/if}}" },
+        { "title": "5. Неконкуренция и непереманивание", "body": "{{#if non_compete_applies}}<p>Получающая сторона обязуется не конкурировать с Раскрывающей стороной в течение <strong>{{non_compete_duration_months}} месяцев</strong> после прекращения действия настоящего соглашения.</p>{{/if}}{{#if non_solicitation_applies}}<p>Получающая сторона обязуется не переманивать сотрудников или клиентов Раскрывающей стороны.</p>{{/if}}" },
+        { "title": "6. Средства защиты при нарушении", "body": "{{#if has_penalty_clause}}<p>За любое нарушение настоящего соглашения нарушившая сторона выплатит другой стороне заранее оценённые убытки в размере <strong>{{penalty_amount}} шекелей</strong>, без ущерба для любых иных средств защиты.</p>{{/if}}{{#if injunctive_relief}}<p>Пострадавшая сторона вправе обратиться в суд за немедленным судебным запретом.</p>{{/if}}" },
+        { "title": "7. Применимое право и юрисдикция", "body": "<p>Настоящее соглашение регулируется законодательством {{governing_law}}. Исключительная юрисдикция принадлежит <strong>{{jurisdiction_court}}</strong>.</p>{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "8. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Раскрывающая сторона: {{disclosing_party_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Получающая сторона: {{receiving_party_name}}</td></tr></table>" }
+      ]
+    }
+  }
+}
