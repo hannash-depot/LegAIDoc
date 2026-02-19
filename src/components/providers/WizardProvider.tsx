@@ -9,6 +9,8 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
+import { useRouter } from "@/lib/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import type { TemplateDefinition } from "@/types/template";
 import type { WizardProgress } from "@/types/document";
 
@@ -57,6 +59,8 @@ export function WizardProvider({
   initialProgress,
   locale,
 }: WizardProviderProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [data, setData] = useState<Record<string, unknown>>(initialData);
   const [progress, setProgress] = useState<WizardProgress>(initialProgress);
   const [isDirty, setIsDirty] = useState(false);
@@ -117,6 +121,17 @@ export function WizardProvider({
       setIsSaving(false);
     }
   }, [documentId, data, progress]);
+
+  // Keep URL in sync with the current step so refresh always lands on the
+  // right step and the browser back-button navigates between steps.
+  useEffect(() => {
+    const docId = searchParams.get("doc");
+    if (!docId) return;
+    router.replace(
+      `/wizard/${templateSlug}/${progress.currentStep}?doc=${docId}` as "/dashboard",
+      { scroll: false }
+    );
+  }, [progress.currentStep, templateSlug, searchParams, router]);
 
   // Auto-save with debounce
   useEffect(() => {
