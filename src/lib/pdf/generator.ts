@@ -21,7 +21,8 @@ export async function generatePdf(
       args: chromium.default.args,
       defaultViewport: chromium.default.defaultViewport,
       executablePath: await chromium.default.executablePath(
-        "https://github.com/Sparticuz/chromium/releases/download/v131.0.0/chromium-v131.0.0-pack.tar"
+        process.env.CHROMIUM_PACK_URL ??
+          "https://github.com/Sparticuz/chromium/releases/download/v131.0.0/chromium-v131.0.0-pack.tar"
       ),
       headless: chromium.default.headless,
     });

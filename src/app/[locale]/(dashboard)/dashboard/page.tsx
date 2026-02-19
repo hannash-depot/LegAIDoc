@@ -29,6 +29,8 @@ export default function DashboardPage() {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmId, setConfirmId] = useState<string | null>(null);
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -50,15 +52,28 @@ export default function DashboardPage() {
     }
   }
 
+  async function handleDelete(id: string) {
+    setDeletingId(id);
+    setConfirmId(null);
+    try {
+      const res = await fetch(`/api/documents/${id}`, { method: "DELETE" });
+      if (res.ok) {
+        setDocuments((prev) => prev.filter((d) => d.id !== id));
+      }
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   const getStatusBadge = (status: DocumentStatus) => {
-    const styles = {
+    const styles: Record<DocumentStatus, string> = {
       DRAFT: "bg-yellow-100 text-yellow-800",
       COMPLETED: "bg-green-100 text-green-800",
       PUBLISHED: "bg-blue-100 text-blue-800",
     };
     return (
       <span className={`px-2 py-1 text-xs rounded-full ${styles[status]}`}>
-        {status}
+        {t(`status.${status}` as "status.DRAFT")}
       </span>
     );
   };
@@ -131,27 +146,67 @@ export default function DashboardPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {documents.map((doc) => (
-            <Link
+            <div
               key={doc.id}
-              href={`/documents/${doc.id}`}
-              className="block bg-white rounded-xl border border-border hover:shadow-md transition-shadow p-6"
+              className="relative group bg-white rounded-xl border border-border hover:shadow-md transition-shadow"
             >
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="font-semibold text-lg line-clamp-2">
-                  {doc.title}
-                </h3>
-                {getStatusBadge(doc.status)}
-              </div>
+              <Link
+                href={`/documents/${doc.id}`}
+                className="block p-6"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="font-semibold text-lg line-clamp-2 pe-8">
+                    {doc.title}
+                  </h3>
+                  {getStatusBadge(doc.status)}
+                </div>
 
-              <p className="text-sm text-text-muted mb-4">
-                {doc.template.name[doc.locale] || doc.template.name.he}
-              </p>
+                <p className="text-sm text-text-muted mb-4">
+                  {doc.template.name[doc.locale] || doc.template.name.he}
+                </p>
 
-              <div className="flex items-center justify-between text-xs text-text-secondary">
-                <span>{formatDate(doc.updatedAt)}</span>
-                <span className="capitalize">{doc.locale}</span>
+                <div className="flex items-center justify-between text-xs text-text-secondary">
+                  <span>{formatDate(doc.updatedAt)}</span>
+                  <span className="capitalize">{doc.locale}</span>
+                </div>
+              </Link>
+
+              {/* Delete controls — shown on hover */}
+              <div className="absolute top-3 end-3">
+                {confirmId === doc.id ? (
+                  <div className="flex items-center gap-1 bg-white border border-border rounded-lg shadow-sm p-1">
+                    <button
+                      onClick={() => handleDelete(doc.id)}
+                      disabled={deletingId === doc.id}
+                      className="px-2 py-1 text-xs bg-error text-white rounded hover:bg-error/90 disabled:opacity-50"
+                    >
+                      {tCommon("confirm")}
+                    </button>
+                    <button
+                      onClick={() => setConfirmId(null)}
+                      className="px-2 py-1 text-xs text-text-secondary hover:bg-surface-hover rounded"
+                    >
+                      {tCommon("cancel")}
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => setConfirmId(doc.id)}
+                    disabled={deletingId === doc.id}
+                    className="p-1.5 rounded-lg text-text-muted hover:text-error hover:bg-error/5 opacity-0 group-hover:opacity-100 transition-all disabled:opacity-50"
+                    title={t("actions.delete")}
+                  >
+                    {deletingId === doc.id ? (
+                      <div className="w-4 h-4 border-2 border-error border-t-transparent rounded-full animate-spin" />
+                    ) : (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    )}
+                  </button>
+                )}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
