@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { Link } from "@/lib/i18n/navigation";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -17,12 +18,18 @@ export function Footer() {
             </span>
           </div>
           <div className="flex items-center gap-6 text-sm text-text-secondary">
-            <span className="hover:text-text cursor-pointer transition-colors">
+            <Link
+              href="/privacy"
+              className="hover:text-text transition-colors"
+            >
               {t("privacy")}
-            </span>
-            <span className="hover:text-text cursor-pointer transition-colors">
+            </Link>
+            <Link
+              href="/terms"
+              className="hover:text-text transition-colors"
+            >
               {t("terms")}
-            </span>
+            </Link>
           </div>
         </div>
       </div>
