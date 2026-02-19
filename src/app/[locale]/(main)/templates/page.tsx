@@ -31,6 +31,7 @@ const iconMap: Record<string, string> = {
 
 export default function TemplatesPage() {
   const t = useTranslations("templates");
+  const tCommon = useTranslations("common");
   const locale = useLocale();
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -74,7 +75,7 @@ export default function TemplatesPage() {
             onClick={fetchCategories}
             className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
           >
-            {useTranslations("common")("retry")}
+            {tCommon("retry")}
           </button>
         </div>
       </main>

@@ -61,6 +61,7 @@ export function WizardProvider({
   const [progress, setProgress] = useState<WizardProgress>(initialProgress);
   const [isDirty, setIsDirty] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const isSavingRef = useRef(false);
   const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const setFieldValue = useCallback((key: string, value: unknown) => {
@@ -97,7 +98,8 @@ export function WizardProvider({
   }, []);
 
   const saveProgress = useCallback(async () => {
-    if (isSaving) return;
+    if (isSavingRef.current) return;
+    isSavingRef.current = true;
     setIsSaving(true);
     try {
       const res = await fetch(`/api/documents/${documentId}`, {
@@ -111,9 +113,10 @@ export function WizardProvider({
     } catch (err) {
       console.error("Failed to save:", err);
     } finally {
+      isSavingRef.current = false;
       setIsSaving(false);
     }
-  }, [documentId, data, progress, isSaving]);
+  }, [documentId, data, progress]);
 
   // Auto-save with debounce
   useEffect(() => {
