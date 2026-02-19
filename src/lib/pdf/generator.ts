@@ -9,7 +9,8 @@ export async function generatePdf(
 ): Promise<Buffer> {
   const html = renderContractHtml(definition, data, locale);
 
-  let browser;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let browser: any;
 
   if (process.env.NODE_ENV === "production") {
     // Production: use @sparticuz/chromium-min for serverless

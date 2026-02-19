@@ -238,8 +238,8 @@ export interface FileUploadField extends BaseFieldDefinition {
 
 export interface SignaturePadField extends BaseFieldDefinition {
   type: "signature-pad";
-  width?: number;
-  height?: number;
+  canvasWidth?: number;
+  canvasHeight?: number;
   backgroundColor?: string;
   penColor?: string;
 }
