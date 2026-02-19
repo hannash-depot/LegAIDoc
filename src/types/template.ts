@@ -82,4 +82,6 @@ export interface LocalizedDocumentBody {
 export interface DocumentSection {
   title: string;
   body: string;
+  /** Field key — if the field value is falsy the entire section is omitted */
+  showIf?: string;
 }

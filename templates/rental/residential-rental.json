@@ -1,7 +1,7 @@
 {
   "slug": "residential-rental",
   "category": "rental",
-  "version": 1,
+  "version": 2,
   "name": {
     "he": "חוזה שכירות למגורים",
     "ar": "عقد إيجار سكني",
@@ -15,7 +15,7 @@
     "ru": "Стандартный договор аренды жилья в Израиле"
   },
   "definition": {
-    "version": 1,
+    "version": 2,
     "steps": [
       {
         "key": "parties",
@@ -87,7 +87,7 @@
           {
             "key": "tenant_phone",
             "type": "phone",
-            "label": { "he": "טלפון השוכר", "ar": "هاتف المستأجر", "en": "Tenant Phone", "ru": "Телефон арендатора" },
+            "label": { "he": "טלפון השוכר", "ar": "هاتف המستأجر", "en": "Tenant Phone", "ru": "Телефон арендатора" },
             "required": true,
             "width": "half"
           },
@@ -265,6 +265,85 @@
         ]
       },
       {
+        "key": "optional_clauses",
+        "title": { "he": "סעיפים אופציונליים", "ar": "بنود اختيارية", "en": "Optional Clauses", "ru": "Дополнительные пункты" },
+        "description": { "he": "הוסף סעיפים רלוונטיים לחוזה שלך", "ar": "أضف بنوداً ذات صلة إلى عقدك", "en": "Add relevant clauses to your contract", "ru": "Добавьте соответствующие пункты в ваш договор" },
+        "fields": [
+          {
+            "key": "is_all_inclusive",
+            "type": "checkbox",
+            "label": { "he": "שכירות כוללת הכל (ארנונה, חשבונות)", "ar": "إيجار شامل (أرنونا، فواتير)", "en": "All-Inclusive Rent (includes arnona, utilities)", "ru": "Аренда «всё включено» (арнона, коммунальные)" },
+            "required": false,
+            "width": "full"
+          },
+          {
+            "key": "all_inclusive_details",
+            "type": "textarea",
+            "label": { "he": "פירוט מה כלול", "ar": "تفاصيل ما يشمله الإيجار", "en": "Details of what is included", "ru": "Детали включённых услуг" },
+            "placeholder": { "he": "למשל: ארנונה, חשמל, מים, גז, אינטרנט...", "ar": "مثال: أرنونا، كهرباء، مياه، غاز، إنترنت...", "en": "e.g. arnona, electricity, water, gas, internet...", "ru": "напр.: арнона, электричество, вода, газ, интернет..." },
+            "required": false,
+            "condition": { "field": "is_all_inclusive", "operator": "equals", "value": true },
+            "width": "full"
+          },
+          {
+            "key": "require_renters_insurance",
+            "type": "checkbox",
+            "label": { "he": "חובת ביטוח שוכר", "ar": "إلزامية تأمين المستأجر", "en": "Renters Insurance Required", "ru": "Страхование арендатора обязательно" },
+            "required": false,
+            "width": "half"
+          },
+          {
+            "key": "insurance_coverage_amount",
+            "type": "currency",
+            "label": { "he": "סכום כיסוי ביטוחי מינימלי (ש\"ח)", "ar": "الحد الأدنى لمبلغ التأمين (شيكل)", "en": "Minimum Insurance Coverage (ILS)", "ru": "Минимальная сумма страхового покрытия (шекель)" },
+            "required": false,
+            "condition": { "field": "require_renters_insurance", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "early_termination_clause",
+            "type": "checkbox",
+            "label": { "he": "אפשרות לסיום מוקדם", "ar": "خيار الإنهاء المبكر", "en": "Early Termination Option", "ru": "Возможность досрочного расторжения" },
+            "required": false,
+            "width": "full"
+          },
+          {
+            "key": "early_termination_notice_months",
+            "type": "number",
+            "label": { "he": "הודעה מוקדמת לסיום מוקדם (חודשים)", "ar": "إشعار مسبق للإنهاء المبكر (أشهر)", "en": "Early Termination Notice (months)", "ru": "Срок уведомления о досрочном расторжении (месяцев)" },
+            "required": false,
+            "condition": { "field": "early_termination_clause", "operator": "equals", "value": true },
+            "validation": { "min": 1, "max": 6 },
+            "defaultValue": 2,
+            "width": "half"
+          },
+          {
+            "key": "early_termination_penalty",
+            "type": "currency",
+            "label": { "he": "פיצוי לסיום מוקדם (ש\"ח)", "ar": "غرامة الإنهاء المبكر (شيكل)", "en": "Early Termination Penalty (ILS)", "ru": "Штраф за досрочное расторжение (шекель)" },
+            "required": false,
+            "condition": { "field": "early_termination_clause", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
+            "width": "half"
+          },
+          {
+            "key": "renovation_allowed",
+            "type": "checkbox",
+            "label": { "he": "מותר לבצע שיפוצים / שינויים בנכס", "ar": "يُسمح بإجراء تجديدات / تعديلات في العقار", "en": "Renovations / Alterations Allowed", "ru": "Разрешены ремонтные работы / изменения в объекте" },
+            "required": false,
+            "width": "full"
+          },
+          {
+            "key": "has_inventory_list",
+            "type": "checkbox",
+            "label": { "he": "מצורפת רשימת מצאי", "ar": "مرفقة قائمة الجرد", "en": "Inventory List Attached", "ru": "Прилагается инвентарный список" },
+            "required": false,
+            "width": "half"
+          }
+        ]
+      },
+      {
         "key": "additional",
         "title": { "he": "תנאים נוספים", "ar": "شروط إضافية", "en": "Additional Terms", "ru": "Дополнительные условия" },
         "fields": [
@@ -273,6 +352,15 @@
             "type": "checkbox",
             "label": { "he": "מותר בעלי חיים", "ar": "يسمح بالحيوانات الأليفة", "en": "Pets Allowed", "ru": "Разрешены домашние животные" },
             "required": false,
+            "width": "half"
+          },
+          {
+            "key": "pet_deposit",
+            "type": "currency",
+            "label": { "he": "פיקדון נוסף לבעלי חיים (ש\"ח)", "ar": "وديعة إضافية للحيوانات الأليفة (شيكل)", "en": "Pet Deposit (ILS)", "ru": "Залог за домашних животных (шекель)" },
+            "required": false,
+            "condition": { "field": "pets_allowed", "operator": "equals", "value": true },
+            "validation": { "min": 0 },
             "width": "half"
           },
           {
@@ -317,8 +405,13 @@
         { "title": "3. תקופת השכירות", "body": "<p>תקופת השכירות הינה מיום {{start_date}} ועד ליום {{end_date}} (להלן: <strong>\"תקופת השכירות\"</strong>).</p>{{#if has_option_period}}<p>לשוכר תעמוד אופציה להארכת תקופת השכירות ב-{{option_months}} חודשים נוספים, בתנאי שיודיע על כך למשכיר {{notice_days}} ימים מראש.</p>{{/if}}" },
         { "title": "4. דמי השכירות", "body": "<p>דמי השכירות החודשיים הינם <strong>{{monthly_rent}} ש\"ח</strong> (להלן: <strong>\"דמי השכירות\"</strong>), אשר ישולמו עד ליום ה-{{payment_day}} בכל חודש באמצעות {{payment_method}}.</p>" },
         { "title": "5. פיקדון", "body": "<p>השוכר ישלם למשכיר פיקדון בסך <strong>{{deposit_amount}} ש\"ח</strong> עם חתימת חוזה זה. הפיקדון יוחזר לשוכר בתום תקופת השכירות, בכפוף לקיום כל תנאי חוזה זה.</p>" },
-        { "title": "6. תנאים נוספים", "body": "{{#if pets_allowed}}<p>מותר להחזיק בעלי חיים במושכר.</p>{{/if}}{{#unless pets_allowed}}<p>אסור להחזיק בעלי חיים במושכר.</p>{{/unless}}{{#if smoking_allowed}}<p>מותר לעשן במושכר.</p>{{/if}}{{#unless smoking_allowed}}<p>אסור לעשן במושכר.</p>{{/unless}}{{#unless subletting_allowed}}<p>אסור להשכיר את המושכר בשכירות משנה ללא הסכמת המשכיר בכתב מראש.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
-        { "title": "7. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המשכיר: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>השוכר: {{tenant_name}}</td></tr></table>" }
+        { "title": "6. תנאים כלליים", "body": "{{#if pets_allowed}}<p>מותר להחזיק בעלי חיים במושכר.{{#if pet_deposit}} פיקדון נוסף בגין בעלי חיים: {{pet_deposit}} ש\"ח.{{/if}}</p>{{/if}}{{#unless pets_allowed}}<p>אסור להחזיק בעלי חיים במושכר.</p>{{/unless}}{{#if smoking_allowed}}<p>מותר לעשן במושכר.</p>{{/if}}{{#unless smoking_allowed}}<p>אסור לעשן במושכר.</p>{{/unless}}{{#unless subletting_allowed}}<p>אסור להשכיר את המושכר בשכירות משנה ללא הסכמת המשכיר בכתב מראש.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. שכירות כוללת הכל", "showIf": "is_all_inclusive", "body": "<p>דמי השכירות כוללים את התשלומים הבאים: {{all_inclusive_details}}. המשכיר ישא בתשלומים האמורים ישירות, אלא אם צוין אחרת בכתב.</p>" },
+        { "title": "8. ביטוח שוכר", "showIf": "require_renters_insurance", "body": "<p>השוכר מתחייב להחזיק, לאורך כל תקופת השכירות, פוליסת ביטוח שוכר בכיסוי מינימלי של <strong>{{insurance_coverage_amount}} ש\"ח</strong>. השוכר יציג למשכיר אישור ביטוח בתוך 14 ימים ממועד חתימת חוזה זה.</p>" },
+        { "title": "9. סיום מוקדם", "showIf": "early_termination_clause", "body": "<p>כל צד רשאי לסיים את חוזה השכירות לפני תום תקופתו, בתנאי שיודיע לצד השני {{early_termination_notice_months}} חודשים מראש בכתב.{{#if early_termination_penalty}} במקרה של סיום מוקדם, הצד המבקש לסיים ישלם פיצוי בסך <strong>{{early_termination_penalty}} ש\"ח</strong>.{{/if}}</p>" },
+        { "title": "10. שיפוצים ושינויים", "showIf": "renovation_allowed", "body": "<p>השוכר רשאי לבצע שיפוצים ושינויים במושכר בתנאי שיקבל אישור מראש בכתב מהמשכיר לכל עבודה. בתום תקופת השכירות, יהיה השוכר רשאי לבחור בין השארת השיפוצים לבין השבת המושכר למצבו המקורי.</p>" },
+        { "title": "11. רשימת מצאי", "showIf": "has_inventory_list", "body": "<p>מצורפת לחוזה זה רשימת מצאי מפורטת של ריהוט, מוצרי חשמל וציוד הנמצאים במושכר. הצדדים מאשרים את מצב הנכס ותכולתו במועד מסירת המפתחות. כל נזק שמעבר לבלאי סביר יחויב לשוכר בתום תקופת השכירות.</p>" },
+        { "title": "12. חתימות", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>המשכיר: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>השוכר: {{tenant_name}}</td></tr></table>" }
       ],
       "en": [
         { "title": "Residential Rental Agreement", "body": "<p style=\"text-align:center\"><strong>Unprotected Rental Agreement</strong></p><p>Made and signed on {{start_date}}</p>" },
@@ -327,8 +420,13 @@
         { "title": "3. Rental Period", "body": "<p>The rental period is from {{start_date}} to {{end_date}} (hereinafter: <strong>\"the Rental Period\"</strong>).</p>{{#if has_option_period}}<p>The Tenant shall have an option to extend the rental period by {{option_months}} additional months, provided that {{notice_days}} days' prior notice is given to the Landlord.</p>{{/if}}" },
         { "title": "4. Rent", "body": "<p>The monthly rent shall be <strong>{{monthly_rent}} ILS</strong> (hereinafter: <strong>\"the Rent\"</strong>), payable by the {{payment_day}}th of each month via {{payment_method}}.</p>" },
         { "title": "5. Security Deposit", "body": "<p>The Tenant shall pay the Landlord a security deposit of <strong>{{deposit_amount}} ILS</strong> upon signing this agreement. The deposit shall be returned to the Tenant at the end of the rental period, subject to compliance with all terms of this agreement.</p>" },
-        { "title": "6. Additional Terms", "body": "{{#if pets_allowed}}<p>Pets are allowed on the property.</p>{{/if}}{{#unless pets_allowed}}<p>Pets are not allowed on the property.</p>{{/unless}}{{#if smoking_allowed}}<p>Smoking is allowed on the property.</p>{{/if}}{{#unless smoking_allowed}}<p>Smoking is not allowed on the property.</p>{{/unless}}{{#unless subletting_allowed}}<p>Subletting is not permitted without prior written consent from the Landlord.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
-        { "title": "7. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Landlord: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Tenant: {{tenant_name}}</td></tr></table>" }
+        { "title": "6. General Terms", "body": "{{#if pets_allowed}}<p>Pets are allowed on the property.{{#if pet_deposit}} An additional pet deposit of {{pet_deposit}} ILS is required.{{/if}}</p>{{/if}}{{#unless pets_allowed}}<p>Pets are not allowed on the property.</p>{{/unless}}{{#if smoking_allowed}}<p>Smoking is allowed on the property.</p>{{/if}}{{#unless smoking_allowed}}<p>Smoking is not allowed on the property.</p>{{/unless}}{{#unless subletting_allowed}}<p>Subletting is not permitted without prior written consent from the Landlord.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. All-Inclusive Rent", "showIf": "is_all_inclusive", "body": "<p>The monthly rent is all-inclusive and covers the following: {{all_inclusive_details}}. The Landlord shall pay such charges directly unless otherwise agreed in writing.</p>" },
+        { "title": "8. Renters Insurance", "showIf": "require_renters_insurance", "body": "<p>The Tenant shall maintain a renters insurance policy throughout the rental period with minimum coverage of <strong>{{insurance_coverage_amount}} ILS</strong>. The Tenant shall provide proof of insurance to the Landlord within 14 days of signing this agreement.</p>" },
+        { "title": "9. Early Termination", "showIf": "early_termination_clause", "body": "<p>Either party may terminate this rental agreement before the end of the rental period, provided they give the other party {{early_termination_notice_months}} months' written notice.{{#if early_termination_penalty}} In the event of early termination, the terminating party shall pay a penalty of <strong>{{early_termination_penalty}} ILS</strong>.{{/if}}</p>" },
+        { "title": "10. Renovations and Alterations", "showIf": "renovation_allowed", "body": "<p>The Tenant is permitted to make renovations and alterations to the property, provided that prior written approval from the Landlord is obtained for each project. At the end of the rental period, the Tenant may choose to either leave the renovations in place or restore the property to its original condition.</p>" },
+        { "title": "11. Inventory List", "showIf": "has_inventory_list", "body": "<p>An inventory list of furniture, appliances, and equipment present in the property is attached to this agreement. Both parties confirm the condition of the property and its contents at the time the keys are handed over. Any damage beyond normal wear and tear shall be charged to the Tenant at the end of the rental period.</p>" },
+        { "title": "12. Signatures", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Landlord: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Tenant: {{tenant_name}}</td></tr></table>" }
       ],
       "ar": [
         { "title": "عقد إيجار سكني", "body": "<p style=\"text-align:center\"><strong>عقد إيجار غير محمي</strong></p><p>تم تحريره والتوقيع عليه بتاريخ {{start_date}}</p>" },
@@ -337,8 +435,13 @@
         { "title": "3. مدة الإيجار", "body": "<p>مدة الإيجار من {{start_date}} حتى {{end_date}} (المشار إليها فيما يلي بـ <strong>\"مدة الإيجار\"</strong>).</p>{{#if has_option_period}}<p>يحق للمستأجر تمديد مدة الإيجار لمدة {{option_months}} أشهر إضافية، بشرط إخطار المؤجر قبل {{notice_days}} يوماً.</p>{{/if}}" },
         { "title": "4. الإيجار", "body": "<p>الإيجار الشهري هو <strong>{{monthly_rent}} شيكل</strong> (المشار إليه فيما يلي بـ <strong>\"الإيجار\"</strong>)، يُدفع بحلول اليوم {{payment_day}} من كل شهر عن طريق {{payment_method}}.</p>" },
         { "title": "5. التأمين", "body": "<p>يدفع المستأجر للمؤجر تأميناً بمبلغ <strong>{{deposit_amount}} شيكل</strong> عند توقيع هذا العقد. يُعاد التأمين للمستأجر عند انتهاء مدة الإيجار، وفقاً لاستيفاء جميع شروط هذا العقد.</p>" },
-        { "title": "6. شروط إضافية", "body": "{{#if pets_allowed}}<p>يُسمح بالحيوانات الأليفة في العقار.</p>{{/if}}{{#unless pets_allowed}}<p>لا يُسمح بالحيوانات الأليفة في العقار.</p>{{/unless}}{{#if smoking_allowed}}<p>يُسمح بالتدخين في العقار.</p>{{/if}}{{#unless smoking_allowed}}<p>لا يُسمح بالتدخين في العقار.</p>{{/unless}}{{#unless subletting_allowed}}<p>لا يُسمح بالإيجار من الباطن دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
-        { "title": "7. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>المؤجر: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>المستأجر: {{tenant_name}}</td></tr></table>" }
+        { "title": "6. الشروط العامة", "body": "{{#if pets_allowed}}<p>يُسمح بالحيوانات الأليفة في العقار.{{#if pet_deposit}} وديعة إضافية للحيوانات الأليفة: {{pet_deposit}} شيكل.{{/if}}</p>{{/if}}{{#unless pets_allowed}}<p>لا يُسمح بالحيوانات الأليفة في العقار.</p>{{/unless}}{{#if smoking_allowed}}<p>يُسمح بالتدخين في العقار.</p>{{/if}}{{#unless smoking_allowed}}<p>لا يُسمح بالتدخين في العقار.</p>{{/unless}}{{#unless subletting_allowed}}<p>لا يُسمح بالإيجار من الباطن دون موافقة خطية مسبقة من المؤجر.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. الإيجار الشامل", "showIf": "is_all_inclusive", "body": "<p>الإيجار الشهري شامل ويغطي ما يلي: {{all_inclusive_details}}. يتحمل المؤجر هذه الرسوم مباشرةً ما لم يُتفق على خلاف ذلك كتابةً.</p>" },
+        { "title": "8. تأمين المستأجر", "showIf": "require_renters_insurance", "body": "<p>يلتزم المستأجر بالاحتفاظ بوثيقة تأمين المستأجر طوال مدة الإيجار بتغطية لا تقل عن <strong>{{insurance_coverage_amount}} شيكل</strong>. يقدم المستأجر إثبات التأمين للمؤجر خلال 14 يوماً من توقيع هذا العقد.</p>" },
+        { "title": "9. الإنهاء المبكر", "showIf": "early_termination_clause", "body": "<p>يحق لأي من الطرفين إنهاء عقد الإيجار قبل انتهاء مدته، بشرط إخطار الطرف الآخر كتابةً قبل {{early_termination_notice_months}} أشهر.{{#if early_termination_penalty}} في حالة الإنهاء المبكر، يدفع الطرف الطالب بالإنهاء غرامة قدرها <strong>{{early_termination_penalty}} شيكل</strong>.{{/if}}</p>" },
+        { "title": "10. التجديدات والتعديلات", "showIf": "renovation_allowed", "body": "<p>يُسمح للمستأجر بإجراء تجديدات وتعديلات في العقار، بشرط الحصول على موافقة خطية مسبقة من المؤجر لكل عمل. عند انتهاء مدة الإيجار، يحق للمستأجر الاختيار بين إبقاء التجديدات أو إعادة العقار إلى حالته الأصلية.</p>" },
+        { "title": "11. قائمة الجرد", "showIf": "has_inventory_list", "body": "<p>مرفقة بهذا العقد قائمة جرد مفصلة بالأثاث والأجهزة والمعدات الموجودة في العقار. يؤكد الطرفان حالة العقار ومحتوياته عند تسليم المفاتيح. يُحمَّل المستأجر تكلفة أي تلف يتجاوز الاستهلاك الطبيعي عند نهاية مدة الإيجار.</p>" },
+        { "title": "12. التوقيعات", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>المؤجر: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>المستأجر: {{tenant_name}}</td></tr></table>" }
       ],
       "ru": [
         { "title": "Договор аренды жилья", "body": "<p style=\"text-align:center\"><strong>Договор незащищённой аренды</strong></p><p>Составлен и подписан {{start_date}}</p>" },
@@ -347,8 +450,13 @@
         { "title": "3. Срок аренды", "body": "<p>Срок аренды: с {{start_date}} по {{end_date}} (далее — <strong>«Срок аренды»</strong>).</p>{{#if has_option_period}}<p>Арендатор имеет право продлить срок аренды на {{option_months}} дополнительных месяцев при условии уведомления Арендодателя за {{notice_days}} дней.</p>{{/if}}" },
         { "title": "4. Арендная плата", "body": "<p>Ежемесячная арендная плата составляет <strong>{{monthly_rent}} шекелей</strong> (далее — <strong>«Арендная плата»</strong>), подлежащая оплате до {{payment_day}}-го числа каждого месяца посредством {{payment_method}}.</p>" },
         { "title": "5. Залог", "body": "<p>Арендатор вносит Арендодателю залог в размере <strong>{{deposit_amount}} шекелей</strong> при подписании настоящего договора. Залог возвращается Арендатору по окончании срока аренды при соблюдении всех условий настоящего договора.</p>" },
-        { "title": "6. Дополнительные условия", "body": "{{#if pets_allowed}}<p>Содержание домашних животных разрешено.</p>{{/if}}{{#unless pets_allowed}}<p>Содержание домашних животных запрещено.</p>{{/unless}}{{#if smoking_allowed}}<p>Курение в помещении разрешено.</p>{{/if}}{{#unless smoking_allowed}}<p>Курение в помещении запрещено.</p>{{/unless}}{{#unless subletting_allowed}}<p>Субаренда запрещена без предварительного письменного согласия Арендодателя.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
-        { "title": "7. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендодатель: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендатор: {{tenant_name}}</td></tr></table>" }
+        { "title": "6. Общие условия", "body": "{{#if pets_allowed}}<p>Содержание домашних животных разрешено.{{#if pet_deposit}} Дополнительный залог за домашних животных: {{pet_deposit}} шекелей.{{/if}}</p>{{/if}}{{#unless pets_allowed}}<p>Содержание домашних животных запрещено.</p>{{/unless}}{{#if smoking_allowed}}<p>Курение в помещении разрешено.</p>{{/if}}{{#unless smoking_allowed}}<p>Курение в помещении запрещено.</p>{{/unless}}{{#unless subletting_allowed}}<p>Субаренда запрещена без предварительного письменного согласия Арендодателя.</p>{{/unless}}{{#if additional_terms}}<p>{{additional_terms}}</p>{{/if}}" },
+        { "title": "7. Аренда «всё включено»", "showIf": "is_all_inclusive", "body": "<p>Ежемесячная арендная плата является всеобъемлющей и включает следующие платежи: {{all_inclusive_details}}. Арендодатель оплачивает указанные услуги напрямую, если иное не согласовано в письменной форме.</p>" },
+        { "title": "8. Страхование арендатора", "showIf": "require_renters_insurance", "body": "<p>Арендатор обязуется поддерживать страховой полис арендатора на протяжении всего срока аренды с минимальным покрытием <strong>{{insurance_coverage_amount}} шекелей</strong>. Арендатор предоставляет Арендодателю подтверждение страхования в течение 14 дней с момента подписания настоящего договора.</p>" },
+        { "title": "9. Досрочное расторжение", "showIf": "early_termination_clause", "body": "<p>Любая из сторон вправе расторгнуть настоящий договор аренды до истечения срока его действия при условии письменного уведомления другой стороны за {{early_termination_notice_months}} месяцев.{{#if early_termination_penalty}} В случае досрочного расторжения инициирующая сторона уплачивает штраф в размере <strong>{{early_termination_penalty}} шекелей</strong>.{{/if}}</p>" },
+        { "title": "10. Ремонт и изменения", "showIf": "renovation_allowed", "body": "<p>Арендатор имеет право производить ремонтные работы и изменения в объекте аренды при условии получения предварительного письменного согласия Арендодателя на каждый вид работ. По окончании срока аренды Арендатор вправе либо оставить произведённые изменения, либо восстановить объект в первоначальное состояние.</p>" },
+        { "title": "11. Инвентарный список", "showIf": "has_inventory_list", "body": "<p>К настоящему договору прилагается подробный инвентарный список мебели, бытовой техники и оборудования, находящегося в объекте аренды. Стороны подтверждают состояние объекта и его содержимого на момент передачи ключей. Любой ущерб, превышающий нормальный износ, будет предъявлен Арендатору по окончании срока аренды.</p>" },
+        { "title": "12. Подписи", "body": "<br/><br/><table width=\"100%\"><tr><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендодатель: {{landlord_name}}</td><td width=\"10%\"></td><td width=\"45%\" style=\"text-align:center\">___________________<br/>Арендатор: {{tenant_name}}</td></tr></table>" }
       ]
     }
   }

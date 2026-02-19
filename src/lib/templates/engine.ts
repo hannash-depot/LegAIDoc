@@ -10,6 +10,7 @@ export function renderDocument(
   unfilledPlaceholder = "______"
 ): string {
   return sections
+    .filter((section) => !section.showIf || isTruthy(data[section.showIf]))
     .map((section) => {
       const title = replacePlaceholders(section.title, data, unfilledPlaceholder);
       const body = processTemplate(section.body, data, unfilledPlaceholder);
