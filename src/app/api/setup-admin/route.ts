@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-const ADMIN_EMAIL = "hanna.sh@gmail.com";
+const ADMIN_EMAIL = "hannashi@gmail.com";
 
 export async function GET() {
   try {
@@ -10,18 +10,8 @@ export async function GET() {
       ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "isAdmin" BOOLEAN NOT NULL DEFAULT false
     `);
 
-    // Check if an admin already exists
-    const admins = await db.$queryRawUnsafe<{ count: bigint }[]>(
-      `SELECT COUNT(*) as count FROM "users" WHERE "isAdmin" = true`
-    );
-    const adminCount = Number(admins[0]?.count ?? 0);
-
-    if (adminCount > 0) {
-      return NextResponse.json(
-        { error: "Setup already completed. An admin user already exists." },
-        { status: 403 }
-      );
-    }
+    // Reset any previous wrong admin grants, then set the correct one
+    await db.$executeRawUnsafe(`UPDATE "users" SET "isAdmin" = false WHERE "isAdmin" = true`);
 
     // Find and promote the user
     const users = await db.$queryRawUnsafe<{ id: string; email: string }[]>(
