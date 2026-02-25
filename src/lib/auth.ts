@@ -72,14 +72,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
-        token.isAdmin = user.isAdmin ?? false;
       }
-      if (trigger === "update" && token.id) {
+      // Always fetch isAdmin from DB on sign-in and session updates
+      // (OAuth adapters strip custom fields from the user object)
+      if ((user || trigger === "update") && token.id) {
         const dbUser = await db.user.findUnique({
           where: { id: token.id },
           select: { isAdmin: true },
         });
-        if (dbUser) token.isAdmin = dbUser.isAdmin;
+        token.isAdmin = dbUser?.isAdmin ?? false;
       }
       return token;
     },
