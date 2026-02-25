@@ -32,7 +32,8 @@
     "register": "הרשמה",
     "logout": "יציאה",
     "profile": "פרופיל",
-    "about": "אודות"
+    "about": "אודות",
+    "admin": "ניהול"
   },
   "home": {
     "hero": {
@@ -148,6 +149,37 @@
     },
     "deleteConfirm": "האם אתה בטוח שברצונך למחוק מסמך זה?",
     "lastUpdated": "עודכן לאחרונה"
+  },
+  "admin": {
+    "title": "ממשק ניהול",
+    "subtitle": "ניהול תבניות חוזים וקטגוריות",
+    "templateList": "תבניות",
+    "editTemplate": "עריכה",
+    "templateInfo": "פרטי תבנית",
+    "templateName": "שם התבנית",
+    "templateDescription": "תיאור התבנית",
+    "definition": "הגדרת תבנית (JSON)",
+    "slug": "מזהה (slug)",
+    "category": "קטגוריה",
+    "version": "גרסה",
+    "status": "סטטוס",
+    "name": "שם",
+    "updated": "עודכן",
+    "actions": "פעולות",
+    "sortOrder": "סדר מיון",
+    "isActive": "פעיל",
+    "active": "פעיל",
+    "inactive": "לא פעיל",
+    "templates": "תבניות",
+    "noTemplates": "אין תבניות בקטגוריה זו",
+    "fetchError": "שגיאה בטעינת תבניות",
+    "saveError": "שגיאה בשמירת שינויים",
+    "saveSuccess": "התבנית נשמרה בהצלחה",
+    "deleteConfirm": "האם אתה בטוח שברצונך למחוק תבנית זו?",
+    "deleteError": "שגיאה במחיקת תבנית",
+    "invalidJson": "פורמט JSON לא תקין. אנא בדוק את ההגדרה.",
+    "loginRequired": "יש להתחבר כדי לגשת לממשק הניהול.",
+    "goToLogin": "כניסה"
   },
   "footer": {
     "rights": "כל הזכויות שמורות",

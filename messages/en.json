@@ -32,7 +32,8 @@
     "register": "Register",
     "logout": "Logout",
     "profile": "Profile",
-    "about": "About"
+    "about": "About",
+    "admin": "Admin"
   },
   "home": {
     "hero": {
@@ -148,6 +149,37 @@
     },
     "deleteConfirm": "Are you sure you want to delete this document?",
     "lastUpdated": "Last updated"
+  },
+  "admin": {
+    "title": "Admin Console",
+    "subtitle": "Manage contract templates and categories",
+    "templateList": "Templates",
+    "editTemplate": "Edit",
+    "templateInfo": "Template Info",
+    "templateName": "Template Name",
+    "templateDescription": "Template Description",
+    "definition": "Template Definition (JSON)",
+    "slug": "Slug",
+    "category": "Category",
+    "version": "Version",
+    "status": "Status",
+    "name": "Name",
+    "updated": "Updated",
+    "actions": "Actions",
+    "sortOrder": "Sort Order",
+    "isActive": "Active",
+    "active": "Active",
+    "inactive": "Inactive",
+    "templates": "templates",
+    "noTemplates": "No templates in this category",
+    "fetchError": "Failed to load templates",
+    "saveError": "Failed to save changes",
+    "saveSuccess": "Template saved successfully",
+    "deleteConfirm": "Are you sure you want to delete this template?",
+    "deleteError": "Failed to delete template",
+    "invalidJson": "Invalid JSON format. Please check the definition.",
+    "loginRequired": "You must be logged in to access the admin console.",
+    "goToLogin": "Go to Login"
   },
   "footer": {
     "rights": "All rights reserved",

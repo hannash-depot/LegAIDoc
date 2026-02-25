@@ -28,7 +28,12 @@ export function Navbar() {
   const navLinks = [
     { href: "/" as const, label: t("home") },
     { href: "/templates" as const, label: t("templates") },
-    ...(session ? [{ href: "/dashboard" as const, label: t("dashboard") }] : []),
+    ...(session
+      ? [
+          { href: "/dashboard" as const, label: t("dashboard") },
+          { href: "/admin" as const, label: t("admin") },
+        ]
+      : []),
   ];
 
   const handleLogout = async () => {

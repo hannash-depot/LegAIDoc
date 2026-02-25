@@ -32,7 +32,8 @@
     "register": "التسجيل",
     "logout": "تسجيل الخروج",
     "profile": "الملف الشخصي",
-    "about": "حول"
+    "about": "حول",
+    "admin": "إدارة"
   },
   "home": {
     "hero": {
@@ -148,6 +149,37 @@
     },
     "deleteConfirm": "هل أنت متأكد أنك تريد حذف هذه الوثيقة؟",
     "lastUpdated": "آخر تحديث"
+  },
+  "admin": {
+    "title": "لوحة الإدارة",
+    "subtitle": "إدارة قوالب العقود والفئات",
+    "templateList": "القوالب",
+    "editTemplate": "تعديل",
+    "templateInfo": "معلومات القالب",
+    "templateName": "اسم القالب",
+    "templateDescription": "وصف القالب",
+    "definition": "تعريف القالب (JSON)",
+    "slug": "المعرّف (slug)",
+    "category": "الفئة",
+    "version": "الإصدار",
+    "status": "الحالة",
+    "name": "الاسم",
+    "updated": "تم التحديث",
+    "actions": "الإجراءات",
+    "sortOrder": "ترتيب الفرز",
+    "isActive": "نشط",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "templates": "قوالب",
+    "noTemplates": "لا توجد قوالب في هذه الفئة",
+    "fetchError": "فشل في تحميل القوالب",
+    "saveError": "فشل في حفظ التغييرات",
+    "saveSuccess": "تم حفظ القالب بنجاح",
+    "deleteConfirm": "هل أنت متأكد أنك تريد حذف هذا القالب؟",
+    "deleteError": "فشل في حذف القالب",
+    "invalidJson": "تنسيق JSON غير صالح. يرجى التحقق من التعريف.",
+    "loginRequired": "يجب تسجيل الدخول للوصول إلى لوحة الإدارة.",
+    "goToLogin": "تسجيل الدخول"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة",

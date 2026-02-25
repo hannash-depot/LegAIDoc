@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
   const t = useTranslations("auth.login");
+  const tc = useTranslations("common");
   const router = useRouter();
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get("next") || "/dashboard";
@@ -95,7 +96,7 @@ export default function LoginPage() {
 
       <div className="flex items-center gap-4 mb-6">
         <hr className="flex-1 border-border" />
-        <span className="text-sm text-text-muted">{useTranslations("common")("or")}</span>
+        <span className="text-sm text-text-muted">{tc("or")}</span>
         <hr className="flex-1 border-border" />
       </div>
 
@@ -145,7 +146,7 @@ export default function LoginPage() {
           disabled={loading}
           className="w-full py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50"
         >
-          {loading ? useTranslations("common")("loading") : t("submit")}
+          {loading ? tc("loading") : t("submit")}
         </button>
       </form>
 

@@ -24,6 +24,7 @@ interface Document {
 
 export default function DashboardPage() {
   const t = useTranslations("dashboard");
+  const tc = useTranslations("common");
   const { data: session, status } = useSession();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
@@ -86,7 +87,7 @@ export default function DashboardPage() {
           onClick={fetchDocuments}
           className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark"
         >
-          {useTranslations("common")("retry")}
+          {tc("retry")}
         </button>
       </div>
     );
