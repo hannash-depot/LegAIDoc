@@ -20,7 +20,7 @@ export async function requireAdmin() {
     }
 
     return { error: null, user: { id: session.user.id, isAdmin: true } };
-  } catch {
+  } catch (e) {
     // isAdmin column may not exist yet -- fall back to forbidden
     return { error: NextResponse.json({ error: "Forbidden" }, { status: 403 }), user: null };
   }
