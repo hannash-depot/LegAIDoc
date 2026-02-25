@@ -9,14 +9,19 @@ export async function requireAdmin() {
     return { error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }), user: null };
   }
 
-  const user = await db.user.findUnique({
-    where: { id: session.user.id },
-    select: { id: true, isAdmin: true },
-  });
+  try {
+    const rows = await db.$queryRawUnsafe<{ isAdmin: boolean }[]>(
+      `SELECT "isAdmin" FROM "users" WHERE id = $1`,
+      session.user.id
+    );
 
-  if (!user?.isAdmin) {
+    if (!rows[0]?.isAdmin) {
+      return { error: NextResponse.json({ error: "Forbidden" }, { status: 403 }), user: null };
+    }
+
+    return { error: null, user: { id: session.user.id, isAdmin: true } };
+  } catch {
+    // isAdmin column may not exist yet -- fall back to forbidden
     return { error: NextResponse.json({ error: "Forbidden" }, { status: 403 }), user: null };
   }
-
-  return { error: null, user };
 }

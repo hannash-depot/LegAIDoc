@@ -5,7 +5,16 @@ const ADMIN_EMAIL = "hanna.sh@gmail.com";
 
 export async function GET() {
   try {
-    const adminCount = await db.user.count({ where: { isAdmin: true } });
+    // Add isAdmin column if it doesn't exist yet
+    await db.$executeRawUnsafe(`
+      ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "isAdmin" BOOLEAN NOT NULL DEFAULT false
+    `);
+
+    // Check if an admin already exists
+    const admins = await db.$queryRawUnsafe<{ count: bigint }[]>(
+      `SELECT COUNT(*) as count FROM "users" WHERE "isAdmin" = true`
+    );
+    const adminCount = Number(admins[0]?.count ?? 0);
 
     if (adminCount > 0) {
       return NextResponse.json(
@@ -14,19 +23,23 @@ export async function GET() {
       );
     }
 
-    const user = await db.user.findUnique({ where: { email: ADMIN_EMAIL } });
+    // Find and promote the user
+    const users = await db.$queryRawUnsafe<{ id: string; email: string }[]>(
+      `SELECT id, email FROM "users" WHERE email = $1`,
+      ADMIN_EMAIL
+    );
 
-    if (!user) {
+    if (users.length === 0) {
       return NextResponse.json(
         { error: `User not found: ${ADMIN_EMAIL}` },
         { status: 404 }
       );
     }
 
-    await db.user.update({
-      where: { email: ADMIN_EMAIL },
-      data: { isAdmin: true },
-    });
+    await db.$executeRawUnsafe(
+      `UPDATE "users" SET "isAdmin" = true WHERE email = $1`,
+      ADMIN_EMAIL
+    );
 
     return NextResponse.json({
       success: true,
