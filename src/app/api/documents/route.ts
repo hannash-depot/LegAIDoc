@@ -17,8 +17,12 @@ export async function GET(request: Request) {
 
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
-  const page = parseInt(searchParams.get("page") ?? "1");
-  const limit = parseInt(searchParams.get("limit") ?? "20");
+  const parsedPage = parseInt(searchParams.get("page") ?? "1", 10);
+  const parsedLimit = parseInt(searchParams.get("limit") ?? "20", 10);
+  
+  // Validate pagination params - fallback to defaults if invalid
+  const page = isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
+  const limit = isNaN(parsedLimit) || parsedLimit < 1 || parsedLimit > 100 ? 20 : parsedLimit;
 
   try {
     const where: Record<string, unknown> = { userId: session.user.id };

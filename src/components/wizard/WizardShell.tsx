@@ -19,7 +19,10 @@ export function WizardShell() {
   const t = useTranslations("wizard");
   const router = useRouter();
 
-  const currentStep = definition.steps[progress.currentStep];
+  // Safely access current step with bounds checking
+  const currentStep = progress.currentStep >= 0 && progress.currentStep < definition.steps.length
+    ? definition.steps[progress.currentStep]
+    : null;
 
   const handleNext = useCallback(() => {
     if (!currentStep) return;

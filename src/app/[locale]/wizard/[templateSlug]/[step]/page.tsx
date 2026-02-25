@@ -50,7 +50,15 @@ function WizardStepContent({
 
         const doc = await res.json();
         const { step } = await params;
-        const stepIndex = parseInt(step);
+        const stepIndex = parseInt(step, 10);
+        
+        // Validate step index is a valid number and within bounds
+        const definition = doc.template.definition as TemplateDefinition;
+        if (isNaN(stepIndex) || stepIndex < 0 || stepIndex >= definition.steps.length) {
+          setError("Invalid step");
+          setLoading(false);
+          return;
+        }
 
         setDocData({
           id: doc.id,
