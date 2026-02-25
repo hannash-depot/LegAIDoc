@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { isAdmin } from "@/lib/admin";
 import { Navbar } from "@/components/layout/Navbar";
-import Link from "next/link";
 
 export default async function AdminLayout({
   children,
@@ -14,22 +13,38 @@ export default async function AdminLayout({
   const session = await auth();
   const { locale } = await params;
 
-  if (!isAdmin(session?.user?.email)) {
-    redirect(`/${locale}/dashboard`);
+  // Not logged in → send to login
+  if (!session?.user) {
+    redirect(`/${locale}/login`);
+  }
+
+  // Logged in but not admin → 403 page
+  if (!isAdmin(session.user.email)) {
+    return (
+      <>
+        <Navbar />
+        <div className="flex-1 flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-text mb-2">403</h1>
+            <p className="text-text-secondary mb-6">
+              You don&apos;t have permission to access the admin area.
+            </p>
+            <a
+              href={`/${locale}/dashboard`}
+              className="text-primary hover:underline"
+            >
+              Go to Dashboard
+            </a>
+          </div>
+        </div>
+      </>
+    );
   }
 
   return (
     <>
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8 flex-1">
-        {/* Admin breadcrumb header */}
-        <div className="mb-6 flex items-center gap-2 text-sm text-text-secondary">
-          <Link href={`/${locale}/admin`} className="hover:text-text transition-colors font-medium">
-            Admin
-          </Link>
-          <span>/</span>
-          <span>Templates</span>
-        </div>
         {children}
       </div>
     </>
