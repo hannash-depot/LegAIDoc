@@ -22,7 +22,8 @@
     "error": "שגיאה",
     "success": "הצלחה",
     "required": "שדה חובה",
-    "retry": "נסה שנית"
+    "retry": "נסה שנית",
+    "backToDashboard": "חזור ללוח הבקרה"
   },
   "nav": {
     "home": "דף הבית",
@@ -193,6 +194,8 @@
     "invalidJson": "פורמט JSON לא תקין. אנא בדוק את ההגדרה.",
     "loginRequired": "יש להתחבר כדי לגשת לממשק הניהול.",
     "goToLogin": "כניסה",
+    "forbidden": "הגישה נדחתה",
+    "forbiddenMessage": "אין לך הרשאות מנהל לגשת לעמוד זה.",
     "editor": {
       "wizardSteps": "שלבי האשף",
       "documentBody": "גוף המסמך",

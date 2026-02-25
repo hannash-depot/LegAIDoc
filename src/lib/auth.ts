@@ -63,20 +63,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           name: user.name,
           email: user.email,
           image: user.image,
+          isAdmin: user.isAdmin,
         };
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
+        token.isAdmin = user.isAdmin ?? false;
+      }
+      if (trigger === "update" && token.id) {
+        const dbUser = await db.user.findUnique({
+          where: { id: token.id },
+          select: { isAdmin: true },
+        });
+        if (dbUser) token.isAdmin = dbUser.isAdmin;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user && token.id) {
-        session.user.id = token.id as string;
+        session.user.id = token.id;
+        session.user.isAdmin = token.isAdmin;
       }
       return session;
     },

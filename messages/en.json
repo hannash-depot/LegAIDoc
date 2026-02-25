@@ -22,7 +22,8 @@
     "error": "Error",
     "success": "Success",
     "required": "Required field",
-    "retry": "Try Again"
+    "retry": "Try Again",
+    "backToDashboard": "Back to Dashboard"
   },
   "nav": {
     "home": "Home",
@@ -193,6 +194,8 @@
     "invalidJson": "Invalid JSON format. Please check the definition.",
     "loginRequired": "You must be logged in to access the admin console.",
     "goToLogin": "Go to Login",
+    "forbidden": "Access Denied",
+    "forbiddenMessage": "You do not have admin privileges to access this page.",
     "editor": {
       "wizardSteps": "Wizard Steps",
       "documentBody": "Document Body",

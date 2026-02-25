@@ -48,7 +48,8 @@ export default function AdminPage() {
   const t = useTranslations("admin");
   const tc = useTranslations("common");
   const locale = useLocale();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  const isAdmin = session?.user?.isAdmin;
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
@@ -196,6 +197,21 @@ export default function AdminPage() {
           className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
         >
           {t("goToLogin")}
+        </Link>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="text-center py-16">
+        <p className="text-xl font-semibold text-text mb-2">{t("forbidden")}</p>
+        <p className="text-text-secondary mb-4">{t("forbiddenMessage")}</p>
+        <Link
+          href="/dashboard"
+          className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"
+        >
+          {tc("backToDashboard")}
         </Link>
       </div>
     );
