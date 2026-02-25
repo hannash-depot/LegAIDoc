@@ -9,7 +9,10 @@ export function renderContractHtml(
 ): string {
   const direction = getDirection(locale);
   const sections = definition.documentBody[locale] ?? definition.documentBody.he ?? [];
-  const contractHtml = renderDocument(sections, data);
+  const contractHtml = renderDocument(sections, data, "______", {
+    definition,
+    locale,
+  });
 
   return `<!DOCTYPE html>
 <html lang="${locale}" dir="${direction}">
@@ -66,6 +69,17 @@ export function renderContractHtml(
       padding: 2px 6px;
       border-radius: 2px;
       color: #92400e;
+    }
+
+    .contract-disclaimer {
+      font-size: 11px;
+      color: #6b7280;
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 12px;
+      background: #f9fafb;
+      border-left: 3px solid #9ca3af;
+      border-radius: 0 4px 4px 0;
     }
 
     @page {

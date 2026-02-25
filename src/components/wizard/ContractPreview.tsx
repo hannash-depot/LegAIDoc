@@ -13,8 +13,11 @@ export function ContractPreview() {
   const html = useMemo(() => {
     const sections = definition.documentBody[loc];
     if (!sections) return "";
-    return renderDocument(sections, data);
-  }, [definition.documentBody, data, loc]);
+    return renderDocument(sections, data, "______", {
+      definition,
+      locale: loc,
+    });
+  }, [definition, data, loc]);
 
   return (
     <div
@@ -53,6 +56,16 @@ export function ContractPreview() {
         }
         .contract-preview :global(table) {
           margin-top: 2rem;
+        }
+        .contract-preview :global(.contract-disclaimer) {
+          font-size: 0.75rem;
+          color: #6b7280;
+          font-style: italic;
+          margin-bottom: 1rem;
+          padding: 0.75rem;
+          background: #f9fafb;
+          border-left: 3px solid #9ca3af;
+          border-radius: 0 4px 4px 0;
         }
       `}</style>
     </div>

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
-const ADMIN_EMAIL = "hannashi@gmail.com";
+const ADMIN_EMAILS = ["hannashi@gmail.com", "hanna.sh@gmail.com"];
 
 export async function GET() {
   try {
@@ -13,27 +13,31 @@ export async function GET() {
     // Reset any previous wrong admin grants, then set the correct one
     await db.$executeRawUnsafe(`UPDATE "users" SET "isAdmin" = false WHERE "isAdmin" = true`);
 
-    // Find and promote the user
-    const users = await db.$queryRawUnsafe<{ id: string; email: string }[]>(
-      `SELECT id, email FROM "users" WHERE email = $1`,
-      ADMIN_EMAIL
-    );
+    // Find and promote all allowed admins
+    const users = await db.user.findMany({
+      where: { email: { in: ADMIN_EMAILS } },
+      select: { id: true, email: true },
+    });
 
     if (users.length === 0) {
       return NextResponse.json(
-        { error: `User not found: ${ADMIN_EMAIL}` },
+        { error: `No matching users found for: ${ADMIN_EMAILS.join(", ")}` },
         { status: 404 }
       );
     }
 
-    await db.$executeRawUnsafe(
-      `UPDATE "users" SET "isAdmin" = true WHERE email = $1`,
-      ADMIN_EMAIL
-    );
+    await db.user.updateMany({
+      where: { email: { in: ADMIN_EMAILS } },
+      data: { isAdmin: true },
+    });
+
+    const foundEmails = users.map((u) => u.email);
+    const missingEmails = ADMIN_EMAILS.filter((email) => !foundEmails.includes(email));
 
     return NextResponse.json({
       success: true,
-      message: `Admin access granted to ${ADMIN_EMAIL}`,
+      message: `Admin access granted to ${foundEmails.join(", ")}`,
+      missingEmails,
     });
   } catch (e) {
     return NextResponse.json(

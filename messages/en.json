@@ -36,6 +36,24 @@
     "about": "About",
     "admin": "Admin"
   },
+  "profile": {
+    "title": "Profile",
+    "email": "Email",
+    "editName": "Edit Name",
+    "name": "Full Name",
+    "save": "Save Name",
+    "cancel": "Cancel",
+    "nameUpdated": "Name updated successfully",
+    "changePassword": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "submit": "Change Password",
+    "passwordChanged": "Password changed successfully",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordMismatch": "Passwords do not match",
+    "oauthOnly": "You signed in with Google or Facebook. Use their settings to change your password."
+  },
   "home": {
     "hero": {
       "title": "Create Legal Documents with Ease",

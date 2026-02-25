@@ -64,8 +64,12 @@ export default function DocumentViewPage({
 
   const definition = doc.template.definition;
   const sections = definition.documentBody[doc.locale as Locale] ?? definition.documentBody.he;
-  const html = renderDocument(sections, doc.data);
+  const html = renderDocument(sections, doc.data, "______", {
+    definition,
+    locale: doc.locale as Locale,
+  });
   const direction = getDirection(doc.locale as Locale);
+  const localeMap: Record<string, string> = { he: "he-IL", ar: "ar-SA", en: "en-US", ru: "ru-RU" };
 
   async function handleDownload() {
     if (!doc) return;
@@ -132,7 +136,7 @@ export default function DocumentViewPage({
           {t(`status.${doc.status}` as "status.DRAFT")}
         </span>
         <span className="text-sm text-text-muted">
-          {t("lastUpdated")}: {new Date(doc.updatedAt).toLocaleDateString(locale)}
+          {t("lastUpdated")}: {new Date(doc.updatedAt).toLocaleDateString(localeMap[locale] || "en-US")}
         </span>
       </div>
 
