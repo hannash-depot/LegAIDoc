@@ -1,6 +1,13 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend: Resend | null = null;
+
+function getResend() {
+  if (!resend) {
+    resend = new Resend(process.env.RESEND_API_KEY || "");
+  }
+  return resend;
+}
 
 const FROM_EMAIL = process.env.EMAIL_FROM || "LegAIDoc <noreply@legaidoc.com>";
 
@@ -59,7 +66,7 @@ export async function sendPasswordResetEmail(
     `,
   };
 
-  const { error } = await resend.emails.send({
+  const { error } = await getResend().emails.send({
     from: FROM_EMAIL,
     to: email,
     subject: subjects[locale] || subjects.en,
