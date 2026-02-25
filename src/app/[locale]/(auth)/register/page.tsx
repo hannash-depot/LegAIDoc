@@ -4,17 +4,57 @@ import { useTranslations } from "next-intl";
 import { Link, useRouter } from "@/lib/i18n/navigation";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useLocale } from "next-intl";
 
 export default function RegisterPage() {
   const t = useTranslations("auth.register");
   const tCommon = useTranslations("common");
   const router = useRouter();
+  const locale = useLocale();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [acceptedLegal, setAcceptedLegal] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const legalCopy = {
+    en: {
+      start: "I agree to the",
+      and: "and",
+      terms: "Terms of Service",
+      privacy: "Privacy Policy",
+      error: "You must accept the Terms and Privacy Policy to continue.",
+    },
+    he: {
+      start: "אני מסכים/ה ל",
+      and: "ו",
+      terms: "תנאי השימוש",
+      privacy: "מדיניות הפרטיות",
+      error: "יש לאשר את תנאי השימוש ומדיניות הפרטיות כדי להמשיך.",
+    },
+    ar: {
+      start: "أوافق على",
+      and: "و",
+      terms: "شروط الاستخدام",
+      privacy: "سياسة الخصوصية",
+      error: "يجب الموافقة على الشروط وسياسة الخصوصية للمتابعة.",
+    },
+    ru: {
+      start: "Я принимаю",
+      and: "и",
+      terms: "Условия использования",
+      privacy: "Политику конфиденциальности",
+      error: "Чтобы продолжить, нужно принять Условия и Политику конфиденциальности.",
+    },
+  }[locale] ?? {
+    start: "I agree to the",
+    and: "and",
+    terms: "Terms of Service",
+    privacy: "Privacy Policy",
+    error: "You must accept the Terms and Privacy Policy to continue.",
+  };
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -25,13 +65,24 @@ export default function RegisterPage() {
       return;
     }
 
+    if (!acceptedLegal) {
+      setError(legalCopy.error);
+      return;
+    }
+
     setLoading(true);
     try {
       // Register the user
       const response = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          acceptedTerms: acceptedLegal,
+          acceptedPrivacy: acceptedLegal,
+        }),
       });
 
       const data = await response.json();
@@ -122,6 +173,27 @@ export default function RegisterPage() {
             className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
           />
         </div>
+
+        <label className="flex items-start gap-3 text-sm text-text-secondary">
+          <input
+            type="checkbox"
+            checked={acceptedLegal}
+            onChange={(e) => setAcceptedLegal(e.target.checked)}
+            className="mt-0.5 h-4 w-4 rounded border-border text-primary focus:ring-primary/20"
+            required
+          />
+          <span>
+            {legalCopy.start}{" "}
+            <Link href="/terms" className="text-primary hover:underline">
+              {legalCopy.terms}
+            </Link>{" "}
+            {legalCopy.and}{" "}
+            <Link href="/privacy" className="text-primary hover:underline">
+              {legalCopy.privacy}
+            </Link>
+            .
+          </span>
+        </label>
 
         <button
           type="submit"

@@ -1,9 +1,41 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import {
+  buildRequestContext,
+  logApiError,
+  logApiWarn,
+  logApiInfo,
+} from "@/lib/monitoring";
 
 const ADMIN_EMAILS = ["hannashi@gmail.com", "hanna.sh@gmail.com"];
 
-export async function GET() {
+export async function GET(request: Request) {
+  const requestContext = buildRequestContext(request, "api.setup_admin");
+  const token = request.headers.get("x-setup-admin-token");
+  const expectedToken = process.env.SETUP_ADMIN_TOKEN;
+
+  const limit = consumeRateLimit({
+    key: `setup-admin:ip:${requestContext.ip}`,
+    limit: 5,
+    windowMs: 60 * 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("setup_admin.rate_limited", {
+      ...requestContext,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
+  }
+
+  if (!expectedToken || token !== expectedToken) {
+    logApiWarn("setup_admin.forbidden", requestContext);
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
     // Add isAdmin column if it doesn't exist yet
     await db.$executeRawUnsafe(`
@@ -34,14 +66,20 @@ export async function GET() {
     const foundEmails = users.map((u) => u.email);
     const missingEmails = ADMIN_EMAILS.filter((email) => !foundEmails.includes(email));
 
+    logApiInfo("setup_admin.success", {
+      ...requestContext,
+      adminEmailsGranted: foundEmails,
+    });
+
     return NextResponse.json({
       success: true,
       message: `Admin access granted to ${foundEmails.join(", ")}`,
       missingEmails,
     });
-  } catch (e) {
+  } catch (error) {
+    await logApiError("setup_admin.failed", error, requestContext);
     return NextResponse.json(
-      { error: String(e) },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

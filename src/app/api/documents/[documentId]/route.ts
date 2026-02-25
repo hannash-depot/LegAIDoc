@@ -1,14 +1,39 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import {
+  buildRequestContext,
+  logApiError,
+  logApiWarn,
+} from "@/lib/monitoring";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ documentId: string }> }
 ) {
+  const requestContext = buildRequestContext(request, "api.documents.get");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.get.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:get:user:${session.user.id}`,
+    limit: 180,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.get.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
   }
 
   try {
@@ -33,7 +58,11 @@ export async function GET(
     }
 
     return NextResponse.json(document);
-  } catch {
+  } catch (error) {
+    await logApiError("documents.get.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to fetch document" },
       { status: 500 }
@@ -45,9 +74,25 @@ export async function PUT(
   request: Request,
   { params }: { params: Promise<{ documentId: string }> }
 ) {
+  const requestContext = buildRequestContext(request, "api.documents.update");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.update.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:update:user:${session.user.id}`,
+    limit: 90,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.update.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
   }
 
   try {
@@ -91,7 +136,11 @@ export async function PUT(
     });
 
     return NextResponse.json(updated);
-  } catch {
+  } catch (error) {
+    await logApiError("documents.update.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to update document" },
       { status: 500 }
@@ -100,12 +149,28 @@ export async function PUT(
 }
 
 export async function DELETE(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ documentId: string }> }
 ) {
+  const requestContext = buildRequestContext(request, "api.documents.delete");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.delete.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:delete:user:${session.user.id}`,
+    limit: 20,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.delete.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
   }
 
   try {
@@ -125,7 +190,11 @@ export async function DELETE(
     await db.document.delete({ where: { id: documentId } });
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (error) {
+    await logApiError("documents.delete.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to delete document" },
       { status: 500 }

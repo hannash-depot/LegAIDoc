@@ -9,6 +9,7 @@ A modern web application for creating professional legal contracts with AI-power
 ## ✨ Features
 
 - 🔐 **Secure Authentication** - Email/password and OAuth (Google, Facebook)
+- 🛡️ **Abuse Protection** - Built-in rate limiting on sensitive auth/document APIs
 - 🌍 **Multi-language Support** - Hebrew, Arabic, English, Russian
 - 📝 **Template-based Contracts** - Pre-built legal document templates
 - 🎨 **Wizard Interface** - Step-by-step guided document creation
@@ -16,6 +17,7 @@ A modern web application for creating professional legal contracts with AI-power
 - 📑 **PDF Generation** - Export documents as professional PDFs
 - 🎯 **Real-time Preview** - See your document as you fill it
 - 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- ⚖️ **Legal Pages** - Public Terms of Service and Privacy Policy pages
 
 ## 🚀 Quick Start
 
@@ -128,12 +130,17 @@ DATABASE_URL="postgresql://username:password@localhost:5432/legaidoc?schema=publ
 # NextAuth
 NEXTAUTH_SECRET="your-secure-secret-key-min-32-chars"
 NEXTAUTH_URL="http://localhost:3000"
+NEXT_PUBLIC_TERMS_VERSION="2026-02-25"
+NEXT_PUBLIC_PRIVACY_VERSION="2026-02-25"
 
 # OAuth Providers (Optional)
 GOOGLE_CLIENT_ID=""
 GOOGLE_CLIENT_SECRET=""
 FACEBOOK_CLIENT_ID=""
 FACEBOOK_CLIENT_SECRET=""
+
+# Monitoring (Optional)
+ALERT_WEBHOOK_URL=""
 ```
 
 Generate a secure `NEXTAUTH_SECRET`:

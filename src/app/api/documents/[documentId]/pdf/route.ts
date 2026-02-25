@@ -4,17 +4,45 @@ import { db } from "@/lib/db";
 import { generatePdf } from "@/lib/pdf/generator";
 import type { TemplateDefinition } from "@/types/template";
 import type { Locale } from "@/lib/i18n/routing";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import {
+  buildRequestContext,
+  logApiError,
+  logApiWarn,
+} from "@/lib/monitoring";
 
 export const maxDuration = 60;
 export const dynamic = "force-dynamic";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ documentId: string }> }
 ) {
+  const requestContext = buildRequestContext(request, "api.documents.pdf");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.pdf.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:pdf:user:${session.user.id}`,
+    limit: 10,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.pdf.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(
+      limit,
+      "Too many PDF requests. Please try again in a moment."
+    );
   }
 
   try {
@@ -57,7 +85,10 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error("PDF generation error:", error);
+    await logApiError("documents.pdf.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to generate PDF" },
       { status: 500 }

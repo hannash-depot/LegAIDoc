@@ -5,6 +5,8 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcryptjs";
 import { db } from "./db";
+import { consumeRateLimit, hashIdentifier } from "@/lib/security/rate-limit";
+import { logApiWarn } from "@/lib/monitoring";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(db),
@@ -36,13 +38,43 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         if (!credentials?.email || !credentials?.password) {
           return null;
         }
 
-        const email = credentials.email as string;
+        const email = (credentials.email as string).trim().toLowerCase();
         const password = credentials.password as string;
+        const ip =
+          request?.headers?.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+          request?.headers?.get("x-real-ip") ??
+          "unknown";
+
+        const ipLimit = consumeRateLimit({
+          key: `auth:signin:ip:${ip}`,
+          limit: 20,
+          windowMs: 15 * 60 * 1000,
+        });
+        if (!ipLimit.success) {
+          logApiWarn("auth.signin.rate_limited_ip", {
+            route: "auth.credentials.authorize",
+            ip,
+          });
+          return null;
+        }
+
+        const emailLimit = consumeRateLimit({
+          key: `auth:signin:email:${hashIdentifier(email)}`,
+          limit: 10,
+          windowMs: 15 * 60 * 1000,
+        });
+        if (!emailLimit.success) {
+          logApiWarn("auth.signin.rate_limited_email", {
+            route: "auth.credentials.authorize",
+            ip,
+          });
+          return null;
+        }
 
         const user = await db.user.findUnique({
           where: { email },

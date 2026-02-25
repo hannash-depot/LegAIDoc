@@ -3,6 +3,11 @@ import bcrypt from "bcryptjs";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { z } from "zod";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import { buildRequestContext, logApiError, logApiWarn } from "@/lib/monitoring";
 
 const changePasswordSchema = z.object({
   currentPassword: z.string().min(1, "Current password is required"),
@@ -14,9 +19,31 @@ const changePasswordSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  const requestContext = buildRequestContext(
+    request,
+    "api.user.change_password"
+  );
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("user.change_password.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `user:change-password:${session.user.id}`,
+    limit: 10,
+    windowMs: 60 * 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("user.change_password.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(
+      limit,
+      "Too many password change attempts. Please try again later."
+    );
   }
 
   try {
@@ -58,7 +85,10 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
-    console.error("Change password error:", error);
+    await logApiError("user.change_password.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to change password" },
       { status: 500 }

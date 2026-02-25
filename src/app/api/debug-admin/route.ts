@@ -1,10 +1,43 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import {
+  buildRequestContext,
+  logApiError,
+  logApiWarn,
+} from "@/lib/monitoring";
 
-export async function GET() {
+export async function GET(request: Request) {
+  const requestContext = buildRequestContext(request, "api.debug_admin");
+
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  }
+
   try {
     const session = await auth();
+    if (!session?.user?.id) {
+      logApiWarn("debug_admin.unauthorized", requestContext);
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const limit = consumeRateLimit({
+      key: `debug-admin:user:${session.user.id}`,
+      limit: 20,
+      windowMs: 60 * 1000,
+    });
+    if (!limit.success) {
+      logApiWarn("debug_admin.rate_limited", {
+        ...requestContext,
+        userId: session.user.id,
+        retryAfterSeconds: limit.retryAfterSeconds,
+      });
+      return rateLimitExceededResponse(limit);
+    }
 
     const sessionInfo = {
       hasSession: !!session,
@@ -46,7 +79,8 @@ export async function GET() {
       database: dbInfo,
       columnExists,
     });
-  } catch (e) {
-    return NextResponse.json({ error: String(e) }, { status: 500 });
+  } catch (error) {
+    await logApiError("debug_admin.failed", error, requestContext);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

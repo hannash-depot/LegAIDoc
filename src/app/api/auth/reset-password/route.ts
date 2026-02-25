@@ -1,22 +1,58 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { db } from "@/lib/db";
+import { z } from "zod";
+import {
+  consumeRateLimit,
+  hashIdentifier,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import { buildRequestContext, logApiError, logApiWarn } from "@/lib/monitoring";
+
+const resetPasswordSchema = z.object({
+  token: z.string().min(1),
+  email: z
+    .string()
+    .email()
+    .transform((value) => value.trim().toLowerCase()),
+  password: z.string().min(8).max(100),
+});
 
 export async function POST(request: Request) {
+  const requestContext = buildRequestContext(request, "api.auth.reset_password");
+  const ipLimit = consumeRateLimit({
+    key: `auth:reset:ip:${requestContext.ip}`,
+    limit: 10,
+    windowMs: 60 * 60 * 1000,
+  });
+  if (!ipLimit.success) {
+    logApiWarn("auth.reset_password.rate_limited_ip", {
+      ...requestContext,
+      retryAfterSeconds: ipLimit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(
+      ipLimit,
+      "Too many password reset attempts. Please try again later."
+    );
+  }
+
   try {
-    const { token, email, password } = await request.json();
+    const body = await request.json();
+    const { token, email, password } = resetPasswordSchema.parse(body);
 
-    if (!token || !email || !password) {
-      return NextResponse.json(
-        { error: "Token, email, and password are required" },
-        { status: 400 }
-      );
-    }
-
-    if (typeof password !== "string" || password.length < 8) {
-      return NextResponse.json(
-        { error: "Password must be at least 8 characters" },
-        { status: 400 }
+    const tokenLimit = consumeRateLimit({
+      key: `auth:reset:token:${hashIdentifier(token)}`,
+      limit: 5,
+      windowMs: 60 * 60 * 1000,
+    });
+    if (!tokenLimit.success) {
+      logApiWarn("auth.reset_password.rate_limited_token", {
+        ...requestContext,
+        retryAfterSeconds: tokenLimit.retryAfterSeconds,
+      });
+      return rateLimitExceededResponse(
+        tokenLimit,
+        "Too many attempts for this reset link. Please request a new one."
       );
     }
 
@@ -75,7 +111,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Reset password error:", error);
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: "Invalid input", details: error.issues },
+        { status: 400 }
+      );
+    }
+    await logApiError("auth.reset_password.failed", error, requestContext);
     return NextResponse.json(
       { error: "Failed to reset password" },
       { status: 500 }

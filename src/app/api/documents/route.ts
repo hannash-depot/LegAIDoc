@@ -3,6 +3,15 @@ import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { z } from "zod";
 import type { LocalizedString } from "@/types/template";
+import {
+  consumeRateLimit,
+  rateLimitExceededResponse,
+} from "@/lib/security/rate-limit";
+import {
+  buildRequestContext,
+  logApiError,
+  logApiWarn,
+} from "@/lib/monitoring";
 
 const createSchema = z.object({
   templateSlug: z.string().min(1),
@@ -10,9 +19,25 @@ const createSchema = z.object({
 });
 
 export async function GET(request: Request) {
+  const requestContext = buildRequestContext(request, "api.documents.list");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.list.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:list:user:${session.user.id}`,
+    limit: 120,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.list.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
   }
 
   const { searchParams } = new URL(request.url);
@@ -49,7 +74,11 @@ export async function GET(request: Request) {
       documents,
       pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     });
-  } catch {
+  } catch (error) {
+    await logApiError("documents.list.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to fetch documents" },
       { status: 500 }
@@ -58,9 +87,25 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const requestContext = buildRequestContext(request, "api.documents.create");
   const session = await auth();
   if (!session?.user?.id) {
+    logApiWarn("documents.create.unauthorized", requestContext);
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const limit = consumeRateLimit({
+    key: `documents:create:user:${session.user.id}`,
+    limit: 30,
+    windowMs: 60 * 1000,
+  });
+  if (!limit.success) {
+    logApiWarn("documents.create.rate_limited", {
+      ...requestContext,
+      userId: session.user.id,
+      retryAfterSeconds: limit.retryAfterSeconds,
+    });
+    return rateLimitExceededResponse(limit);
   }
 
   try {
@@ -101,6 +146,10 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+    await logApiError("documents.create.failed", error, {
+      ...requestContext,
+      userId: session.user.id,
+    });
     return NextResponse.json(
       { error: "Failed to create document" },
       { status: 500 }
