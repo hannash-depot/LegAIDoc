@@ -152,8 +152,11 @@ Visit: `http://localhost:3000`
 3. **Error Handling**: Could be more robust with toast notifications
 4. **Loading States**: Could add skeleton loaders for better UX
 5. **Form Validation**: Client-side validation in wizard could be enhanced
-6. **Profile Page**: User profile page needs implementation (/profile route)
-7. **Forgot Password**: Password reset flow not implemented
+
+### ✅ Completed TODOs
+
+6. ~~**Profile Page**: User profile page needs implementation (/profile route)~~ - Implemented at `/src/app/[locale]/(dashboard)/profile/page.tsx`
+7. ~~**Forgot Password**: Password reset flow not implemented~~ - Implemented at `/src/app/api/auth/forgot-password/route.ts`
 
 ---
 
