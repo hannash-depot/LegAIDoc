@@ -26,18 +26,18 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const limit = consumeRateLimit({
+  const rateLimit = consumeRateLimit({
     key: `documents:list:user:${session.user.id}`,
     limit: 120,
     windowMs: 60 * 1000,
   });
-  if (!limit.success) {
+  if (!rateLimit.success) {
     logApiWarn("documents.list.rate_limited", {
       ...requestContext,
       userId: session.user.id,
-      retryAfterSeconds: limit.retryAfterSeconds,
+      retryAfterSeconds: rateLimit.retryAfterSeconds,
     });
-    return rateLimitExceededResponse(limit);
+    return rateLimitExceededResponse(rateLimit);
   }
 
   const { searchParams } = new URL(request.url);
@@ -47,7 +47,10 @@ export async function GET(request: Request) {
   
   // Validate pagination params - fallback to defaults if invalid
   const page = isNaN(parsedPage) || parsedPage < 1 ? 1 : parsedPage;
-  const limit = isNaN(parsedLimit) || parsedLimit < 1 || parsedLimit > 100 ? 20 : parsedLimit;
+  const pageLimit =
+    isNaN(parsedLimit) || parsedLimit < 1 || parsedLimit > 100
+      ? 20
+      : parsedLimit;
 
   try {
     const where: Record<string, unknown> = { userId: session.user.id };
@@ -59,8 +62,8 @@ export async function GET(request: Request) {
       db.document.findMany({
         where,
         orderBy: { updatedAt: "desc" },
-        skip: (page - 1) * limit,
-        take: limit,
+        skip: (page - 1) * pageLimit,
+        take: pageLimit,
         include: {
           template: {
             select: { slug: true, name: true, category: { select: { slug: true } } },
@@ -72,7 +75,12 @@ export async function GET(request: Request) {
 
     return NextResponse.json({
       documents,
-      pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        page,
+        limit: pageLimit,
+        total,
+        totalPages: Math.ceil(total / pageLimit),
+      },
     });
   } catch (error) {
     await logApiError("documents.list.failed", error, {
@@ -94,18 +102,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const limit = consumeRateLimit({
+  const rateLimit = consumeRateLimit({
     key: `documents:create:user:${session.user.id}`,
     limit: 30,
     windowMs: 60 * 1000,
   });
-  if (!limit.success) {
+  if (!rateLimit.success) {
     logApiWarn("documents.create.rate_limited", {
       ...requestContext,
       userId: session.user.id,
-      retryAfterSeconds: limit.retryAfterSeconds,
+      retryAfterSeconds: rateLimit.retryAfterSeconds,
     });
-    return rateLimitExceededResponse(limit);
+    return rateLimitExceededResponse(rateLimit);
   }
 
   try {

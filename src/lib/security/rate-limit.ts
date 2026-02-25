@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import crypto from "crypto";
 
 type RateLimitBucket = {
   count: number;
@@ -136,5 +135,10 @@ export function getClientIp(request: Request): string {
 }
 
 export function hashIdentifier(value: string): string {
-  return crypto.createHash("sha256").update(value).digest("hex");
+  // Fast non-cryptographic hash for in-memory keying only.
+  let hash = 5381;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash * 33) ^ value.charCodeAt(i);
+  }
+  return (hash >>> 0).toString(16);
 }
