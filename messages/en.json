@@ -153,5 +153,73 @@
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "categories": "Categories",
+      "templates": "Templates",
+      "backToSite": "Back to Site"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "totalTemplates": "Total Templates",
+      "activeTemplates": "Active Templates",
+      "totalCategories": "Categories",
+      "totalDocuments": "Documents Created"
+    },
+    "categories": {
+      "title": "Template Categories",
+      "new": "New Category",
+      "edit": "Edit Category",
+      "slug": "Slug",
+      "name": "Name",
+      "description": "Description",
+      "icon": "Icon",
+      "sortOrder": "Sort Order",
+      "templateCount": "Templates",
+      "deleteConfirm": "Are you sure you want to delete this category?"
+    },
+    "templates": {
+      "title": "Contract Templates",
+      "new": "New Template",
+      "edit": "Edit Template",
+      "metadata": "Metadata",
+      "wizardSteps": "Wizard Steps",
+      "documentSections": "Document Sections",
+      "preview": "Preview",
+      "versionHistory": "Version History",
+      "version": "Version",
+      "active": "Active",
+      "inactive": "Inactive",
+      "mandatory": "Mandatory",
+      "optional": "Optional",
+      "addSection": "Add Section",
+      "addSubsection": "Add Subsection",
+      "addStep": "Add Step",
+      "addField": "Add Field",
+      "addParameter": "Add Parameter",
+      "sectionTitle": "Section Title",
+      "sectionBody": "Section Body",
+      "condition": "Condition",
+      "parameters": "Parameters",
+      "noCondition": "Always included",
+      "toggleActive": "Toggle Active",
+      "duplicate": "Duplicate Template",
+      "deleteConfirm": "Are you sure you want to delete this template?",
+      "saveSuccess": "Template saved successfully",
+      "publishVersion": "Publish New Version",
+      "changelog": "What changed?",
+      "restoreVersion": "Restore This Version"
+    },
+    "common": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "actions": "Actions",
+      "status": "Status",
+      "created": "Created",
+      "updated": "Updated"
+    }
   }
 }

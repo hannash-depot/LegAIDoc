@@ -153,5 +153,73 @@
     "rights": "جميع الحقوق محفوظة",
     "privacy": "سياسة الخصوصية",
     "terms": "شروط الاستخدام"
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "لوحة التحكم",
+      "categories": "الفئات",
+      "templates": "القوالب",
+      "backToSite": "العودة للموقع"
+    },
+    "dashboard": {
+      "title": "لوحة تحكم المدير",
+      "totalTemplates": "إجمالي القوالب",
+      "activeTemplates": "القوالب النشطة",
+      "totalCategories": "الفئات",
+      "totalDocuments": "المستندات المنشأة"
+    },
+    "categories": {
+      "title": "فئات القوالب",
+      "new": "فئة جديدة",
+      "edit": "تعديل الفئة",
+      "slug": "المعرف",
+      "name": "الاسم",
+      "description": "الوصف",
+      "icon": "الأيقونة",
+      "sortOrder": "ترتيب الفرز",
+      "templateCount": "القوالب",
+      "deleteConfirm": "هل أنت متأكد من حذف هذه الفئة؟"
+    },
+    "templates": {
+      "title": "قوالب العقود",
+      "new": "قالب جديد",
+      "edit": "تعديل القالب",
+      "metadata": "البيانات الوصفية",
+      "wizardSteps": "خطوات المعالج",
+      "documentSections": "أقسام المستند",
+      "preview": "معاينة",
+      "versionHistory": "سجل الإصدارات",
+      "version": "الإصدار",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "mandatory": "إلزامي",
+      "optional": "اختياري",
+      "addSection": "إضافة قسم",
+      "addSubsection": "إضافة قسم فرعي",
+      "addStep": "إضافة خطوة",
+      "addField": "إضافة حقل",
+      "addParameter": "إضافة معامل",
+      "sectionTitle": "عنوان القسم",
+      "sectionBody": "محتوى القسم",
+      "condition": "الشرط",
+      "parameters": "المعاملات",
+      "noCondition": "مُضمّن دائماً",
+      "toggleActive": "تبديل الحالة",
+      "duplicate": "نسخ القالب",
+      "deleteConfirm": "هل أنت متأكد من حذف هذا القالب؟",
+      "saveSuccess": "تم حفظ القالب بنجاح",
+      "publishVersion": "نشر إصدار جديد",
+      "changelog": "ما الذي تغير؟",
+      "restoreVersion": "استعادة هذا الإصدار"
+    },
+    "common": {
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "delete": "حذف",
+      "actions": "إجراءات",
+      "status": "الحالة",
+      "created": "تاريخ الإنشاء",
+      "updated": "تاريخ التحديث"
+    }
   }
 }

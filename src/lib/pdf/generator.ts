@@ -18,7 +18,6 @@ export async function generatePdf(
 
     browser = await puppeteer.default.launch({
       args: chromium.default.args,
-      defaultViewport: chromium.default.defaultViewport,
       executablePath: await chromium.default.executablePath(
         "https://github.com/nicholasgasior/chromium/releases/download/v131.0.4/chromium-v131.0.4-pack.tar"
       ),

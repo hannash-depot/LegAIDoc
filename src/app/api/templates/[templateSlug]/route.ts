@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { compileDefinition, isEnhancedDefinition } from "@/lib/templates/compiler";
+import type { TemplateDefinition } from "@/types/template";
+import type { EnhancedTemplateDefinition } from "@/types/admin-template";
 
 export async function GET(
   _request: Request,
@@ -24,7 +27,19 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(template);
+    // Compile v2 definitions to v1 runtime format for the wizard/renderer
+    const definition = template.definition as unknown as
+      | EnhancedTemplateDefinition
+      | TemplateDefinition;
+
+    const compiledDefinition = isEnhancedDefinition(definition)
+      ? compileDefinition(definition)
+      : definition;
+
+    return NextResponse.json({
+      ...template,
+      definition: compiledDefinition,
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch template" },

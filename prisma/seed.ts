@@ -1,8 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import * as fs from "fs";
 import * as path from "path";
+import * as bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
+
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL ?? "admin@legaidoc.com";
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD ?? "admin123456";
 
 const CATEGORIES = [
   {
@@ -60,6 +64,20 @@ const CATEGORIES = [
 
 async function main() {
   console.log("Seeding database...");
+
+  // Create admin user
+  const hashedPassword = await bcrypt.hash(ADMIN_PASSWORD, 12);
+  await prisma.user.upsert({
+    where: { email: ADMIN_EMAIL },
+    update: { role: "ADMIN" },
+    create: {
+      email: ADMIN_EMAIL,
+      name: "Admin",
+      hashedPassword,
+      role: "ADMIN",
+    },
+  });
+  console.log(`  Admin user: ${ADMIN_EMAIL}`);
 
   // Create categories
   for (const cat of CATEGORIES) {

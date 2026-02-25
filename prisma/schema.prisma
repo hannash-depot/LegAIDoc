@@ -11,6 +11,11 @@ datasource db {
 // AUTH MODELS (NextAuth.js v5 with Prisma Adapter)
 // ============================================================
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
 model User {
   id              String    @id @default(cuid())
   name            String?
@@ -19,6 +24,7 @@ model User {
   hashedPassword  String?
   image           String?
   preferredLocale String    @default("he")
+  role            UserRole  @default(USER)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
@@ -79,6 +85,7 @@ model TemplateCategory {
   name        Json     // LocalizedString: { he, ar, en, ru }
   description Json     // LocalizedString
   icon        String?
+  isActive    Boolean  @default(true)
   sortOrder   Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -103,10 +110,29 @@ model ContractTemplate {
 
   category  TemplateCategory @relation(fields: [categoryId], references: [id])
   documents Document[]
+  versions  ContractTemplateVersion[]
 
   @@index([categoryId])
   @@index([slug])
   @@map("contract_templates")
+}
+
+model ContractTemplateVersion {
+  id          String   @id @default(cuid())
+  templateId  String
+  version     Int
+  name        Json     // LocalizedString snapshot
+  description Json     // LocalizedString snapshot
+  definition  Json     // TemplateDefinition snapshot
+  changelog   String?
+  createdBy   String?
+  createdAt   DateTime @default(now())
+
+  template ContractTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, version])
+  @@index([templateId])
+  @@map("contract_template_versions")
 }
 
 // ============================================================

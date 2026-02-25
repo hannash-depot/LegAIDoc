@@ -49,7 +49,7 @@ export async function GET(
 
     const filename = `${document.title.replace(/[^a-zA-Z0-9\u0590-\u05FF\u0600-\u06FF]/g, "_")}.pdf`;
 
-    return new NextResponse(pdfBuffer, {
+    return new NextResponse(new Uint8Array(pdfBuffer), {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition": `attachment; filename="${filename}"`,

@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const templateName = template.name as LocalizedString;
+    const templateName = template.name as unknown as LocalizedString;
     const title = templateName[locale as keyof LocalizedString] ?? templateName.he;
 
     const document = await db.document.create({
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid input", details: error.errors },
+        { error: "Invalid input", details: error.issues },
         { status: 400 }
       );
     }

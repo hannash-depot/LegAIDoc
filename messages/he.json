@@ -153,5 +153,73 @@
     "rights": "כל הזכויות שמורות",
     "privacy": "מדיניות פרטיות",
     "terms": "תנאי שימוש"
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "לוח בקרה",
+      "categories": "קטגוריות",
+      "templates": "תבניות",
+      "backToSite": "חזרה לאתר"
+    },
+    "dashboard": {
+      "title": "לוח בקרה - ניהול",
+      "totalTemplates": "סה\"כ תבניות",
+      "activeTemplates": "תבניות פעילות",
+      "totalCategories": "קטגוריות",
+      "totalDocuments": "מסמכים שנוצרו"
+    },
+    "categories": {
+      "title": "קטגוריות תבניות",
+      "new": "קטגוריה חדשה",
+      "edit": "עריכת קטגוריה",
+      "slug": "מזהה",
+      "name": "שם",
+      "description": "תיאור",
+      "icon": "אייקון",
+      "sortOrder": "סדר מיון",
+      "templateCount": "תבניות",
+      "deleteConfirm": "האם אתה בטוח שברצונך למחוק קטגוריה זו?"
+    },
+    "templates": {
+      "title": "תבניות חוזים",
+      "new": "תבנית חדשה",
+      "edit": "עריכת תבנית",
+      "metadata": "מטא-דאטה",
+      "wizardSteps": "שלבי האשף",
+      "documentSections": "סעיפי המסמך",
+      "preview": "תצוגה מקדימה",
+      "versionHistory": "היסטוריית גרסאות",
+      "version": "גרסה",
+      "active": "פעיל",
+      "inactive": "לא פעיל",
+      "mandatory": "חובה",
+      "optional": "אופציונלי",
+      "addSection": "הוסף סעיף",
+      "addSubsection": "הוסף תת-סעיף",
+      "addStep": "הוסף שלב",
+      "addField": "הוסף שדה",
+      "addParameter": "הוסף פרמטר",
+      "sectionTitle": "כותרת הסעיף",
+      "sectionBody": "תוכן הסעיף",
+      "condition": "תנאי",
+      "parameters": "פרמטרים",
+      "noCondition": "כלול תמיד",
+      "toggleActive": "החלף מצב",
+      "duplicate": "שכפל תבנית",
+      "deleteConfirm": "האם אתה בטוח שברצונך למחוק תבנית זו?",
+      "saveSuccess": "התבנית נשמרה בהצלחה",
+      "publishVersion": "פרסם גרסה חדשה",
+      "changelog": "מה השתנה?",
+      "restoreVersion": "שחזר גרסה זו"
+    },
+    "common": {
+      "save": "שמור",
+      "cancel": "ביטול",
+      "delete": "מחק",
+      "actions": "פעולות",
+      "status": "סטטוס",
+      "created": "נוצר",
+      "updated": "עודכן"
+    }
   }
 }

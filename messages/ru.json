@@ -153,5 +153,73 @@
     "rights": "Все права защищены",
     "privacy": "Политика конфиденциальности",
     "terms": "Условия использования"
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Панель управления",
+      "categories": "Категории",
+      "templates": "Шаблоны",
+      "backToSite": "Вернуться на сайт"
+    },
+    "dashboard": {
+      "title": "Панель администратора",
+      "totalTemplates": "Всего шаблонов",
+      "activeTemplates": "Активных шаблонов",
+      "totalCategories": "Категорий",
+      "totalDocuments": "Созданных документов"
+    },
+    "categories": {
+      "title": "Категории шаблонов",
+      "new": "Новая категория",
+      "edit": "Редактировать категорию",
+      "slug": "Идентификатор",
+      "name": "Название",
+      "description": "Описание",
+      "icon": "Иконка",
+      "sortOrder": "Порядок сортировки",
+      "templateCount": "Шаблоны",
+      "deleteConfirm": "Вы уверены, что хотите удалить эту категорию?"
+    },
+    "templates": {
+      "title": "Шаблоны договоров",
+      "new": "Новый шаблон",
+      "edit": "Редактировать шаблон",
+      "metadata": "Метаданные",
+      "wizardSteps": "Шаги мастера",
+      "documentSections": "Разделы документа",
+      "preview": "Предпросмотр",
+      "versionHistory": "История версий",
+      "version": "Версия",
+      "active": "Активен",
+      "inactive": "Неактивен",
+      "mandatory": "Обязательный",
+      "optional": "Необязательный",
+      "addSection": "Добавить раздел",
+      "addSubsection": "Добавить подраздел",
+      "addStep": "Добавить шаг",
+      "addField": "Добавить поле",
+      "addParameter": "Добавить параметр",
+      "sectionTitle": "Заголовок раздела",
+      "sectionBody": "Содержание раздела",
+      "condition": "Условие",
+      "parameters": "Параметры",
+      "noCondition": "Всегда включён",
+      "toggleActive": "Переключить статус",
+      "duplicate": "Дублировать шаблон",
+      "deleteConfirm": "Вы уверены, что хотите удалить этот шаблон?",
+      "saveSuccess": "Шаблон успешно сохранён",
+      "publishVersion": "Опубликовать новую версию",
+      "changelog": "Что изменилось?",
+      "restoreVersion": "Восстановить эту версию"
+    },
+    "common": {
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "actions": "Действия",
+      "status": "Статус",
+      "created": "Создано",
+      "updated": "Обновлено"
+    }
   }
 }
