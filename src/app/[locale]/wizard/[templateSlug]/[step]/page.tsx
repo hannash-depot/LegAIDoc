@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale } from "next-intl";
 import { WizardProvider } from "@/components/providers/WizardProvider";
@@ -20,7 +20,7 @@ interface DocumentData {
   };
 }
 
-export default function WizardStepPage({
+function WizardStepContent({
   params,
 }: {
   params: Promise<{ templateSlug: string; step: string }>;
@@ -111,5 +111,26 @@ export default function WizardStepPage({
         <WizardShell />
       </WizardProvider>
     </>
+  );
+}
+
+export default function WizardStepPage({
+  params,
+}: {
+  params: Promise<{ templateSlug: string; step: string }>;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <>
+          <Navbar />
+          <div className="min-h-[80vh] flex items-center justify-center">
+            <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+          </div>
+        </>
+      }
+    >
+      <WizardStepContent params={params} />
+    </Suspense>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 
 export function Footer() {
@@ -17,12 +19,8 @@ export function Footer() {
             </span>
           </div>
           <div className="flex items-center gap-6 text-sm text-text-secondary">
-            <span className="hover:text-text cursor-pointer transition-colors">
-              {t("privacy")}
-            </span>
-            <span className="hover:text-text cursor-pointer transition-colors">
-              {t("terms")}
-            </span>
+            <span>{t("privacy")}</span>
+            <span>{t("terms")}</span>
           </div>
         </div>
       </div>

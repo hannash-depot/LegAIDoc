@@ -34,9 +34,9 @@ export async function GET(
       );
     }
 
-    if (document.status !== "PUBLISHED") {
+    if (document.status === "DRAFT") {
       return NextResponse.json(
-        { error: "Document must be published before generating PDF" },
+        { error: "Document must be completed or published before generating PDF" },
         { status: 400 }
       );
     }

@@ -8,7 +8,7 @@ export function renderContractHtml(
   locale: Locale
 ): string {
   const direction = getDirection(locale);
-  const sections = definition.documentBody[locale];
+  const sections = definition.documentBody[locale] ?? definition.documentBody.he ?? [];
   const contractHtml = renderDocument(sections, data);
 
   return `<!DOCTYPE html>

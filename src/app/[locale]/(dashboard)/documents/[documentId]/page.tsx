@@ -105,7 +105,7 @@ export default function DocumentViewPage({
               {t("actions.edit")}
             </Link>
           )}
-          {doc.status === "PUBLISHED" && (
+          {(doc.status === "PUBLISHED" || doc.status === "COMPLETED") && (
             <button
               onClick={handleDownload}
               className="flex items-center gap-2 px-4 py-2 text-sm bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors"

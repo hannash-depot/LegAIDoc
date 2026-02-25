@@ -49,6 +49,9 @@ export default function TemplatesPage() {
 
       const data = await response.json();
       setCategories(data);
+      if (data.length > 0 && !expandedCategory) {
+        setExpandedCategory(data[0].id);
+      }
     } catch {
       setError("Failed to load templates");
     } finally {

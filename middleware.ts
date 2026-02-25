@@ -7,7 +7,7 @@ import { auth } from "@/lib/auth";
 const intlMiddleware = createIntlMiddleware(routing);
 
 // Protected routes that require authentication
-const protectedPaths = ["/dashboard", "/documents", "/wizard", "/admin"];
+const protectedPaths = ["/dashboard", "/documents", "/wizard", "/admin", "/profile"];
 
 // Public routes that should redirect to dashboard if authenticated
 const authPaths = ["/login", "/register"];

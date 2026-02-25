@@ -20,7 +20,7 @@ This was overriding the correct credentials in `.env`.
 Updated `.env.local` with correct credentials:
 ```env
 DATABASE_URL="postgresql://hanna@localhost:5432/legaidoc?schema=public"
-NEXTAUTH_SECRET="m7f1jVQPLAhVcdRTJNAwLN9x5k9aW9hZ2JmAwMcytXk="
+NEXTAUTH_SECRET="your-secret-here"
 ```
 
 **Verification:**
@@ -199,7 +199,7 @@ Contains local overrides (takes precedence over `.env`)
 **Current Configuration:**
 ```env
 DATABASE_URL="postgresql://hanna@localhost:5432/legaidoc?schema=public"
-NEXTAUTH_SECRET="m7f1jVQPLAhVcdRTJNAwLN9x5k9aW9hZ2JmAwMcytXk="
+NEXTAUTH_SECRET="your-secret-here"
 NEXTAUTH_URL="http://localhost:3000"
 ```
 

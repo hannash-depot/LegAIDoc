@@ -72,6 +72,14 @@ export async function PUT(
       );
     }
 
+    const allowedStatuses = ["DRAFT", "COMPLETED"];
+    if (body.status && !allowedStatuses.includes(body.status)) {
+      return NextResponse.json(
+        { error: "Invalid status. Use the publish endpoint to publish documents." },
+        { status: 400 }
+      );
+    }
+
     const updated = await db.document.update({
       where: { id: documentId },
       data: {

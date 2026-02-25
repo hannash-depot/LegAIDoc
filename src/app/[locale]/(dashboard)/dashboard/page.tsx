@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
@@ -25,6 +25,7 @@ interface Document {
 export default function DashboardPage() {
   const t = useTranslations("dashboard");
   const tc = useTranslations("common");
+  const locale = useLocale();
   const { data: session, status } = useSession();
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
@@ -63,8 +64,10 @@ export default function DashboardPage() {
     );
   };
 
+  const localeMap: Record<string, string> = { he: "he-IL", ar: "ar-SA", en: "en-US", ru: "ru-RU" };
+
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("he-IL", {
+    return new Date(dateString).toLocaleDateString(localeMap[locale] || "en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
