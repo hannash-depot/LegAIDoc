@@ -29,6 +29,14 @@ interface Category {
   templates: TemplateItem[];
 }
 
+interface CategoryItem {
+  id: string;
+  slug: string;
+  name: Record<string, string>;
+  description: Record<string, string>;
+  sortOrder: number;
+}
+
 interface TemplateDetail {
   id: string;
   slug: string;
@@ -42,7 +50,18 @@ interface TemplateDetail {
   category: { id: string; slug: string; name: Record<string, string> };
 }
 
-type TabType = "templates" | "edit";
+type TabType = "templates" | "edit" | "create";
+
+const DEFAULT_DEFINITION: TemplateDefinition = {
+  version: 1,
+  steps: [],
+  documentBody: {
+    he: [],
+    ar: [],
+    en: [],
+    ru: [],
+  },
+};
 
 export default function AdminPage() {
   const t = useTranslations("admin");
@@ -65,6 +84,17 @@ export default function AdminPage() {
   const [editIsActive, setEditIsActive] = useState(true);
   const [editSortOrder, setEditSortOrder] = useState(0);
 
+  // Create template state
+  const [availableCategories, setAvailableCategories] = useState<CategoryItem[]>([]);
+  const [createSlug, setCreateSlug] = useState("");
+  const [createCategoryId, setCreateCategoryId] = useState("");
+  const [createName, setCreateName] = useState<Record<string, string>>({ he: "", ar: "", en: "", ru: "" });
+  const [createDescription, setCreateDescription] = useState<Record<string, string>>({ he: "", ar: "", en: "", ru: "" });
+  const [createDefinition, setCreateDefinition] = useState<TemplateDefinition>(DEFAULT_DEFINITION);
+  const [createIsActive, setCreateIsActive] = useState(true);
+  const [createSortOrder, setCreateSortOrder] = useState(0);
+  const [creating, setCreating] = useState(false);
+
   const fetchTemplates = useCallback(async () => {
     try {
       setLoading(true);
@@ -79,11 +109,23 @@ export default function AdminPage() {
     }
   }, [t]);
 
+  const fetchCategories = useCallback(async () => {
+    try {
+      const response = await fetch("/api/admin/categories");
+      if (!response.ok) throw new Error("Failed to fetch categories");
+      const data = await response.json();
+      setAvailableCategories(data);
+    } catch {
+      console.error("Failed to fetch categories");
+    }
+  }, []);
+
   useEffect(() => {
     if (status === "authenticated") {
       fetchTemplates();
+      fetchCategories();
     }
-  }, [status, fetchTemplates]);
+  }, [status, fetchTemplates, fetchCategories]);
 
   const openEditor = async (templateId: string) => {
     try {
@@ -170,6 +212,71 @@ export default function AdminPage() {
     }
   };
 
+  const resetCreateForm = () => {
+    setCreateSlug("");
+    setCreateCategoryId("");
+    setCreateName({ he: "", ar: "", en: "", ru: "" });
+    setCreateDescription({ he: "", ar: "", en: "", ru: "" });
+    setCreateDefinition(DEFAULT_DEFINITION);
+    setCreateIsActive(true);
+    setCreateSortOrder(0);
+  };
+
+  const openCreateForm = () => {
+    resetCreateForm();
+    setActiveTab("create");
+  };
+
+  const handleCreate = async () => {
+    if (!createSlug.trim()) {
+      setError(t("slugRequired"));
+      return;
+    }
+    if (!createCategoryId) {
+      setError(t("categoryRequired"));
+      return;
+    }
+
+    setCreating(true);
+    try {
+      const response = await fetch("/api/admin/templates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          slug: createSlug.trim().toLowerCase().replace(/\s+/g, "-"),
+          categoryId: createCategoryId,
+          name: createName,
+          description: createDescription,
+          definition: createDefinition,
+          isActive: createIsActive,
+          sortOrder: createSortOrder,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        if (response.status === 409) {
+          throw new Error(t("slugExists"));
+        }
+        throw new Error(data.error || "Failed to create");
+      }
+
+      const newTemplate = await response.json();
+      setSuccessMessage(t("createSuccess"));
+      setTimeout(() => setSuccessMessage(""), 3000);
+      await fetchTemplates();
+      resetCreateForm();
+      setActiveTab("templates");
+      
+      // Optionally open the editor for the new template
+      openEditor(newTemplate.id);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t("createError"));
+    } finally {
+      setCreating(false);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString(locale === "he" ? "he-IL" : "en-US", {
       year: "numeric",
@@ -225,6 +332,15 @@ export default function AdminPage() {
           <h1 className="text-2xl font-bold text-text">{t("title")}</h1>
           <p className="text-text-secondary mt-1">{t("subtitle")}</p>
         </div>
+        <button
+          onClick={openCreateForm}
+          className="px-4 py-2.5 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+          </svg>
+          {t("createTemplate")}
+        </button>
       </div>
 
       {/* Error / Success Messages */}
@@ -254,6 +370,14 @@ export default function AdminPage() {
         >
           {t("templateList")}
         </button>
+        {activeTab === "create" && (
+          <button
+            onClick={() => setActiveTab("create")}
+            className="px-4 py-2 text-sm font-medium border-b-2 transition-colors border-primary text-primary"
+          >
+            {t("newTemplate")}
+          </button>
+        )}
         {editingTemplate && (
           <button
             onClick={() => setActiveTab("edit")}
@@ -360,6 +484,143 @@ export default function AdminPage() {
               <p className="text-text-secondary">{t("noTemplates")}</p>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Create Tab */}
+      {activeTab === "create" && (
+        <div className="space-y-6">
+          {/* Basic Info */}
+          <div className="bg-white border border-border rounded-xl p-6">
+            <h3 className="font-semibold text-text mb-4">{t("templateInfo")}</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-1">
+                  {t("slug")} <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={createSlug}
+                  onChange={(e) => setCreateSlug(e.target.value.toLowerCase().replace(/\s+/g, "-"))}
+                  placeholder="my-template-slug"
+                  className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+                <p className="text-xs text-text-muted mt-1">{t("slugHint")}</p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-1">
+                  {t("category")} <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={createCategoryId}
+                  onChange={(e) => setCreateCategoryId(e.target.value)}
+                  className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                >
+                  <option value="">{t("selectCategory")}</option>
+                  {availableCategories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name[locale] || cat.slug}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-text-secondary mb-1">{t("sortOrder")}</label>
+                <input
+                  type="number"
+                  value={createSortOrder}
+                  onChange={(e) => setCreateSortOrder(parseInt(e.target.value) || 0)}
+                  className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+              </div>
+              <div className="flex items-end">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={createIsActive}
+                    onChange={(e) => setCreateIsActive(e.target.checked)}
+                    className="w-4 h-4 text-primary border-border rounded focus:ring-primary/20"
+                  />
+                  <span className="text-sm font-medium text-text">{t("isActive")}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Localized Names */}
+          <div className="bg-white border border-border rounded-xl p-6">
+            <h3 className="font-semibold text-text mb-4">{t("templateName")}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(["he", "ar", "en", "ru"] as const).map((lang) => (
+                <div key={lang}>
+                  <label className="block text-sm font-medium text-text-secondary mb-1">
+                    {lang.toUpperCase()}
+                  </label>
+                  <input
+                    type="text"
+                    value={createName[lang] || ""}
+                    onChange={(e) => setCreateName({ ...createName, [lang]: e.target.value })}
+                    dir={lang === "he" || lang === "ar" ? "rtl" : "ltr"}
+                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Localized Descriptions */}
+          <div className="bg-white border border-border rounded-xl p-6">
+            <h3 className="font-semibold text-text mb-4">{t("templateDescription")}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(["he", "ar", "en", "ru"] as const).map((lang) => (
+                <div key={lang}>
+                  <label className="block text-sm font-medium text-text-secondary mb-1">
+                    {lang.toUpperCase()}
+                  </label>
+                  <textarea
+                    value={createDescription[lang] || ""}
+                    onChange={(e) => setCreateDescription({ ...createDescription, [lang]: e.target.value })}
+                    dir={lang === "he" || lang === "ar" ? "rtl" : "ltr"}
+                    rows={2}
+                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-y"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Template Definition (Visual Editor) */}
+          <div className="bg-white border border-border rounded-xl p-6">
+            <h3 className="font-semibold text-text mb-4">{t("definition")}</h3>
+            <DefinitionEditor
+              definition={createDefinition}
+              onChange={setCreateDefinition}
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center justify-between bg-white border border-border rounded-xl p-4">
+            <button
+              onClick={() => {
+                setActiveTab("templates");
+                resetCreateForm();
+              }}
+              className="px-4 py-2 text-sm text-text-secondary hover:text-text rounded-lg hover:bg-surface-hover transition-colors"
+            >
+              {tc("cancel")}
+            </button>
+            <button
+              onClick={handleCreate}
+              disabled={creating}
+              className="px-6 py-2.5 text-sm bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {creating ? tc("loading") : t("createTemplate")}
+            </button>
+          </div>
         </div>
       )}
 
