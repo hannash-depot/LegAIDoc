@@ -5,10 +5,30 @@ export interface LocalizedString {
   ru: string;
 }
 
+/** Legal compliance metadata for production templates */
+export interface LegalCompliance {
+  jurisdiction: string; // e.g. "IL"
+  laws?: Array<{ name: string; year?: number }>;
+  lastLegalReview?: string; // ISO date
+  reviewedBy?: string;
+  warnings: LocalizedString; // Disclaimer: "This is not legal advice"
+}
+
+/** Template metadata for versioning and production tracking */
+export interface TemplateMetadata {
+  version: number;
+  lastUpdated?: string; // ISO date
+  changelog?: Array< { version: number; date: string; changes: string[] }>;
+}
+
 export interface TemplateDefinition {
   version: number;
   steps: TemplateStep[];
   documentBody: LocalizedDocumentBody;
+  /** Optional metadata for production templates */
+  metadata?: TemplateMetadata;
+  /** Legal compliance info - jurisdiction, disclaimer, review date */
+  legalCompliance?: LegalCompliance;
 }
 
 export interface TemplateStep {

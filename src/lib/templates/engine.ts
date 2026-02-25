@@ -1,22 +1,103 @@
-import type { DocumentSection, FieldCondition } from "@/types/template";
+import type {
+  DocumentSection,
+  FieldCondition,
+  TemplateDefinition,
+} from "@/types/template";
+import type { Locale } from "@/lib/i18n/routing";
+
+export interface RenderOptions {
+  /** Template definition - used to resolve select/radio labels and add disclaimer */
+  definition?: TemplateDefinition;
+  /** Locale for resolving option labels and disclaimer text */
+  locale?: Locale;
+  /** Whether to prepend legal disclaimer (default: true when legalCompliance exists) */
+  showDisclaimer?: boolean;
+}
+
+/**
+ * Builds a map of field key -> display value resolver for select/radio fields.
+ * When rendering {{payment_method}}, we output the label (e.g. "העברה בנקאית") not the value ("bank_transfer").
+ */
+function buildOptionResolvers(
+  steps: TemplateDefinition["steps"],
+  locale: Locale
+): Map<string, (value: unknown) => string> {
+  const resolvers = new Map<string, (value: unknown) => string>();
+  for (const step of steps) {
+    for (const field of step.fields) {
+      if (
+        (field.type === "select" || field.type === "radio") &&
+        field.options?.length
+      ) {
+        const options = field.options;
+        resolvers.set(field.key, (value) => {
+          if (value === undefined || value === null || value === "") return "";
+          const opt = options.find((o) => o.value === value);
+          return opt?.label[locale] ?? String(value);
+        });
+      }
+    }
+  }
+  return resolvers;
+}
 
 /**
  * Renders a contract document by replacing placeholders in the template
- * with actual user data.
+ * with actual user data. Supports select/radio label resolution and legal disclaimer.
  */
 export function renderDocument(
   sections: DocumentSection[],
   data: Record<string, unknown>,
-  unfilledPlaceholder = "______"
+  unfilledPlaceholder = "______",
+  options?: RenderOptions
 ): string {
-  return sections
+  const locale = options?.locale ?? "he";
+  const optionResolvers =
+    options?.definition?.steps != null
+      ? buildOptionResolvers(options.definition.steps, locale)
+      : null;
+
+  const resolveValue = (key: string, value: unknown): string => {
+    const resolver = optionResolvers?.get(key);
+    if (resolver) return resolver(value);
+    return value === undefined || value === null || value === ""
+      ? ""
+      : String(value);
+  };
+
+  const content = sections
     .map((section) => {
-      const title = replacePlaceholders(section.title, data, unfilledPlaceholder);
-      const body = processTemplate(section.body, data, unfilledPlaceholder);
+      const title = replacePlaceholders(
+        section.title,
+        data,
+        unfilledPlaceholder,
+        resolveValue
+      );
+      const body = processTemplate(
+        section.body,
+        data,
+        unfilledPlaceholder,
+        resolveValue
+      );
       return `<div class="contract-section"><h2>${title}</h2>${body}</div>`;
     })
     .join("\n");
+
+  // Add legal disclaimer when legalCompliance is present
+  const showDisclaimer =
+    options?.showDisclaimer !== false &&
+    options?.definition?.legalCompliance?.warnings;
+  const disclaimerHtml = showDisclaimer
+    ? `<div class="contract-disclaimer">${escapeHtml(
+        options!.definition!.legalCompliance!.warnings[locale] ??
+          options!.definition!.legalCompliance!.warnings.he
+      )}</div>`
+    : "";
+
+  return disclaimerHtml + content;
 }
+
+type ResolveValueFn = (key: string, value: unknown) => string;
 
 /**
  * Processes a template string: handles conditionals, loops, and placeholders.
@@ -24,7 +105,8 @@ export function renderDocument(
 function processTemplate(
   template: string,
   data: Record<string, unknown>,
-  unfilledPlaceholder: string
+  unfilledPlaceholder: string,
+  resolveValue?: ResolveValueFn
 ): string {
   let result = template;
 
@@ -34,7 +116,7 @@ function processTemplate(
     (_, key: string, content: string) => {
       const value = data[key];
       if (isTruthy(value)) {
-        return processTemplate(content, data, unfilledPlaceholder);
+        return processTemplate(content, data, unfilledPlaceholder, resolveValue);
       }
       return "";
     }
@@ -46,7 +128,7 @@ function processTemplate(
     (_, key: string, content: string) => {
       const value = data[key];
       if (!isTruthy(value)) {
-        return processTemplate(content, data, unfilledPlaceholder);
+        return processTemplate(content, data, unfilledPlaceholder, resolveValue);
       }
       return "";
     }
@@ -64,7 +146,7 @@ function processTemplate(
               typeof item === "object" && item !== null
                 ? { ...data, ...item, "@index": index }
                 : { ...data, this: item, "@index": index };
-            return processTemplate(content, itemData as Record<string, unknown>, unfilledPlaceholder);
+            return processTemplate(content, itemData as Record<string, unknown>, unfilledPlaceholder, resolveValue);
           })
           .join("");
       }
@@ -73,25 +155,28 @@ function processTemplate(
   );
 
   // Replace {{placeholder}} with actual values
-  result = replacePlaceholders(result, data, unfilledPlaceholder);
+  result = replacePlaceholders(result, data, unfilledPlaceholder, resolveValue);
 
   return result;
 }
 
 /**
  * Replaces {{key}} placeholders with values from data.
+ * Uses resolveValue when provided to resolve select/radio labels.
  */
 function replacePlaceholders(
   text: string,
   data: Record<string, unknown>,
-  unfilledPlaceholder: string
+  unfilledPlaceholder: string,
+  resolveValue?: ResolveValueFn
 ): string {
   return text.replace(/\{\{(\w+)\}\}/g, (match, key: string) => {
     const value = data[key];
     if (value === undefined || value === null || value === "") {
       return `<span class="unfilled">${unfilledPlaceholder}</span>`;
     }
-    return escapeHtml(String(value));
+    const displayValue = resolveValue ? resolveValue(key, value) : String(value);
+    return escapeHtml(displayValue);
   });
 }
 

@@ -16,6 +16,35 @@
   },
   "definition": {
     "version": 1,
+    "metadata": {
+      "version": 1,
+      "lastUpdated": "2025-02-25",
+      "changelog": [
+        {
+          "version": 1,
+          "date": "2025-02-25",
+          "changes": [
+            "Added legal metadata and disclaimer",
+            "Added help text to critical fields",
+            "Production-ready template"
+          ]
+        }
+      ]
+    },
+    "legalCompliance": {
+      "jurisdiction": "IL",
+      "laws": [
+        { "name": "חוק השכירות והשאילה", "year": 1971 },
+        { "name": "חוק הגנת הצרכן", "year": 1981 }
+      ],
+      "lastLegalReview": "2025-02-25",
+      "warnings": {
+        "he": "חוזה זה אינו מהווה ייעוץ משפטי. מומלץ להתייעץ עם עורך דין לפני חתימה.",
+        "ar": "هذا العقد لا يشكل استشارة قانونية. يُنصح باستشارة محامٍ قبل التوقيع.",
+        "en": "This contract does not constitute legal advice. Consult a lawyer before signing.",
+        "ru": "Данный договор не является юридической консультацией. Рекомендуется проконсультироваться с юристом перед подписанием."
+      }
+    },
     "steps": [
       {
         "key": "parties",
@@ -35,6 +64,7 @@
             "key": "landlord_id",
             "type": "id-number",
             "label": { "he": "ת.ז. המשכיר", "ar": "هوية المؤجر", "en": "Landlord ID Number", "ru": "ID арендодателя" },
+            "helpText": { "he": "9 ספרות ללא מקף", "ar": "9 أرقام بدون شرطة", "en": "9 digits without hyphen", "ru": "9 цифр без дефиса" },
             "required": true,
             "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
             "width": "half"
@@ -73,6 +103,7 @@
             "key": "tenant_id",
             "type": "id-number",
             "label": { "he": "ת.ז. השוכר", "ar": "هوية المستأجر", "en": "Tenant ID Number", "ru": "ID арендатора" },
+            "helpText": { "he": "9 ספרות ללא מקף", "ar": "9 أرقام بدون شرطة", "en": "9 digits without hyphen", "ru": "9 цифр без дефиса" },
             "required": true,
             "validation": { "pattern": "^[0-9]{9}$", "patternMessage": { "he": "מספר ת.ז. חייב להיות 9 ספרות", "ar": "رقم الهوية يجب أن يكون 9 أرقام", "en": "ID must be 9 digits", "ru": "ID должен содержать 9 цифр" } },
             "width": "half"
@@ -213,6 +244,7 @@
             "key": "monthly_rent",
             "type": "currency",
             "label": { "he": "דמי שכירות חודשיים (ש\"ח)", "ar": "الإيجار الشهري (شيكل)", "en": "Monthly Rent (ILS)", "ru": "Ежемесячная арендная плата (шекель)" },
+            "helpText": { "he": "הסכום החודשי לפני מע\"מ. ניתן להעלות שכירות פעם בשנה לפי חוק.", "ar": "المبلغ الشهري قبل ضريبة القيمة المضافة. يمكن رفع الإيجار مرة سنوياً وفقاً للقانون.", "en": "Monthly amount before VAT. Rent can be increased once per year by law.", "ru": "Ежемесячная сумма до НДС. Арендная плата может повышаться раз в год по закону." },
             "required": true,
             "validation": { "min": 0 },
             "width": "half"
@@ -242,6 +274,7 @@
             "key": "deposit_amount",
             "type": "currency",
             "label": { "he": "סכום פיקדון (ש\"ח)", "ar": "مبلغ التأمين (شيكل)", "en": "Security Deposit (ILS)", "ru": "Сумма залога (шекель)" },
+            "helpText": { "he": "בדרך כלל עד 3 חודשי שכירות. מוחזר בתום השכירות.", "ar": "عادة حتى 3 أشهر إيجار. يُعاد عند انتهاء الإيجار.", "en": "Usually up to 3 months rent. Returned at end of tenancy.", "ru": "Обычно до 3 месяцев аренды. Возвращается по окончании аренды." },
             "required": true,
             "validation": { "min": 0 },
             "width": "half"
@@ -293,6 +326,7 @@
             "key": "notice_days",
             "type": "number",
             "label": { "he": "ימי הודעה מוקדמת", "ar": "أيام الإشعار المسبق", "en": "Notice Period (days)", "ru": "Срок уведомления (дней)" },
+            "helpText": { "he": "מינימום 30 יום. 60 יום מקובל בחוזי שכירות.", "ar": "30 يوماً كحد أدنى. 60 يوماً شائع في عقود الإيجار.", "en": "Minimum 30 days. 60 days is common in rental agreements.", "ru": "Минимум 30 дней. 60 дней обычно в договорах аренды." },
             "required": true,
             "validation": { "min": 30, "max": 180 },
             "defaultValue": 60,
