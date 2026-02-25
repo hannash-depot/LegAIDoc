@@ -179,7 +179,30 @@
     "deleteError": "فشل في حذف القالب",
     "invalidJson": "تنسيق JSON غير صالح. يرجى التحقق من التعريف.",
     "loginRequired": "يجب تسجيل الدخول للوصول إلى لوحة الإدارة.",
-    "goToLogin": "تسجيل الدخول"
+    "goToLogin": "تسجيل الدخول",
+    "editor": {
+      "wizardSteps": "خطوات المعالج",
+      "documentBody": "نص المستند",
+      "fields": "حقول",
+      "stepTitle": "عنوان الخطوة",
+      "stepDescription": "وصف الخطوة",
+      "required": "مطلوب",
+      "widthFull": "عرض كامل",
+      "widthHalf": "نصف العرض",
+      "conditional": "مشروط",
+      "fieldLabel": "التسمية",
+      "placeholder": "نص توضيحي",
+      "validation": "التحقق",
+      "options": "الخيارات",
+      "addOption": "إضافة خيار",
+      "value": "القيمة",
+      "sectionTitle": "عنوان القسم...",
+      "sectionBody": "محتوى القسم (HTML مع {{المتغيرات}})...",
+      "addSection": "إضافة قسم",
+      "removeSection": "إزالة القسم",
+      "moveUp": "نقل لأعلى",
+      "moveDown": "نقل لأسفل"
+    }
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة",

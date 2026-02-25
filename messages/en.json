@@ -179,7 +179,30 @@
     "deleteError": "Failed to delete template",
     "invalidJson": "Invalid JSON format. Please check the definition.",
     "loginRequired": "You must be logged in to access the admin console.",
-    "goToLogin": "Go to Login"
+    "goToLogin": "Go to Login",
+    "editor": {
+      "wizardSteps": "Wizard Steps",
+      "documentBody": "Document Body",
+      "fields": "fields",
+      "stepTitle": "Step Title",
+      "stepDescription": "Step Description",
+      "required": "Required",
+      "widthFull": "Full width",
+      "widthHalf": "Half width",
+      "conditional": "Conditional",
+      "fieldLabel": "Label",
+      "placeholder": "Placeholder",
+      "validation": "Validation",
+      "options": "Options",
+      "addOption": "Add Option",
+      "value": "Value",
+      "sectionTitle": "Section title...",
+      "sectionBody": "Section content (HTML with {{variables}})...",
+      "addSection": "Add Section",
+      "removeSection": "Remove Section",
+      "moveUp": "Move Up",
+      "moveDown": "Move Down"
+    }
   },
   "footer": {
     "rights": "All rights reserved",

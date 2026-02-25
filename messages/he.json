@@ -179,7 +179,30 @@
     "deleteError": "שגיאה במחיקת תבנית",
     "invalidJson": "פורמט JSON לא תקין. אנא בדוק את ההגדרה.",
     "loginRequired": "יש להתחבר כדי לגשת לממשק הניהול.",
-    "goToLogin": "כניסה"
+    "goToLogin": "כניסה",
+    "editor": {
+      "wizardSteps": "שלבי האשף",
+      "documentBody": "גוף המסמך",
+      "fields": "שדות",
+      "stepTitle": "כותרת השלב",
+      "stepDescription": "תיאור השלב",
+      "required": "חובה",
+      "widthFull": "רוחב מלא",
+      "widthHalf": "חצי רוחב",
+      "conditional": "מותנה",
+      "fieldLabel": "תווית",
+      "placeholder": "טקסט מציין מיקום",
+      "validation": "אימות",
+      "options": "אפשרויות",
+      "addOption": "הוסף אפשרות",
+      "value": "ערך",
+      "sectionTitle": "כותרת הסעיף...",
+      "sectionBody": "תוכן הסעיף (HTML עם {{משתנים}})...",
+      "addSection": "הוסף סעיף",
+      "removeSection": "הסר סעיף",
+      "moveUp": "הזז למעלה",
+      "moveDown": "הזז למטה"
+    }
   },
   "footer": {
     "rights": "כל הזכויות שמורות",

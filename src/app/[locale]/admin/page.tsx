@@ -4,6 +4,8 @@ import { useTranslations, useLocale } from "next-intl";
 import { useSession } from "next-auth/react";
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "@/lib/i18n/navigation";
+import { DefinitionEditor } from "@/components/admin/DefinitionEditor";
+import type { TemplateDefinition } from "@/types/template";
 
 interface TemplateItem {
   id: string;
@@ -58,10 +60,9 @@ export default function AdminPage() {
 
   const [editName, setEditName] = useState<Record<string, string>>({ he: "", ar: "", en: "", ru: "" });
   const [editDescription, setEditDescription] = useState<Record<string, string>>({ he: "", ar: "", en: "", ru: "" });
-  const [editDefinition, setEditDefinition] = useState("");
+  const [editDefinition, setEditDefinition] = useState<TemplateDefinition | null>(null);
   const [editIsActive, setEditIsActive] = useState(true);
   const [editSortOrder, setEditSortOrder] = useState(0);
-  const [jsonError, setJsonError] = useState("");
 
   const fetchTemplates = useCallback(async () => {
     try {
@@ -92,10 +93,9 @@ export default function AdminPage() {
       setEditingTemplate(template);
       setEditName(template.name as Record<string, string>);
       setEditDescription(template.description as Record<string, string>);
-      setEditDefinition(JSON.stringify(template.definition, null, 2));
+      setEditDefinition(template.definition as TemplateDefinition);
       setEditIsActive(template.isActive);
       setEditSortOrder(template.sortOrder);
-      setJsonError("");
       setActiveTab("edit");
     } catch {
       setError(t("fetchError"));
@@ -103,16 +103,7 @@ export default function AdminPage() {
   };
 
   const handleSave = async () => {
-    if (!editingTemplate) return;
-
-    let parsedDefinition;
-    try {
-      parsedDefinition = JSON.parse(editDefinition);
-      setJsonError("");
-    } catch {
-      setJsonError(t("invalidJson"));
-      return;
-    }
+    if (!editingTemplate || !editDefinition) return;
 
     setSaving(true);
     try {
@@ -122,7 +113,7 @@ export default function AdminPage() {
         body: JSON.stringify({
           name: editName,
           description: editDescription,
-          definition: parsedDefinition,
+          definition: editDefinition,
           isActive: editIsActive,
           sortOrder: editSortOrder,
         }),
@@ -450,30 +441,20 @@ export default function AdminPage() {
             </div>
           </div>
 
-          {/* Template Definition (JSON Editor) */}
+          {/* Template Definition (Visual Editor) */}
           <div className="bg-white border border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-text">{t("definition")}</h3>
               <span className="text-xs text-text-muted">
-                v{editingTemplate.version} &middot; JSON
+                v{editingTemplate.version}
               </span>
             </div>
-            {jsonError && (
-              <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
-                {jsonError}
-              </div>
+            {editDefinition && (
+              <DefinitionEditor
+                definition={editDefinition}
+                onChange={setEditDefinition}
+              />
             )}
-            <textarea
-              value={editDefinition}
-              onChange={(e) => {
-                setEditDefinition(e.target.value);
-                setJsonError("");
-              }}
-              dir="ltr"
-              spellCheck={false}
-              rows={24}
-              className="w-full px-4 py-3 border border-border rounded-lg font-mono text-xs leading-relaxed bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-y"
-            />
           </div>
 
           {/* Action Buttons */}

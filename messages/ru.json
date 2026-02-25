@@ -179,7 +179,30 @@
     "deleteError": "Не удалось удалить шаблон",
     "invalidJson": "Неверный формат JSON. Проверьте определение.",
     "loginRequired": "Для доступа к панели администратора необходимо войти в систему.",
-    "goToLogin": "Войти"
+    "goToLogin": "Войти",
+    "editor": {
+      "wizardSteps": "Шаги мастера",
+      "documentBody": "Тело документа",
+      "fields": "полей",
+      "stepTitle": "Заголовок шага",
+      "stepDescription": "Описание шага",
+      "required": "Обязательное",
+      "widthFull": "Полная ширина",
+      "widthHalf": "Половина ширины",
+      "conditional": "Условное",
+      "fieldLabel": "Метка",
+      "placeholder": "Подсказка",
+      "validation": "Валидация",
+      "options": "Варианты",
+      "addOption": "Добавить вариант",
+      "value": "Значение",
+      "sectionTitle": "Заголовок раздела...",
+      "sectionBody": "Содержание раздела (HTML с {{переменными}})...",
+      "addSection": "Добавить раздел",
+      "removeSection": "Удалить раздел",
+      "moveUp": "Переместить вверх",
+      "moveDown": "Переместить вниз"
+    }
   },
   "footer": {
     "rights": "Все права защищены",
