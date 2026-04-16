@@ -1,0 +1,93 @@
+import {
+  Home,
+  Building2,
+  Building,
+  Landmark,
+  Hotel,
+  Scale,
+  Gavel,
+  Shield,
+  ShieldCheck,
+  ScrollText,
+  FileText,
+  FilePen,
+  FileCheck,
+  Heart,
+  Users,
+  Baby,
+  Handshake,
+  UserCheck,
+  Briefcase,
+  BadgeDollarSign,
+  Receipt,
+  CreditCard,
+  Banknote,
+  Car,
+  Truck,
+  Bike,
+  Key,
+  Lock,
+  ClipboardList,
+  Stamp,
+  PenTool,
+  BookOpen,
+  Clock,
+  AlertTriangle,
+  CircleDot,
+  TreePine,
+  Hammer,
+  type LucideIcon,
+} from 'lucide-react';
+
+export type IconOption = {
+  name: string;
+  component: LucideIcon;
+};
+
+export const ICON_OPTIONS: IconOption[] = [
+  { name: 'Home', component: Home },
+  { name: 'Building2', component: Building2 },
+  { name: 'Building', component: Building },
+  { name: 'Landmark', component: Landmark },
+  { name: 'Hotel', component: Hotel },
+  { name: 'Scale', component: Scale },
+  { name: 'Gavel', component: Gavel },
+  { name: 'Shield', component: Shield },
+  { name: 'ShieldCheck', component: ShieldCheck },
+  { name: 'ScrollText', component: ScrollText },
+  { name: 'FileText', component: FileText },
+  { name: 'FilePen', component: FilePen },
+  { name: 'FileCheck', component: FileCheck },
+  { name: 'Heart', component: Heart },
+  { name: 'Users', component: Users },
+  { name: 'Baby', component: Baby },
+  { name: 'Handshake', component: Handshake },
+  { name: 'UserCheck', component: UserCheck },
+  { name: 'Briefcase', component: Briefcase },
+  { name: 'BadgeDollarSign', component: BadgeDollarSign },
+  { name: 'Receipt', component: Receipt },
+  { name: 'CreditCard', component: CreditCard },
+  { name: 'Banknote', component: Banknote },
+  { name: 'Car', component: Car },
+  { name: 'Truck', component: Truck },
+  { name: 'Bike', component: Bike },
+  { name: 'Key', component: Key },
+  { name: 'Lock', component: Lock },
+  { name: 'ClipboardList', component: ClipboardList },
+  { name: 'Stamp', component: Stamp },
+  { name: 'PenTool', component: PenTool },
+  { name: 'BookOpen', component: BookOpen },
+  { name: 'Clock', component: Clock },
+  { name: 'AlertTriangle', component: AlertTriangle },
+  { name: 'CircleDot', component: CircleDot },
+  { name: 'TreePine', component: TreePine },
+  { name: 'Hammer', component: Hammer },
+];
+
+const iconMap = new Map<string, LucideIcon>(
+  ICON_OPTIONS.map(({ name, component }) => [name, component]),
+);
+
+export function getIconByName(name: string): LucideIcon | null {
+  return iconMap.get(name) ?? null;
+}

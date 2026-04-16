@@ -1,0 +1,274 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+}
+
+:root {
+  /* LIGHT THEME (Clean, Airy, Professional) */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: rgba(255, 255, 255, 0.9);
+  --popover-foreground: #0f172a;
+
+  --primary: #2563eb; /* Elegant Blue */
+  --primary-foreground: #ffffff;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #1e293b;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #eff6ff;
+  --accent-foreground: #1d4ed8;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #3b82f6;
+
+  --radius: 0.75rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #3b82f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* DEFAULT SYSTEM OVERRIDE TO DARK MODE VARIABLES IF NO CLASS IS PRESENT */
+  }
+}
+
+.dark {
+  /* DARK THEME (Premium Slate, Deep Blues, High Contrast) */
+  --background: #040812; /* Deeper Tech Blue-Slate */
+  --foreground: #f8fafc;
+
+  --card: rgba(15, 23, 42, 0.5); /* More Translucent Slate 900 for Glassmorphism */
+  --card-foreground: #f8fafc;
+
+  --popover: rgba(15, 23, 42, 0.85);
+  --popover-foreground: #f8fafc;
+
+  --primary: #3b82f6; /* Bright Blue 500 */
+  --primary-foreground: #ffffff;
+
+  --secondary: #1e293b; /* Slate 800 */
+  --secondary-foreground: #f8fafc;
+
+  --muted: #0f172a; /* Slate 900 */
+  --muted-foreground: #94a3b8; /* Slate 400 */
+
+  --accent: #1e3a8a; /* Deep Blue 900 */
+  --accent-foreground: #bfdbfe; /* Light Blue 200 */
+
+  --destructive: #7f1d1d; /* Deep Red 900 */
+  --destructive-foreground: #fca5a5; /* Light Red 300 */
+
+  --border: rgba(51, 65, 85, 0.6); /* Slate 700 with opacity */
+  --input: rgba(30, 41, 59, 0.8); /* Slate 800 with opacity */
+  --ring: #3b82f6;
+
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: rgba(51, 65, 85, 0.6);
+  --sidebar-ring: #3b82f6;
+}
+
+/* Ensure inputs for email, numbers, dates are always LTR (I18N-07) */
+input[type='email'],
+input[type='number'],
+input[type='tel'],
+input[type='url'],
+input[dir='ltr'] {
+  direction: ltr;
+  text-align: start;
+}
+
+/* Glassmorphic Utilities */
+@layer utilities {
+  .glass {
+    @apply bg-background/50 border-border/40 border shadow-sm backdrop-blur-md transition-colors duration-300;
+  }
+  .glass-card {
+    @apply bg-card/60 border border-white/10 shadow-xl backdrop-blur-md transition-colors duration-300 dark:border-white/5;
+  }
+  .glass-popover {
+    @apply bg-popover/80 border-border/50 border shadow-2xl backdrop-blur-lg transition-colors duration-300;
+  }
+  /* Custom modern gradient text */
+  .text-gradient {
+    @apply from-primary bg-gradient-to-r to-blue-400 bg-clip-text text-transparent dark:to-cyan-400;
+  }
+
+  /* Advanced Premium Utilities */
+  .glass-header {
+    @apply bg-background/60 border-border/40 sticky top-0 z-50 border-b shadow-[0_4px_30px_rgba(0,0,0,0.05)] backdrop-blur-lg transition-colors duration-300 dark:shadow-[0_4px_30px_rgba(0,0,0,0.2)];
+  }
+
+  .hover-card-reveal {
+    @apply hover:border-primary/40 dark:hover:border-primary/30 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:shadow-2xl;
+  }
+
+  .focus-glow {
+    @apply focus-visible:border-primary transition-[box-shadow,border-color] duration-300 focus-visible:shadow-[0_0_15px_rgba(59,130,246,0.5)] focus-visible:ring-0;
+  }
+
+  .bg-ambient {
+    @apply pointer-events-none absolute -z-10 rounded-full opacity-30 blur-[80px] dark:opacity-15;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground scroll-smooth tracking-tight;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+  /* Dynamic transitions for links & buttons globally */
+  button,
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Document preview styles — matches PDF output styling */
+.document-preview h2 {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 20px 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+.document-preview section {
+  margin-bottom: 14px;
+}
+.document-preview p {
+  margin-bottom: 6px;
+  text-align: justify;
+}
+.document-preview ul {
+  list-style: disc;
+  padding-inline-start: 1.5em;
+  margin-bottom: 8px;
+}
+.document-preview li {
+  margin-bottom: 3px;
+}
+.document-preview h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 12px 0 6px;
+  color: #374151;
+}
+.document-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+.document-preview td,
+.document-preview th {
+  border: 1px solid #d1d5db;
+  padding: 6px 10px;
+  text-align: start;
+}
+.document-preview th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+.document-preview .signature-block {
+  margin-top: 36px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  page-break-inside: avoid;
+}
+.document-preview .signature-party {
+  flex: 1;
+  text-align: center;
+}
+.document-preview .signature-line {
+  border-top: 1px solid #1a1a1a;
+  width: 100%;
+  display: block;
+  margin-top: 48px;
+  margin-bottom: 4px;
+}
+.document-preview .signature-label {
+  font-size: 11px;
+  color: #6b7280;
+}
