@@ -157,6 +157,12 @@ const serverSchema = z
 export type ServerEnv = z.infer<typeof serverSchema>;
 
 function validateEnv(): ServerEnv {
+  // During Next.js build, runtime secrets (e.g. AUTH_SECRET) are not present.
+  // Skip strict validation so the build succeeds; validation runs at server startup.
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    return process.env as unknown as ServerEnv;
+  }
+
   const result = serverSchema.safeParse(process.env);
   if (!result.success) {
     const formatted = z.prettifyError(result.error);
