@@ -55,7 +55,7 @@
     "lucide-react": "^0.575.0",
     "mammoth": "^1.11.0",
     "next": "16.1.6",
-    "next-auth": "5.0.0-beta.30",
+    "next-auth": "5.0.0-beta.31",
     "next-intl": "^4.8.3",
     "next-themes": "^0.4.6",
     "openai": "^6.25.0",
