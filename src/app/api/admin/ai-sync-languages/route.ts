@@ -23,7 +23,7 @@ interface LangResult {
  * Translate all Hebrew strings in a template to AR/EN/RU.
  */
 export async function POST(request: NextRequest) {
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   try {

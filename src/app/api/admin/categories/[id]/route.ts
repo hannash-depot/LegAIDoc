@@ -26,7 +26,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
 
 // TCAT-04: PUT update category
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-  const { error: authError } = await requireAdmin();
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;
@@ -70,8 +70,8 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 // TCAT-05: DELETE category
-export async function DELETE(_request: NextRequest, { params }: RouteParams) {
-  const { error: authError } = await requireAdmin();
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;

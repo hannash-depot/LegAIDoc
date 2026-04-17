@@ -19,7 +19,7 @@ const RefundSchema = z.object({
  * Admin-only endpoint.
  */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id: paymentId } = await params;

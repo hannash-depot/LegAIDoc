@@ -34,7 +34,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
 
 // TMPL-04: PUT update template
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-  const { error: authError } = await requireAdmin();
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;
@@ -101,8 +101,8 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 // TMPL-07: DELETE template
-export async function DELETE(_request: NextRequest, { params }: RouteParams) {
-  const { error: authError } = await requireAdmin();
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;

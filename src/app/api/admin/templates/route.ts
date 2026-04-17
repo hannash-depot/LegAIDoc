@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
 
 // TMPL-02: POST create template
 export async function POST(request: NextRequest) {
-  const { error: authError } = await requireAdmin();
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   try {

@@ -25,7 +25,7 @@ import { FEATURE_AI_IMPORT } from '@/lib/feature-flags';
 export async function POST(request: NextRequest) {
   if (!FEATURE_AI_IMPORT) return error('AI Import is not enabled', 403, 'FEATURE_DISABLED');
 
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   const formData = await request.formData();

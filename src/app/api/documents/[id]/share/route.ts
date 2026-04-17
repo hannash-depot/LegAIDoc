@@ -4,18 +4,27 @@ import { requireAuth } from '@/lib/api/require-auth';
 import { success, error } from '@/lib/api/response';
 import { logAudit } from '@/lib/audit/audit-trail';
 import { logger } from '@/lib/logger';
+import { ShareCreateSchema } from '@/schemas/share';
 
 type RouteParams = { params: Promise<{ id: string }> };
 
 const SHARE_DURATION_HOURS = 72;
 
 // POST /api/documents/[id]/share — Generate a time-limited share URL (DOCM-06)
-export async function POST(_request: NextRequest, { params }: RouteParams) {
+export async function POST(request: NextRequest, { params }: RouteParams) {
   const { error: authError, session } = await requireAuth();
   if (authError) return authError;
 
-  const body = await _request.json().catch(() => ({}));
-  const permission = ['VIEW', 'COMMENT'].includes(body.permission) ? body.permission : 'VIEW';
+  const rawBody = await request.json().catch(() => ({}));
+  const parsed = ShareCreateSchema.safeParse(rawBody);
+  if (!parsed.success) {
+    return error(
+      parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '),
+      400,
+      'VALIDATION_ERROR',
+    );
+  }
+  const { permission } = parsed.data;
 
   const { id } = await params;
 
@@ -45,7 +54,7 @@ export async function POST(_request: NextRequest, { params }: RouteParams) {
         documentId: id,
         createdBy: session!.user!.id!,
         expiresAt,
-        permission: permission as 'VIEW' | 'COMMENT',
+        permission,
       },
     });
 

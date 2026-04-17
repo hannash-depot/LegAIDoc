@@ -50,7 +50,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
 
 // PUT /api/admin/documents/[id] — Admin update document
 export async function PUT(request: NextRequest, { params }: RouteParams) {
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;
@@ -131,8 +131,8 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 // DELETE /api/admin/documents/[id] — Admin delete/archive document
-export async function DELETE(_request: NextRequest, { params }: RouteParams) {
-  const { error: authError, session } = await requireAdmin();
+export async function DELETE(request: NextRequest, { params }: RouteParams) {
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   const { id } = await params;

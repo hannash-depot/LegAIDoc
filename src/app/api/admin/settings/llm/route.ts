@@ -4,6 +4,7 @@ import { success, error } from '@/lib/api/response';
 import { logger } from '@/lib/logger';
 import { getLlmSetting, updateLlmSetting, maskApiKey } from '@/lib/settings/llm-settings';
 import { logAudit } from '@/lib/audit/audit-trail';
+import { LlmSettingUpdateSchema, LLM_PROVIDERS } from '@/schemas/llm-setting';
 
 /**
  * GET /api/admin/settings/llm
@@ -14,9 +15,8 @@ export async function GET() {
   if (authError) return authError;
 
   try {
-    const providers = ['openai', 'claude', 'gemini'];
     const settings = await Promise.all(
-      providers.map(async (provider) => {
+      LLM_PROVIDERS.map(async (provider) => {
         const setting = await getLlmSetting(provider);
         return {
           provider,
@@ -39,20 +39,22 @@ export async function GET() {
  * Updates an API key for a provider.
  */
 export async function PATCH(request: NextRequest) {
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   try {
     const body = await request.json();
-    const { provider, apiKey, isActive } = body;
+    const parsed = LlmSettingUpdateSchema.safeParse(body);
 
-    if (!provider || !['openai', 'claude', 'gemini'].includes(provider)) {
-      return error('Invalid provider', 400);
+    if (!parsed.success) {
+      return error(
+        parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '),
+        400,
+        'VALIDATION_ERROR',
+      );
     }
 
-    if (apiKey === undefined && isActive === undefined) {
-      return error('Nothing to update', 400);
-    }
+    const { provider, apiKey, isActive } = parsed.data;
 
     // Get existing to preserve values if not provided
     const existing = await getLlmSetting(provider);

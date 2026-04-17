@@ -1,13 +1,19 @@
 import { NextRequest } from 'next/server';
 import { writeFile, unlink, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
+import { randomUUID } from 'crypto';
 import path from 'path';
 import { db } from '@/lib/db';
 import { requireAdmin } from '@/lib/api/require-admin';
 import { success, error } from '@/lib/api/response';
 
 const UPLOAD_DIR = path.join(process.cwd(), 'public', 'uploads', 'logo');
-const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/svg+xml', 'image/webp'];
+const ALLOWED_TYPES: Record<string, string> = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/svg+xml': 'svg',
+  'image/webp': 'webp',
+};
 const MAX_SIZE = 2 * 1024 * 1024; // 2MB
 
 export async function GET() {
@@ -25,7 +31,7 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  const { error: authError } = await requireAdmin();
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   try {
@@ -40,7 +46,8 @@ export async function POST(request: NextRequest) {
     let logoUrl: string | null = null;
 
     if (file) {
-      if (!ALLOWED_TYPES.includes(file.type)) {
+      const ext = ALLOWED_TYPES[file.type];
+      if (!ext) {
         return error('Invalid file type. Allowed: PNG, JPEG, SVG, WebP', 400, 'INVALID_FILE_TYPE');
       }
       if (file.size > MAX_SIZE) {
@@ -58,13 +65,13 @@ export async function POST(request: NextRequest) {
         }
       }
 
-      // Save new file
+      // Save new file with a cryptographically random filename — never trust
+      // the user-supplied name or extension.
       if (!existsSync(UPLOAD_DIR)) {
         await mkdir(UPLOAD_DIR, { recursive: true });
       }
 
-      const ext = file.name.split('.').pop()?.toLowerCase() || 'png';
-      const filename = `logo-${Date.now()}.${ext}`;
+      const filename = `logo-${randomUUID()}.${ext}`;
       const filepath = path.join(UPLOAD_DIR, filename);
       const buffer = Buffer.from(await file.arrayBuffer());
       await writeFile(filepath, buffer);
@@ -103,8 +110,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE() {
-  const { error: authError } = await requireAdmin();
+export async function DELETE(request: NextRequest) {
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   try {

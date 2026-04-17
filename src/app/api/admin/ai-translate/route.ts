@@ -14,7 +14,7 @@ const VALID_PROVIDERS: LlmProvider[] = ['openai', 'claude', 'gemini'];
  * Translate a monolingual template into a single target language.
  */
 export async function POST(request: NextRequest) {
-  const { error: authError, session } = await requireAdmin();
+  const { error: authError, session } = await requireAdmin(request);
   if (authError) return authError;
 
   try {

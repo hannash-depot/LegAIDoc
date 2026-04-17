@@ -3,6 +3,7 @@ import { db } from '@/lib/db';
 import { requireAuth } from '@/lib/api/require-auth';
 import { success, error } from '@/lib/api/response';
 import { logger } from '@/lib/logger';
+import { CommentUpdateSchema } from '@/schemas/comment';
 
 type RouteParams = { params: Promise<{ id: string; commentId: string }> };
 
@@ -28,11 +29,19 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
 
   try {
     const body = await request.json();
-    const { resolved } = body;
+    const parsed = CommentUpdateSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return error(
+        parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; '),
+        400,
+        'VALIDATION_ERROR',
+      );
+    }
 
     const comment = await db.documentComment.update({
       where: { id: commentId, documentId: id },
-      data: { resolved },
+      data: { resolved: parsed.data.resolved },
     });
 
     return success(comment);

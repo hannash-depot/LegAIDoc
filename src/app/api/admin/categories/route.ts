@@ -21,7 +21,7 @@ export async function GET() {
 
 // TCAT-02: POST create category
 export async function POST(request: NextRequest) {
-  const { error: authError } = await requireAdmin();
+  const { error: authError } = await requireAdmin(request);
   if (authError) return authError;
 
   try {

@@ -12,6 +12,7 @@ import { notifyPaymentReceipt } from '@/lib/notifications';
 import { sendPaymentReceipt } from '@/lib/email/send';
 import { formatIls } from '@/lib/payments/payment-service';
 import { logger } from '@/lib/logger';
+import { LegacyWebhookSchema } from '@/schemas/payment-webhook';
 
 export async function POST(request: NextRequest) {
   const provider = process.env.PAYMENT_PROVIDER || 'mock';
@@ -251,12 +252,14 @@ async function handleLegacyWebhook(request: NextRequest) {
   }
 
   try {
-    const body = await request.json();
-    const { event, data } = body;
+    const rawBody = await request.json();
+    const parsed = LegacyWebhookSchema.safeParse(rawBody);
 
-    if (!event || !data) {
+    if (!parsed.success) {
       return error('Invalid webhook payload format', 400, 'INVALID_PAYLOAD');
     }
+
+    const { event, data } = parsed.data;
 
     switch (event) {
       case 'payment.captured':
