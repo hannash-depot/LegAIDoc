@@ -1,14 +1,21 @@
 /**
- * Production seed script — creates only categories (no test users or passwords).
+ * Production seed script — creates categories and templates (no test users or passwords).
  *
  * Usage:
  *   DATABASE_URL="postgresql://..." npx tsx prisma/seed-production.ts
  *
- * Safe to run multiple times (uses upsert).
+ * Safe to run multiple times (uses upsert). Runs automatically during Vercel build.
+ * Skips cleanly when DATABASE_URL is not set (e.g. local `next build` without DB).
  */
 import 'dotenv/config';
 import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
+import { seedContracts } from './seed-contracts';
+
+if (!process.env.DATABASE_URL) {
+  console.log('Production seed: DATABASE_URL not set, skipping.');
+  process.exit(0);
+}
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
@@ -132,12 +139,89 @@ async function main() {
     },
   });
 
+  const vehicles = await prisma.category.upsert({
+    where: { slug: 'vehicles' },
+    update: { icon: 'Car' },
+    create: {
+      slug: 'vehicles',
+      icon: 'Car',
+      nameHe: 'רכב',
+      nameAr: 'مركبات',
+      nameEn: 'Vehicles',
+      nameRu: 'Транспорт',
+      descHe: 'הסכמי מכירה ורכישה של כלי רכב',
+      descAr: 'اتفاقيات بيع وشراء المركبات',
+      descEn: 'Vehicle sale and purchase agreements',
+      descRu: 'Договоры купли-продажи транспортных средств',
+      sortOrder: 6,
+      legalRules: {
+        rules: [
+          { type: 'ownership-transfer-deadline', enabled: true, maxDays: 15 },
+          { type: 'defect-disclosure', enabled: true },
+        ],
+      },
+    },
+  });
+
   console.log(
     'Seeded production categories:',
-    [rental.slug, employment.slug, realEstate.slug, powerOfAttorney.slug, familyLaw.slug].join(
-      ', ',
-    ),
+    [
+      rental.slug,
+      employment.slug,
+      realEstate.slug,
+      powerOfAttorney.slug,
+      familyLaw.slug,
+      vehicles.slug,
+    ].join(', '),
   );
+
+  const categoryMap: Record<string, string> = {
+    'rental-agreements': rental.id,
+    employment: employment.id,
+    'real-estate': realEstate.id,
+    'power-of-attorney': powerOfAttorney.id,
+    'family-law': familyLaw.id,
+    vehicles: vehicles.id,
+  };
+
+  for (const contract of seedContracts) {
+    const categoryId = categoryMap[contract.categorySlug];
+    if (!categoryId) {
+      console.warn(`Skipping template ${contract.slug}: unknown category ${contract.categorySlug}`);
+      continue;
+    }
+    await prisma.template.upsert({
+      where: { slug: contract.slug },
+      update: {
+        nameHe: contract.nameHe,
+        nameAr: contract.nameAr,
+        nameEn: contract.nameEn,
+        nameRu: contract.nameRu,
+        descHe: contract.descHe,
+        descAr: contract.descAr,
+        descEn: contract.descEn,
+        descRu: contract.descRu,
+        categoryId,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        definition: contract.definition as any,
+      },
+      create: {
+        slug: contract.slug,
+        nameHe: contract.nameHe,
+        nameAr: contract.nameAr,
+        nameEn: contract.nameEn,
+        nameRu: contract.nameRu,
+        descHe: contract.descHe,
+        descAr: contract.descAr,
+        descEn: contract.descEn,
+        descRu: contract.descRu,
+        categoryId,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        definition: contract.definition as any,
+      },
+    });
+    console.log('Seeded/updated template:', contract.slug);
+  }
 }
 
 main()
