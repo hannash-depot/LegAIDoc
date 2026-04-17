@@ -133,17 +133,15 @@ const serverSchema = z
       });
     }
 
-    // In production, Upstash Redis is required for distributed rate limiting
+    // In production, warn (but don't fail) if Upstash Redis is missing.
+    // The rate limiter falls back to in-memory when Redis is absent.
     if (
       data.NODE_ENV === 'production' &&
       (!data.UPSTASH_REDIS_REST_URL || !data.UPSTASH_REDIS_REST_TOKEN)
     ) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['UPSTASH_REDIS_REST_URL'],
-        message:
-          'UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN are required in production for distributed rate limiting',
-      });
+      console.warn(
+        '⚠️  UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN not set — rate limiting will use in-memory fallback',
+      );
     }
 
     // If emails are enabled, Resend API key is required
